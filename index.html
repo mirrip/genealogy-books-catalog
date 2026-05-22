@@ -1131,7 +1131,7 @@
         function showGlobalSuccessMessage(msg){
             globalSuccessMessage.querySelector('.message').textContent=msg;
             globalSuccessMessage.classList.add('show');
-            setTimeout(()=>globalSuccessMessage.classList.remove('show'),1000);
+            setTimeout(()=>globalSuccessMessage.classList.remove('show'),800);
         }
 
         function hideAllPages(){ document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden')); mobileFixedCartBtn.classList.add('hidden'); }
@@ -1305,8 +1305,20 @@
             updateSidebarInitials();
             updateProfileDisplay();
             updateTermsCheckboxState();
-            showPage(previousPage!=='profile'?previousPage:'catalog');
-            showGlobalSuccessMessage('Профиль успешно обновлен!');
+            
+            // Если был запрос на обратный звонок - отправляем и возвращаемся к книге
+            if (pendingCallbackBookId) {
+                const book = books.find(b => b.id === pendingCallbackBookId);
+                if (book) {
+                    sendCallbackRequest(book);
+                }
+                pendingCallbackBookId = null;
+                currentBookId = book ? book.id : null;
+                showPage('bookDetail');
+            } else {
+                showPage(previousPage!=='profile'?previousPage:'catalog');
+                showGlobalSuccessMessage('Профиль успешно обновлен!');
+            }
         }
 
         function filterBooksByPrice(targetPrice) {

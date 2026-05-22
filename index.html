@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Генеалогия | Родословные Книги</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === ВСЕ СТИЛИ ПОЛНОСТЬЮ СОХРАНЕНЫ === */
+        :root {
+            --primary-brown: #4a3520;
+            --secondary-brown: #6d523d;
+            --light-beige: #f9f7f2;
+            --gold-accent: #d4af37;
+            --dark-gold: #b89d2a;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.18);
+            --border-radius: 14px;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --parchment-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f9f7f2'/%3E%3Cpath d='M0,0 L100,100 M100,0 L0,100' stroke='%23e8e0d3' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+            --card-border: 1px solid rgba(212, 175, 55, 0.15);
+            --gradient-gold: linear-gradient(135deg, var(--gold-accent), var(--dark-gold));
+            --success-color: #28a745;
+            --error-color: #dc3545;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; width: 100%; position: relative; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        html::-webkit-scrollbar { display: none; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--light-beige); color: var(--text-dark); background-image: var(--parchment-texture); line-height: 1.6; transition: var(--transition); min-height: 100vh; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-tap-highlight-color: transparent; }
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+        header { background: rgba(74, 53, 32, 0.98); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1000; padding: 16px 0; box-shadow: var(--shadow-md); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 20px; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--gold-accent); text-decoration: none; display: flex; align-items: center; gap: 12px; letter-spacing: -0.8px; transition: var(--transition); cursor: pointer; }
+        .logo i { font-size: 28px; color: var(--light-beige); }
+        .logo:hover { transform: scale(1.02); color: var(--light-beige); }
+        .nav-buttons { display: flex; gap: 12px; align-items: center; }
+        .btn-cart-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; transition: var(--transition); position: relative; box-shadow: var(--shadow-sm); }
+        .btn-cart-icon:hover { transform: scale(1.1) rotate(5deg); box-shadow: var(--shadow-lg); }
+        .btn-cart-icon i { font-size: 22px; color: white; }
+        .cart-badge-icon { position: absolute; top: -5px; right: -5px; background-color: var(--primary-brown); color: white; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--light-beige); box-shadow: 0 2px 6px rgba(0,0,0,0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .back-button-container { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; justify-content: space-between; transition: var(--transition); animation: slideIn 0.4s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .back-button-container.hidden { display: none; }
+        .btn-back { background: none; border: none; font-size: 24px; color: var(--primary-brown); cursor: pointer; transition: var(--transition); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(212, 175, 55, 0.12); box-shadow: var(--shadow-sm); }
+        .btn-back:hover { background: rgba(212, 175, 55, 0.28); color: var(--gold-accent); transform: translateX(-4px) scale(1.05); box-shadow: var(--shadow-md); }
+        .btn-back:active { transform: translateX(-2px) scale(1); }
+        .page-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--primary-brown); letter-spacing: -0.5px; position: relative; display: inline-block; }
+        .page-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 3px; background: var(--gold-accent); border-radius: 3px; opacity: 0.8; }
+        .catalog-filters { display: flex; gap: 20px; margin-bottom: 25px; padding: 22px; background: white; border-radius: var(--border-radius); box-shadow: var(--shadow-sm); border: var(--card-border); align-items: center; flex-wrap: wrap; animation: fadeInUp 0.6s ease 0s forwards; opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .filter-group { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 200px; }
+        .filter-label { font-size: 15px; color: var(--text-light); font-weight: 500; }
+        .filter-input-wrapper { position: relative; width: 100%; }
+        .filter-input { padding: 11px 50px 11px 16px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: 8px; font-size: 15px; background: white; color: var(--text-dark); width: 100%; height: 45px; transition: var(--transition); }
+        .filter-input:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+        .filter-input::placeholder { color: var(--text-light); }
+        .filter-input-suffix { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 15px; font-weight: 500; pointer-events: none; user-select: none; }
+        .filter-btn { background: var(--gradient-gold); color: white; border: none; padding: 11px 22px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); flex: 1; min-width: 100px; }
+        .filter-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .filter-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .filter-actions { display: flex; gap: 10px; width: 100%; justify-content: flex-end; }
+        .catalog-header { text-align: center; margin: 20px 0 20px; padding: 0 20px; position: relative; }
+        .catalog-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--primary-brown); margin-bottom: 10px; letter-spacing: -1.2px; background: linear-gradient(to right, var(--primary-brown), var(--gold-accent), var(--secondary-brown)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline-block; }
+        .catalog-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--gold-accent); border-radius: 2px; }
+        .catalog-subtitle { color: var(--text-light); font-size: 22px; max-width: 800px; margin: 15px auto 0; line-height: 1.7; font-weight: 300; font-family: 'Cormorant Garamond', serif; opacity: 0; animation: typewriter 4s steps(40) 0.5s forwards, blink 0.75s step-end infinite; overflow: hidden; white-space: nowrap; border-right: 2px solid var(--gold-accent); }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--gold-accent); } }
+        .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 25px 0 50px; padding: 0 8px; }
+        .catalog-footer-phone { text-align: center; margin: 40px 0 30px; padding: 20px; }
+        .catalog-phone-link { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 500; color: #b8944d; text-decoration: none; transition: var(--transition); }
+        .catalog-phone-link:hover { color: #c6a35b; text-decoration: underline; }
+        .book-card { background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; height: 100%; position: relative; border: var(--card-border); transform: translateZ(0); animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .book-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0)); opacity: 0; transition: var(--transition); z-index: 1; }
+        .book-card:hover { transform: translateY(-8px) rotateX(2deg) scale(1.01); box-shadow: var(--shadow-lg); border-color: rgba(212, 175, 55, 0.5); }
+        .book-card:hover::before { opacity: 1; }
+        .book-image-container { position: relative; height: 280px; overflow: hidden; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); transition: var(--transition); }
+        .book-image, .main-image, .cart-item-image, .favorite-item-image, .order-history-item-image, .thumbnail { width: 100%; height: 100%; display: block; transition: var(--transition); }
+        .book-image-container .book-image, .main-image, .cart-item-image, .favorite-item-image, .order-history-item-image { object-fit: contain; }
+        .thumbnail { object-fit: cover; }
+        .book-card:hover .book-image { transform: scale(1.02); }
+        .book-like-mobile { position: absolute; top: 16px; right: 16px; background: rgba(255, 255, 255, 0.95); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 20; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); border: 2px solid var(--gold-accent); transform: translateZ(1); }
+        .book-like-mobile i { color: var(--text-light); font-size: 20px; transition: var(--transition); }
+        .book-like-mobile.liked i { color: #ff6b6b; transform: scale(1.2); }
+        .book-like-mobile:hover { transform: scale(1.15) rotate(8deg); background: white; box-shadow: var(--shadow-lg); border-color: var(--gold-accent); }
+        .book-like-mobile:hover i { color: #ff6b6b; transform: scale(1.3); }
+        .book-info { padding: 22px 18px; flex-grow: 1; display: flex; flex-direction: column; }
+        .book-title { font-size: 20px; font-weight: 700; color: var(--primary-brown); margin-bottom: 12px; line-height: 1.4; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: 'Montserrat', sans-serif; transition: var(--transition); }
+        .book-card:hover .book-title { color: var(--gold-accent); }
+        .book-price { font-size: 28px; font-weight: 700; color: var(--gold-accent); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif; line-height: 1.2; letter-spacing: -0.3px; position: relative; }
+        .book-price::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 40px; height: 2px; background: var(--gold-accent); opacity: 0.5; }
+        .book-description { color: var(--text-light); font-size: 15px; margin-bottom: 15px; flex-grow: 1; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-weight: 300; transition: var(--transition); }
+        .book-card:hover .book-description { color: var(--text-dark); }
+        .book-detail { max-width: 1320px; margin: 32px auto; padding: 0 24px; }
+        .gallery-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .gallery-main { position: relative; }
+        .main-image-container { width: 100%; height: 450px; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); border: 3px solid rgba(212, 175, 55, 0.4); cursor: pointer; transition: var(--transition); }
+        .main-image-container:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.3); transform: scale(1.01); }
+        .main-image { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .image-navigation { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; pointer-events: none; }
+        .nav-zone { flex: 1; height: 100%; cursor: pointer; pointer-events: auto; }
+        .nav-text { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 32px; font-weight: bold; text-shadow: 0 3px 12px rgba(0,0,0,0.7); opacity: 0; transition: var(--transition); }
+        .nav-zone:hover .nav-text { opacity: 1; transform: translateY(-50%) scale(1.3); }
+        .prev-text { left: 30px; } .next-text { right: 30px; }
+        .nav-indicator { position: absolute; bottom: 25px; left: 0; right: 0; display: flex; justify-content: center; gap: 14px; z-index: 10; }
+        .nav-dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(255, 255, 255, 0.6); cursor: pointer; transition: var(--transition); border: 2px solid rgba(255, 255, 255, 0.3); }
+        .nav-dot.active { background: var(--gold-accent); transform: scale(1.3); border-color: var(--gold-accent); box-shadow: 0 0 10px rgba(212, 175, 55, 0.6); }
+        .gallery-thumbnails { display: flex; gap: 12px; margin-top: 24px; justify-content: center; flex-wrap: wrap; }
+        .thumbnail { width: 75px; height: 75px; border-radius: 12px; cursor: pointer; border: 3px solid transparent; transition: var(--transition); flex-shrink: 0; object-fit: cover; box-shadow: var(--shadow-sm); }
+        .thumbnail.active { border-color: var(--gold-accent); transform: scale(1.1); box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3); }
+        .thumbnail:hover { transform: scale(1.15); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+        .book-details { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .book-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 15px; border-bottom: 2px solid rgba(212, 175, 55, 0.2); }
+        .book-detail-title { font-size: 36px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; line-height: 1.3; letter-spacing: -0.8px; position: relative; }
+        .book-detail-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100px; height: 4px; background: var(--gold-accent); border-radius: 2px; }
+        .detail-like-btn { background: rgba(255, 255, 255, 0.92); width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md); border: 2px solid var(--gold-accent); transition: var(--transition); }
+        .detail-like-btn i { color: var(--text-light); font-size: 26px; transition: var(--transition); }
+        .detail-like-btn.liked i { color: #ff6b6b; transform: scale(1.2); }
+        .detail-like-btn:hover { transform: scale(1.15) rotate(5deg); background: white; box-shadow: var(--shadow-lg); }
+        .detail-like-btn:hover i { color: #ff6b6b; transform: scale(1.3); }
+        .book-detail-price { font-size: 52px; font-weight: 700; color: var(--gold-accent); margin-bottom: 28px; font-family: 'Cormorant Garamond', serif; line-height: 1.1; letter-spacing: -1.2px; text-shadow: 0 3px 10px rgba(0,0,0,0.15); position: relative; }
+        .book-detail-price::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 120px; height: 3px; background: var(--gold-accent); opacity: 0.5; }
+        .book-detail-description { color: var(--text-dark); line-height: 1.9; margin-bottom: 36px; font-size: 19px; font-family: 'Montserrat', sans-serif; font-weight: 300; padding: 20px; background: rgba(255, 255, 255, 0.8); border-radius: var(--border-radius); border-left: 5px solid var(--gold-accent); box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .book-detail-description:hover { background: rgba(255, 255, 255, 0.9); box-shadow: var(--shadow-md); }
+        .book-actions { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+        .btn-add-to-cart { background: var(--gradient-gold); color: white; font-weight: 700; padding: 18px; font-size: 22px; border-radius: var(--border-radius); box-shadow: var(--shadow-lg); font-family: 'Montserrat', sans-serif; min-width: 280px; position: relative; overflow: hidden; border: none; cursor: pointer; }
+        .btn-add-to-cart:disabled { opacity: 0.5; cursor: not-allowed; background: #aaa; }
+        .btn-add-to-cart::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); opacity: 0; transition: var(--transition); }
+        .btn-add-to-cart:hover:not(:disabled)::after { opacity: 1; transform: scale(1.5); }
+        .btn-add-to-cart:hover:not(:disabled) { box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5); transform: translateY(-3px) scale(1.02); }
+        .quantity-selector { display: flex; align-items: center; gap: 10px; background: white; border-radius: var(--border-radius); padding: 10px; box-shadow: var(--shadow-sm); border: 2px solid rgba(212, 175, 55, 0.3); max-width: 300px; }
+        .quantity-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-gold); color: white; border: none; font-size: 24px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .quantity-btn:hover:not(:disabled) { transform: scale(1.1); box-shadow: var(--shadow-md); }
+        .quantity-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .quantity-input { width: 80px; height: 50px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); text-align: center; font-size: 20px; font-weight: 700; color: var(--primary-brown); font-family: 'Montserrat', sans-serif; transition: var(--transition); }
+        .quantity-input:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+        .quantity-price { font-size: 24px; font-weight: 700; color: var(--gold-accent); margin-left: auto; font-family: 'Cormorant Garamond', serif; min-width: 120px; text-align: right; }
+        .mobile-fixed-cart-btn { position: fixed; bottom: 0; left: 0; right: 0; background: var(--gradient-gold); color: white; border: none; padding: 16px 24px; font-weight: 700; font-size: 20px; font-family: 'Montserrat', sans-serif; cursor: pointer; z-index: 2000; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .mobile-fixed-cart-btn i { font-size: 22px; }
+        .mobile-fixed-cart-btn:hover { transform: scale(1.03); box-shadow: 0 -6px 30px rgba(212, 175, 55, 0.5); }
+        .mobile-fixed-cart-btn:active { transform: scale(1); }
+        .sidebar { position: fixed; top: 0; height: 100vh; width: 85%; max-width: 360px; background: linear-gradient(to bottom, var(--primary-brown), var(--secondary-brown)); color: var(--light-beige); box-shadow: var(--shadow-lg); z-index: 2000; transition: var(--transition); transform: translateX(-100%); display: flex; flex-direction: column; overflow: hidden; }
+        .sidebar.open { transform: translateX(0); }
+        .sidebar-header { padding: 35px 28px 25px; text-align: left; border-bottom: 1px solid rgba(212, 175, 55, 0.4); flex-shrink: 0; display: flex; align-items: center; gap: 18px; background: rgba(0, 0, 0, 0.1); }
+        .sidebar-profile-btn { width: 52px; height: 52px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold-accent); cursor: pointer; transition: var(--transition); flex-shrink: 0; box-shadow: var(--shadow-sm); }
+        .sidebar-profile-btn i { font-size: 24px; color: var(--light-beige); }
+        .sidebar-logo { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--gold-accent); letter-spacing: -0.8px; font-weight: 700; margin-left: 8px; }
+        .sidebar-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-gold); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: white; font-weight: 700; border: 4px solid var(--light-beige); box-shadow: var(--shadow-lg); }
+        .sidebar-name { font-size: 22px; font-weight: 700; color: var(--light-beige); margin-bottom: 6px; font-family: 'Montserrat', sans-serif; }
+        .sidebar-email { color: rgba(255, 255, 255, 0.88); font-size: 15px; font-weight: 300; }
+        .sidebar-menu { padding: 20px 0; flex-grow: 1; overflow-y: auto; }
+        .sidebar-item { padding: 20px 32px; display: flex; align-items: center; gap: 20px; cursor: pointer; transition: var(--transition); border-left: 4px solid transparent; font-size: 19px; font-weight: 600; font-family: 'Montserrat', sans-serif; position: relative; }
+        .sidebar-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold-accent); transform: scaleY(0); transform-origin: top; transition: var(--transition); }
+        .sidebar-item:hover { background: rgba(212, 175, 55, 0.22); transform: translateX(5px); }
+        .sidebar-item:hover::before { transform: scaleY(1); }
+        .sidebar-item i { font-size: 26px; width: 36px; text-align: center; color: var(--gold-accent); transition: var(--transition); position: relative; }
+        .sidebar-item:hover i { transform: scale(1.2) rotate(10deg); color: white; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        .sidebar-item.active { background: rgba(212, 175, 55, 0.3); border-left: 4px solid var(--gold-accent); }
+        .sidebar-item.active i { color: white; transform: scale(1.1); }
+        .sidebar-badge { margin-left: auto; background: var(--gold-accent); color: var(--primary-brown); font-size: 15px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; box-shadow: var(--shadow-sm); animation: pulse 2s infinite; }
+        .sidebar-footer { padding: 20px 28px; border-top: 1px solid rgba(212, 175, 55, 0.3); text-align: center; font-size: 15px; color: rgba(255, 255, 255, 0.8); flex-shrink: 0; font-weight: 300; background: rgba(0, 0, 0, 0.05); }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1999; opacity: 0; visibility: hidden; transition: var(--transition); cursor: pointer; }
+        .sidebar-overlay.active { opacity: 1; visibility: visible; }
+        .cart-items, .favorites-items, .order-history-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 32px; margin-bottom: 40px; padding: 0 10px; }
+        .cart-item, .favorite-item, .order-history-item { background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; height: 100%; position: relative; border: var(--card-border); }
+        .cart-item:hover, .favorite-item:hover, .order-history-item:hover { transform: translateY(-6px) rotateX(3deg) scale(1.01); box-shadow: var(--shadow-lg); border-color: rgba(212, 175, 55, 0.5); }
+        .cart-image-container, .favorite-image-container, .order-history-image-container { height: 210px; overflow: hidden; position: relative; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); }
+        .cart-item-image, .favorite-item-image, .order-history-item-image { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .cart-item-info, .favorite-item-info, .order-history-item-info { padding: 20px; }
+        .cart-item-title, .favorite-item-title, .order-history-item-title { font-size: 20px; font-weight: 700; color: var(--primary-brown); margin-bottom: 12px; line-height: 1.4; min-height: 46px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: 'Cormorant Garamond', serif; }
+        .cart-item-price, .favorite-item-price, .order-history-item-price { font-size: 25px; font-weight: 700; color: var(--gold-accent); font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
+        .cart-remove, .favorite-remove { position: absolute; top: 14px; right: 14px; background: rgba(255, 255, 255, 0.95); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; box-shadow: var(--shadow-sm); transition: var(--transition); border: 2px solid var(--primary-brown); }
+        .cart-remove i, .favorite-remove i { color: var(--primary-brown); font-size: 20px; transition: var(--transition); }
+        .cart-remove:hover, .favorite-remove:hover { transform: scale(1.2) rotate(15deg); background: white; box-shadow: var(--shadow-md); border-color: #ff6b6b; }
+        .cart-remove:hover i, .favorite-remove:hover i { color: #ff6b6b; transform: rotate(90deg); }
+        .cart-quantity { position: absolute; top: 14px; left: 14px; background: var(--gold-accent); color: white; font-size: 18px; font-weight: 700; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 20; box-shadow: var(--shadow-sm); cursor: pointer; transition: var(--transition); }
+        .cart-quantity:hover { transform: scale(1.15); box-shadow: var(--shadow-md); }
+        .summary-container { background: white; border-radius: var(--border-radius); padding: 36px; box-shadow: var(--shadow-md); margin-bottom: 45px; max-width: 520px; margin-left: auto; border-left: 5px solid var(--gold-accent); animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 20px; color: var(--text-dark); font-weight: 600; font-family: 'Montserrat', sans-serif; padding: 12px 0; border-bottom: 1px dashed rgba(0,0,0,0.08); }
+        .summary-row:last-child { border-bottom: none; margin-bottom: 15px; }
+        .summary-row span:first-child { color: var(--text-light); font-weight: 400; }
+        .summary-total { font-size: 36px; font-weight: 700; color: var(--primary-brown); border-top: 3px solid var(--gold-accent); padding-top: 20px; margin-top: 16px; display: flex; justify-content: space-between; font-family: 'Cormorant Garamond', serif; letter-spacing: -0.6px; }
+        .summary-total-value { color: var(--gold-accent); font-family: 'Cormorant Garamond', serif; font-size: 38px; }
+        .btn-proceed { width: 100%; padding: 20px; background: var(--gradient-gold); color: white; font-weight: 700; font-size: 22px; border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); margin-top: 15px; box-shadow: var(--shadow-md); font-family: 'Montserrat', sans-serif; border: none; position: relative; overflow: hidden; }
+        .btn-proceed::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: var(--transition); }
+        .btn-proceed:hover::before { left: 100%; }
+        .btn-proceed:hover { transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow-lg); }
+        .btn-proceed:active { transform: translateY(0) scale(1); }
+        .empty-state { text-align: center; padding: 80px 40px; background: white; border-radius: var(--border-radius); box-shadow: var(--shadow-md); max-width: 700px; margin: 60px auto; border: 1px solid rgba(0,0,0,0.06); border-top: 5px solid var(--gold-accent); }
+        .empty-icon { font-size: 80px; color: var(--gold-accent); margin-bottom: 28px; text-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
+        .empty-title { font-size: 36px; font-weight: 700; color: var(--primary-brown); margin-bottom: 20px; font-family: 'Cormorant Garamond', serif; letter-spacing: -0.6px; }
+        .empty-message { color: var(--text-light); font-size: 20px; margin-bottom: 35px; line-height: 1.7; max-width: 550px; margin-left: auto; margin-right: auto; font-weight: 300; font-family: 'Cormorant Garamond', serif; }
+        .btn-browse { background: var(--gradient-gold); color: white; border: none; padding: 18px 45px; border-radius: var(--border-radius); font-size: 22px; font-weight: 600; cursor: pointer; transition: var(--transition); margin: 0 auto; display: block; box-shadow: var(--shadow-md); font-family: 'Montserrat', sans-serif; position: relative; overflow: hidden; }
+        .btn-browse:hover { transform: translateY(-4px) scale(1.05); box-shadow: var(--shadow-lg); }
+        .profile-container { max-width: 800px; margin: 40px auto; background: white; border-radius: var(--border-radius); padding: 40px; box-shadow: var(--shadow-md); border: var(--card-border); }
+        .profile-header { text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 2px solid rgba(212, 175, 55, 0.2); }
+        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; background: var(--gradient-gold); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; font-weight: 700; border: 4px solid var(--light-beige); box-shadow: var(--shadow-lg); }
+        .profile-name { font-size: 32px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; margin-bottom: 10px; }
+        .profile-empty { text-align: center; padding: 60px 30px; }
+        .profile-empty-icon { font-size: 72px; color: var(--gold-accent); margin-bottom: 25px; }
+        .profile-empty-title { font-size: 28px; font-weight: 700; color: var(--primary-brown); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif; }
+        .profile-empty-message { color: var(--text-light); font-size: 18px; margin-bottom: 30px; line-height: 1.7; font-family: 'Montserrat', sans-serif; }
+        .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .info-label { font-weight: 600; color: var(--text-light); font-size: 18px; font-family: 'Montserrat', sans-serif; }
+        .info-value { font-weight: 600; color: var(--primary-brown); font-size: 18px; font-family: 'Cormorant Garamond', serif; }
+        .profile-form { display: flex; flex-direction: column; gap: 20px; margin-top: 25px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-label { font-weight: 600; color: var(--primary-brown); font-size: 16px; font-family: 'Montserrat', sans-serif; }
+        .form-input { padding: 14px 18px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); font-size: 16px; font-family: 'Montserrat', sans-serif; transition: var(--transition); background: white; color: var(--text-dark); }
+        .form-input:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); transform: translateY(-2px); }
+        .btn-save-profile { background: var(--gradient-gold); color: white; border: none; padding: 16px 32px; border-radius: var(--border-radius); font-weight: 700; font-size: 18px; cursor: pointer; transition: var(--transition); margin-top: 10px; align-self: flex-start; box-shadow: var(--shadow-md); font-family: 'Montserrat', sans-serif; }
+        .btn-save-profile:hover { transform: translateY(-3px) scale(1.03); box-shadow: var(--shadow-lg); }
+        .payment-container { max-width: 800px; margin: 40px auto; background: white; border-radius: var(--border-radius); padding: 40px; box-shadow: var(--shadow-md); border: var(--card-border); }
+        .payment-title { font-size: 36px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; text-align: center; margin-bottom: 40px; }
+        .payment-method { border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); padding: 30px; background: rgba(255, 255, 255, 0.9); }
+        .payment-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid rgba(212, 175, 55, 0.2); }
+        .payment-icon { width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-gold); display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; }
+        .payment-name { font-size: 28px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; }
+        .contact-preferences { margin-top: 30px; }
+        .contact-label { font-size: 18px; font-weight: 600; color: var(--primary-brown); font-family: 'Montserrat', sans-serif; margin-bottom: 15px; display: block; }
+        .contact-options { display: flex; gap: 20px; margin-bottom: 30px; }
+        .contact-option { flex: 1; padding: 16px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); text-align: center; cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 16px; font-family: 'Montserrat', sans-serif; }
+        .contact-option.selected { border-color: var(--gold-accent); background: rgba(212, 175, 55, 0.1); box-shadow: var(--shadow-sm); }
+        .contact-option:hover { transform: translateY(-2px); }
+        .time-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .time-option { padding: 12px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); text-align: center; cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 15px; font-family: 'Montserrat', sans-serif; }
+        .time-option.selected { border-color: var(--gold-accent); background: rgba(212, 175, 55, 0.1); box-shadow: var(--shadow-sm); }
+        .time-option:hover { transform: translateY(-2px); }
+        .time-desc { font-size: 13px; color: var(--text-light); font-weight: 400; display: block; margin-top: 5px; }
+        .payment-registration { margin-top: 30px; padding-top: 20px; border-top: 2px solid rgba(212, 175, 55, 0.2); }
+        .payment-registration .form-group { margin-bottom: 20px; }
+        .payment-registration .terms-group { margin-top: 20px; margin-bottom: 20px; }
+        .btn-confirm-payment { width: 100%; padding: 20px; background: var(--gradient-gold); color: white; font-weight: 700; font-size: 22px; border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); margin-top: 25px; box-shadow: var(--shadow-md); font-family: 'Montserrat', sans-serif; border: none; }
+        .btn-confirm-payment:disabled { opacity: 0.5; cursor: not-allowed; background: #aaa; }
+        .btn-confirm-payment:hover:not(:disabled) { transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow-lg); }
+        .success-container { max-width: 600px; margin: 80px auto; text-align: center; padding: 60px; background: white; border-radius: var(--border-radius); box-shadow: var(--shadow-lg); border: var(--card-border); border-top: 6px solid var(--gold-accent); }
+        .success-icon { font-size: 96px; color: #28a745; margin-bottom: 30px; animation: bounce 0.8s ease; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .success-title { font-size: 42px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; margin-bottom: 25px; letter-spacing: -0.8px; }
+        .success-message { color: var(--text-dark); font-size: 20px; line-height: 1.8; margin-bottom: 40px; font-family: 'Montserrat', sans-serif; font-weight: 300; }
+        .btn-continue-shopping { background: var(--gradient-gold); color: white; border: none; padding: 18px 45px; border-radius: var(--border-radius); font-size: 22px; font-weight: 600; cursor: pointer; transition: var(--transition); margin: 0 auto; display: block; box-shadow: var(--shadow-md); font-family: 'Montserrat', sans-serif; }
+        .btn-continue-shopping:hover { transform: translateY(-4px) scale(1.05); box-shadow: var(--shadow-lg); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(212, 175, 55, 0.3); border-top: 4px solid var(--gold-accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+        .success-message-global { position: fixed; top: 25px; right: 25px; background: white; border-left: 5px solid #28a745; padding: 20px 28px; border-radius: 0 var(--border-radius) var(--border-radius) 0; box-shadow: var(--shadow-lg); z-index: 10000; transform: translateX(calc(100% + 30px)); transition: var(--transition); display: flex; align-items: center; gap: 18px; max-width: 450px; }
+        .success-message-global.show { animation: slideInRight 0.4s ease forwards; }
+        @keyframes slideInRight { to { transform: translateX(0); } }
+        .success-message-global i { font-size: 26px; color: #28a745; }
+        .success-message-global .message { color: var(--text-dark); font-weight: 600; font-size: 17px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: white; border-radius: var(--border-radius); padding: 40px; max-width: 450px; width: 90%; box-shadow: var(--shadow-lg); position: relative; animation: modalSlideIn 0.3s ease; border: var(--card-border); }
+        @keyframes modalSlideIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-title { font-size: 28px; font-weight: 700; color: var(--primary-brown); font-family: 'Cormorant Garamond', serif; margin-bottom: 30px; text-align: center; }
+        .modal-quantity-selector { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 30px; }
+        .modal-quantity-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-gold); color: white; border: none; font-size: 32px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .modal-quantity-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .modal-quantity-input { width: 100px; height: 60px; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: var(--border-radius); text-align: center; font-size: 28px; font-weight: 700; color: var(--primary-brown); font-family: 'Montserrat', sans-serif; transition: var(--transition); }
+        .modal-quantity-input:focus { outline: none; border-color: var(--gold-accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+        .modal-total-price { text-align: center; font-size: 24px; font-weight: 700; color: var(--gold-accent); font-family: 'Cormorant Garamond', serif; margin-bottom: 30px; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: var(--border-radius); }
+        .modal-actions { display: flex; gap: 15px; margin-top: 20px; }
+        .modal-btn { padding: 16px 32px; border-radius: var(--border-radius); font-weight: 700; font-size: 18px; cursor: pointer; transition: var(--transition); font-family: 'Montserrat', sans-serif; border: none; flex: 1; }
+        .modal-btn-save { background: var(--success-color); color: white; }
+        .modal-btn-save:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; color: var(--text-light); cursor: pointer; transition: var(--transition); }
+        .modal-close:hover { color: var(--error-color); transform: rotate(90deg); }
+        .terms-group { display: flex; align-items: flex-start; gap: 12px; margin-top: 25px; padding: 20px; background: rgba(212, 175, 55, 0.05); border-radius: var(--border-radius); border: 2px solid rgba(212, 175, 55, 0.2); }
+        .terms-checkbox { width: 22px; height: 22px; cursor: pointer; margin-top: 2px; }
+        .terms-checkbox:disabled { cursor: not-allowed; opacity: 0.7; }
+        .terms-label { font-size: 15px; color: var(--text-dark); line-height: 1.6; font-family: 'Montserrat', sans-serif; }
+        .terms-label a { color: var(--gold-accent); text-decoration: none; font-weight: 600; }
+        .terms-label a:hover { text-decoration: underline; }
+        .terms-error { color: var(--error-color); font-size: 14px; margin-top: 8px; display: none; }
+        .order-history-contact { background: rgba(212, 175, 55, 0.05); border-radius: var(--border-radius); padding: 12px; margin-bottom: 15px; border: 1px solid rgba(212, 175, 55, 0.1); font-size: 14px; color: var(--text-light); }
+        .order-history-contact div { margin-bottom: 5px; }
+        .order-history-contact div:last-child { margin-bottom: 0; }
+        ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
+        ::selection { background: var(--gold-accent); color: white; }
+        .order-history-container { max-width: 1000px; margin: 40px auto; background: white; border-radius: var(--border-radius); padding: 40px; box-shadow: var(--shadow-md); border: var(--card-border); }
+        .order-history-item { display: flex; flex-direction: column; margin-bottom: 25px; padding: 20px; border: 2px solid rgba(212, 175, 55, 0.2); border-radius: var(--border-radius); }
+        .order-history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .order-history-date { font-size: 18px; color: var(--text-light); font-weight: 500; }
+        .order-history-total { font-size: 24px; font-weight: 700; color: var(--gold-accent); font-family: 'Cormorant Garamond', serif; }
+        .order-history-books { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .order-history-book { padding: 12px; background: rgba(212, 175, 55, 0.05); border-radius: var(--border-radius); border: 1px solid rgba(212, 175, 55, 0.1); }
+        .order-history-book-title { font-weight: 600; color: var(--primary-brown); margin-bottom: 5px; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .order-history-book-info { display: flex; justify-content: space-between; color: var(--text-light); font-size: 14px; }
+        .order-history-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .btn-repeat-order { background: var(--gradient-gold); color: white; border: none; padding: 10px 20px; border-radius: var(--border-radius); font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'Montserrat', sans-serif; }
+        .btn-repeat-order:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-delete-order { background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: var(--border-radius); font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'Montserrat', sans-serif; }
+        .btn-delete-order:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: #c82333; }
+        @media (max-width: 1200px) { .books-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; } }
+        @media (max-width: 1024px) { .books-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; } .book-image-container { height: 260px; } }
+        @media (max-width: 768px) {
+            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 4px; margin: 20px 0 40px; }
+            .book-image-container { height: 240px; }
+            .catalog-filters { flex-direction: column; align-items: stretch; gap: 15px; }
+            .filter-group { width: 100%; }
+            .filter-actions { width: 100%; justify-content: space-between; }
+            .filter-input { height: 50px; font-size: 16px; padding: 12px 60px 12px 16px; }
+            .filter-input-suffix { font-size: 16px; right: 20px; }
+            .filter-btn { padding: 12px; font-size: 16px; min-width: 48%; }
+            .catalog-subtitle { display: none; }
+            .main-image-container { height: 350px; }
+            .nav-indicator { bottom: 15px; }
+            .gallery-thumbnails { margin-top: 15px; gap: 8px; }
+            .thumbnail { width: 60px; height: 60px; }
+            .profile-header { display: none; }
+            .mobile-fixed-cart-btn { display: flex; }
+            .time-options { grid-template-columns: 1fr; }
+            .order-history-books { grid-template-columns: 1fr; }
+            .order-history-actions { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .books-grid { grid-template-columns: 1fr; gap: 15px; padding: 0 2px; margin: 15px 0 30px; }
+            .book-image-container { height: 220px; }
+            .sidebar { width: 85%; }
+            .main-image-container { height: 300px; }
+            .summary-row { font-size: 18px; }
+            .summary-total { font-size: 30px; }
+            .summary-total-value { font-size: 32px; }
+            .btn-proceed { font-size: 20px; padding: 16px; border-radius: 12px; }
+            .empty-state { padding: 60px 25px; margin: 40px 10px; }
+            .empty-icon { font-size: 70px; }
+            .empty-title { font-size: 30px; }
+            .empty-message { font-size: 18px; }
+            .header-container { flex-wrap: wrap; gap: 10px; }
+            .logo { font-size: 28px; }
+            .logo i { font-size: 24px; }
+            .btn-cart-icon { width: 44px; height: 44px; }
+            .btn-cart-icon i { font-size: 20px; }
+            .cart-badge-icon { width: 18px; height: 18px; font-size: 10px; }
+            .profile-container, .payment-container, .order-history-container { padding: 25px 20px; margin: 20px 10px; }
+            .profile-avatar { width: 90px; height: 90px; font-size: 36px; }
+            .profile-name { font-size: 24px; }
+            .payment-title, .success-title { font-size: 26px; }
+            .gallery-thumbnails { gap: 6px; flex-wrap: nowrap; overflow-x: auto; padding: 8px 0; }
+            .thumbnail { width: 55px; height: 55px; flex-shrink: 0; }
+            .book-header { flex-direction: row; align-items: center; gap: 15px; }
+            .detail-like-btn { width: 48px; height: 48px; }
+            .detail-like-btn i { font-size: 22px; }
+            .contact-options { flex-direction: column; gap: 10px; }
+            .time-options { grid-template-columns: 1fr; }
+            .modal-content { padding: 25px; }
+            .modal-quantity-selector { flex-direction: column; gap: 10px; }
+            .modal-actions { flex-direction: column; }
+            .order-history-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .order-history-actions { flex-direction: column; }
+        }
+        .page { opacity: 0; transform: translateY(20px); transition: var(--transition); animation: fadeIn 0.5s ease forwards; min-height: calc(100vh - 80px); padding-bottom: 80px; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        .hidden { display: none !important; }
+        @supports (-webkit-touch-callout: none) {
+            body { -webkit-font-smoothing: antialiased; }
+            input, textarea, select { -webkit-appearance: none; border-radius: var(--border-radius); }
+            .filter-input, .filter-select, .quantity-input { font-size: 16px; }
+            .page { min-height: calc(100vh - 120px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="logo" id="logoBtn">
+                    <i class="fas fa-bars"></i>
+                    Генеалогия
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <div class="btn-cart-icon" id="cartIconBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge-icon" id="cartIconBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="sidebar" id="profileSidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-profile-btn" id="sidebarProfileBtn">
+                <span id="sidebarInitials">Г</span>
+            </div>
+            <div class="sidebar-logo">Генеалогия</div>
+        </div>
+        <div class="sidebar-menu">
+            <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог</span></div>
+            <div class="sidebar-item" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
+            <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
+            <div class="sidebar-item" data-page="orderHistory"><i class="fas fa-history"></i><span>История заказов</span></div>
+            <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Профиль</span></div>
+        </div>
+        <div class="sidebar-footer"><div>© 2026 Генеалогия • Эксклюзивные издания</div></div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="container page" id="catalogPage">
+        <div class="catalog-header">
+            <h1 class="catalog-title">Родословные Книги</h1>
+            <p class="catalog-subtitle">Эксклюзивные издания для изучения вашей семейной истории с XVIII века до наших дней</p>
+        </div>
+        <div class="catalog-filters">
+            <div class="filter-group">
+                <label class="filter-label">Найти по цене:</label>
+                <div class="filter-input-wrapper">
+                    <input type="number" class="filter-input" id="priceInput" placeholder="Введите цену" min="0">
+                    <span class="filter-input-suffix">000</span>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="filter-btn" id="clearPriceFilterBtn" style="background: #6d523d;">Сбросить</button>
+                <button class="filter-btn" id="priceFilterBtn">Найти</button>
+            </div>
+        </div>
+        <div class="books-grid" id="booksGrid"></div>
+        <div class="catalog-footer-phone">
+            <a href="tel:+79013168726" class="catalog-phone-link">Для звонка: +7 901 316-87-26</a>
+        </div>
+    </main>
+
+    <main class="container page hidden" id="bookDetailPage">
+        <div class="back-button-container" id="detailBackContainer">
+            <button class="btn-back" id="backToCatalog"><i class="fas fa-arrow-left"></i></button>
+            <div class="detail-like-btn" id="detailLikeBtn"><i class="far fa-heart"></i></div>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-main">
+                <div class="main-image-container" id="mainImageContainer">
+                    <img class="main-image" id="mainImage" src="" alt="Обложка книги">
+                    <div class="image-navigation">
+                        <div class="nav-zone left" id="prevZone"><div class="nav-text prev-text">‹</div></div>
+                        <div class="nav-zone right" id="nextZone"><div class="nav-text next-text">›</div></div>
+                    </div>
+                    <div class="nav-indicator" id="navIndicator"></div>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+            </div>
+            <div class="book-details">
+                <h1 class="book-detail-title" id="detailTitle">Название книги</h1>
+                <div class="book-detail-price" id="detailPrice">38 500 ₽</div>
+                <div class="book-detail-description" id="detailDescription">Подробное описание книги...</div>
+                <div class="quantity-selector hidden" id="quantitySelector">
+                    <button class="quantity-btn minus" id="quantityMinus">-</button>
+                    <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="99">
+                    <button class="quantity-btn plus" id="quantityPlus">+</button>
+                    <div class="quantity-price" id="quantityPrice">38 500 ₽</div>
+                </div>
+                <button class="btn btn-add-to-cart" id="addToCartBtn"><i class="fas fa-shopping-cart"></i> Добавить в корзину</button>
+            </div>
+        </div>
+        <button class="mobile-fixed-cart-btn hidden" id="mobileFixedCartBtn"><i class="fas fa-shopping-cart"></i> В корзину</button>
+    </main>
+
+    <main class="container page hidden" id="cartPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromCart"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">Ваша Корзина</h1>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div id="cartEmpty" class="empty-state hidden">
+            <div class="empty-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h2 class="empty-title">Корзина пуста</h2>
+            <p class="empty-message">Добавьте понравившиеся книги в корзину, чтобы оформить заказ</p>
+            <button class="btn-browse" id="browseCatalogBtn">Перейти в каталог</button>
+        </div>
+        <div class="summary-container hidden" id="cartSummary">
+            <div class="summary-row"><span>Товаров:</span><span id="itemCount">0</span></div>
+            <div class="summary-row"><span>Сумма:</span><span id="cartSubtotal">0 ₽</span></div>
+            <div class="summary-total"><span>Итого:</span><span class="summary-total-value" id="cartTotal">0 ₽</span></div>
+            <button class="btn-proceed" id="checkoutBtn">Оставить заявку</button>
+        </div>
+    </main>
+
+    <main class="container page hidden" id="favoritesPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromFavorites"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">Избранное</h1>
+        </div>
+        <div class="favorites-items" id="favoritesItems"></div>
+        <div id="favoritesEmpty" class="empty-state hidden">
+            <div class="empty-icon"><i class="fas fa-heart"></i></div>
+            <h2 class="empty-title">Избранное пусто</h2>
+            <p class="empty-message">Добавьте понравившиеся книги в избранное, чтобы быстро находить их позже</p>
+            <button class="btn-browse" id="browseCatalogFavoritesBtn">Перейти в каталог</button>
+        </div>
+    </main>
+
+    <main class="container page hidden" id="orderHistoryPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromHistory"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">История заказов</h1>
+        </div>
+        <div class="order-history-container">
+            <div id="orderHistoryEmpty" class="empty-state hidden">
+                <div class="empty-icon"><i class="fas fa-history"></i></div>
+                <h2 class="empty-title">История заказов пуста</h2>
+                <p class="empty-message">Здесь будут отображаться ваши предыдущие заказы</p>
+            </div>
+            <div id="orderHistoryList"></div>
+        </div>
+    </main>
+
+    <main class="container page hidden" id="profilePage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromProfile"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">Профиль</h1>
+        </div>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar" id="profileAvatar">Г</div>
+                <h2 class="profile-name" id="profileName">Гость</h2>
+            </div>
+            <div class="settings-section">
+                <h3 class="section-title"><i class="fas fa-user-edit"></i> Редактирование профиля</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px; line-height: 1.6;">Обновите ваши контактные данные для оформления заказа</p>
+                <form class="profile-form">
+                    <div class="form-group"><label class="form-label">Имя / ФИО *</label><input type="text" class="form-input" id="fullName" placeholder="Ваше имя"></div>
+                    <div class="form-group"><label class="form-label">Телефон *</label><input type="tel" class="form-input" id="phone" placeholder="+7 (___) ___-__-__"></div>
+                    <div class="form-group"><label class="form-label">Telegram (username)</label><input type="text" class="form-input" id="telegram" placeholder="@username или ссылка"></div>
+                    <div class="terms-group">
+                        <input type="checkbox" id="termsCheckbox" class="terms-checkbox">
+                        <label class="terms-label" for="termsCheckbox">Я согласен на обработку персональных данных и использование файлов cookie в соответствии с <a href="#" onclick="event.preventDefault();">Политикой конфиденциальности</a></label>
+                    </div>
+                    <div class="terms-error" id="termsError">Пожалуйста, примите условия использования для сохранения профиля</div>
+                    <button type="button" class="btn-save-profile" id="saveProfileBtn">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <main class="container page hidden" id="paymentPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCart"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">Оформление заказа</h1>
+        </div>
+        <div class="payment-container">
+            <div class="payment-method">
+                <div class="contact-preferences">
+                    <label class="contact-label">Как с вами связаться?</label>
+                    <div class="contact-options" id="contactMethodSection">
+                        <div class="contact-option" data-type="write"><i class="fas fa-envelope" style="display: block; margin-bottom: 8px; font-size: 24px;"></i>Написать</div>
+                        <div class="contact-option" data-type="call"><i class="fas fa-phone" style="display: block; margin-bottom: 8px; font-size: 24px;"></i>Позвонить</div>
+                    </div>
+                    <label class="contact-label" id="timeSectionLabel">Во сколько удобно связаться? (МСК)</label>
+                    <div class="time-options" id="timeSection">
+                        <div class="time-option" data-time="asap">Как можно скорее<span class="time-desc">Свяжемся в ближайшее время</span></div>
+                        <div class="time-option" data-time="morning">Утро<span class="time-desc">8:00 - 12:00</span></div>
+                        <div class="time-option" data-time="day">День<span class="time-desc">12:00 - 18:00</span></div>
+                        <div class="time-option" data-time="evening">Вечер<span class="time-desc">18:00 - 22:00</span></div>
+                    </div>
+                    <div class="payment-registration" id="paymentRegistration"></div>
+                    <button class="btn-confirm-payment" id="confirmPaymentBtn" disabled>Оставить заявку</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="quantityModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title">Изменить количество</h3>
+            <div class="modal-quantity-selector">
+                <button class="modal-quantity-btn minus" id="modalMinus">-</button>
+                <input type="number" class="modal-quantity-input" id="modalQuantity" value="1" min="1" max="99">
+                <button class="modal-quantity-btn plus" id="modalPlus">+</button>
+            </div>
+            <div class="modal-total-price" id="modalTotalPrice">38 500 ₽</div>
+            <div class="modal-actions"><button class="modal-btn modal-btn-save" id="modalSave">Сохранить</button></div>
+        </div>
+    </div>
+
+    <div class="success-message-global" id="globalSuccessMessage">
+        <i class="fas fa-check-circle"></i>
+        <div class="message">Книга добавлена в корзину!</div>
+    </div>
+
+    <script>
+        // Новый URL скрипта
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwhWs5yVjijIgFgwLjH4GkvZ29qlS88akeNbPn29ZbDEpb9eCDVfo4g5dK095a4gmf1bQ/exec';
+
+        const books = [
+            { id: 1, title: "Элитная", description: "Подарите семье реликвию, достойную поколений. Эта книга сохранит историю рода в самом статусном исполнении.", price: 29000, image: "элитная 29/элитная 1.jpeg", images: ["элитная 29/элитная 1.jpeg", "элитная 29/элитная 2.jpeg", "элитная 29/элитная 3.jpeg", "элитная 29/элитная 4.jpeg", "элитная 29/элитная 5.jpeg", "элитная 29/элитная 6.jpeg", "элитная 29/элитная 7.jpeg", "элитная 29/элитная 8.jpeg", "элитная 29/элитная 9.jpeg"] },
+            { id: 2, title: "Элитная с тиснением", description: "Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.", price: 26500, image: "элитная с тен 26/элитная с тен 1.jpeg", images: ["элитная с тен 26/элитная с тен 1.jpeg", "элитная с тен 26/элитная с тен 2.jpeg", "элитная с тен 26/элитная с тен 3.jpeg", "элитная с тен 26/элитная с тен 4.jpeg", "элитная с тен 26/элитная с тен 5.jpeg", "элитная с тен 26/элитная с тен 6.jpeg", "элитная с тен 26/элитная с тен 7.jpeg", "элитная с тен 26/элитная с тен 8.jpeg", "элитная с тен 26/элитная с тен 9.jpeg"] },
+            { id: 3, title: "Изысканная в оплётке с золочёным древом", description: "Подарите близким книгу, где род оживает золотым древом. Она сохранит память семьи красиво и торжественно.", price: 11200, image: "изызканная в оплетке 11/изысканная в оплетке 1.jpeg", images: ["изызканная в оплетке 11/изысканная в оплетке 1.jpeg", "изызканная в оплетке 11/изысканная в оплетке 2.jpeg", "изызканная в оплетке 11/изысканная в оплетке 3.jpeg", "изызканная в оплетке 11/изысканная в оплетке 4.jpeg", "изызканная в оплетке 11/изысканная в оплетке 5.jpeg", "изызканная в оплетке 11/изысканная в оплетке 6.jpeg", "изызканная в оплетке 11/изысканная в оплетке 7.jpeg", "изызканная в оплетке 11/изысканная в оплетке 8.jpeg", "изызканная в оплетке 11/изысканная в оплетке 9.jpeg"] },
+            { id: 4, title: "Изысканная в оплётке", description: "Подарите семье тёплую родословную книгу с особым характером. В ней оживут имена, истории и поколения.", price: 10500, image: "изысканная 10/изысканная 1.jpeg", images: ["изысканная 10/изысканная 1.jpeg", "изысканная 10/изысканная 2.jpeg", "изысканная 10/изысканная 3.jpeg", "изысканная 10/изысканная 4.jpeg", "изысканная 10/изысканная 5.jpeg", "изысканная 10/изысканная 6.jpeg", "изысканная 10/изысканная 7.jpeg", "изысканная 10/изысканная 8.jpeg", "изысканная 10/изысканная 9.jpeg"] },
+            { id: 5, title: "Изысканная", description: "Подарите близким память, которую можно держать в руках. Эта книга сохранит историю вашей семьи.", price: 9500, image: "изысканная 9/изысканная 1.jpeg", images: ["изысканная 9/изысканная 1.jpeg", "изысканная 9/изысканная 2.jpeg", "изысканная 9/изысканная 3.jpeg", "изысканная 9/изысканная 4.jpeg", "изысканная 9/изысканная 5.jpeg", "изысканная 9/изысканная 6.jpeg", "изысканная 9/изысканная 7.jpeg", "изысканная 9/изысканная 8.jpeg", "изысканная 9/изысканная 9.jpeg"] },
+            { id: 6, title: "Изысканная «Тройка»", description: "Подарите книгу с русским характером и душой. Она сохранит семейную историю, корни и дорогу поколений.", price: 9500, image: "тройка изыск/тройка изыск 1.jpeg", images: ["тройка изыск/тройка изыск 1.jpeg", "тройка изыск/тройка изыск 2.jpeg", "тройка изыск/тройка изыск 3.jpeg", "тройка изыск/тройка изыск 4.jpeg", "тройка изыск/тройка изыск 5.jpeg", "тройка изыск/тройка изыск 6.jpeg", "тройка изыск/тройка изыск 7.jpeg", "тройка изыск/тройка изыск 8.jpeg", "тройка изыск/тройка изыск 9.jpeg"] },
+            { id: 7, title: "Изысканная «Летописец»", description: "Подарите семье собственную летопись. Эта книга сохранит истории, фотографии и память поколений.", price: 9500, image: "изыск летописец/изыск летописец 1.jpeg", images: ["изыск летописец/изыск летописец 1.jpeg", "изыск летописец/изыск летописец 2.jpeg", "изыск летописец/изыск летописец 3.jpeg", "изыск летописец/изыск летописец 4.jpeg", "изыск летописец/изыск летописец 5.jpeg", "изыск летописец/изыск летописец 6.jpeg", "изыск летописец/изыск летописец 7.jpeg", "изыск летописец/изыск летописец 8.jpeg", "изыск летописец/изыск летописец 9.jpeg"] },
+            { id: 8, title: "Изысканная «Благословение»", description: "Подарите книгу, наполненную теплом и благодарностью. Она сохранит семейную историю как благословение для поколений.", price: 9500, image: "изыск благословие/изыск благословие 1.jpeg", images: ["изыск благословие/изыск благословие 1.jpeg", "изыск благословие/изыск благословие 2.jpeg", "изыск благословие/изыск благословие 3.jpeg", "изыск благословие/изыск благословие 4.jpeg", "изыск благословие/изыск благословие 5.jpeg", "изыск благословие/изыск благословие 6.jpeg", "изыск благословие/изыск благословие 7.jpeg", "изыск благословие/изыск благословие 8.jpeg", "изыск благословие/изыск благословие 9.jpeg"] },
+            { id: 9, title: "Семейный альбом", description: "Подарите место для самых дорогих фотографий. Этот альбом сохранит улыбки, праздники и семейные воспоминания.", price: 5000, image: "альбом 5/альбом 1.jpeg", images: ["альбом 5/альбом 1.jpeg", "альбом 5/альбом 2.jpeg", "альбом 5/альбом 3.jpeg", "альбом 5/альбом 4.jpeg", "альбом 5/альбом 5.jpeg", "альбом 5/альбом 6.jpeg", "альбом 5/альбом 7.jpeg", "альбом 5/альбом 8.jpeg", "альбом 5/альбом 9.jpeg"] },
+            { id: 10, title: "Художественная бордовая с гербом", description: "Подарите семье книгу с чувством достоинства. Герб на обложке подчеркнёт фамильную память и историю рода.", price: 7200, image: "худож герб 7/худож герб 1.jpeg", images: ["худож герб 7/худож герб 1.jpeg", "худож герб 7/худож герб 2.jpeg", "худож герб 7/худож герб 3.jpeg", "худож герб 7/худож герб 4.jpeg", "худож герб 7/худож герб 5.jpeg", "худож герб 7/худож герб 6.jpeg", "худож герб 7/худож герб 7.jpeg", "худож герб 7/худож герб 8.jpeg", "худож герб 7/худож герб 9.jpeg"] },
+            { id: 11, title: "Художественная бордовая с древом", description: "Подарите книгу, где главное — корни семьи. Она сохранит поколения, имена и самые важные воспоминания.", price: 7200, image: "худож древо 7/худож древо 1.jpeg", images: ["худож древо 7/худож древо 1.jpeg", "худож древо 7/худож древо 2.jpeg", "худож древо 7/худож древо 3.jpeg", "худож древо 7/худож древо 4.jpeg", "худож древо 7/худож древо 5.jpeg", "худож древо 7/худож древо 6.jpeg", "худож древо 7/худож древо 7.jpeg", "худож древо 7/худож древо 8.jpeg", "худож древо 7/худож древо 9.jpeg"] },
+            { id: 12, title: "Художественная чёрная с гербом", description: "Подарите достойную книгу для главы семьи. Она подчеркнёт уважение к роду, фамилии и семейной памяти.", price: 7200, image: "худож черн 7/худож черн 1.jpeg", images: ["худож черн 7/худож черн 1.jpeg", "худож черн 7/худож черн 2.jpeg", "худож черн 7/худож черн 3.jpeg", "худож черн 7/худож черн 4.jpeg", "худож черн 7/худож черн 5.jpeg", "худож черн 7/худож черн 6.jpeg", "худож черн 7/худож черн 7.jpeg", "худож черн 7/худож черн 8.jpeg", "худож черн 7/худож черн 9.jpeg"] },
+            { id: 13, title: "Художественная синяя с гербом", description: "Подарите спокойную и благородную семейную книгу. Она сохранит историю рода с теплом, уважением и вкусом.", price: 7200, image: "худож син 7/худож син 1.jpeg", images: ["худож син 7/худож син 1.jpeg", "худож син 7/худож син 2.jpeg", "худож син 7/худож син 3.jpeg", "худож син 7/худож син 4.jpeg", "худож син 7/худож син 5.jpeg", "худож син 7/худож син 6.jpeg", "худож син 7/худож син 7.jpeg", "худож син 7/худож син 8.jpeg", "худож син 7/худож син 9.jpeg"] },
+            { id: 14, title: "Художественная «Свадебная с древом»", description: "Подарите молодожёнам начало их семейной истории. Эта книга сохранит корни, любовь и будущие поколения.", price: 7200, image: "худож свадебная 7/худож свадебная 1.jpeg", images: ["худож свадебная 7/худож свадебная 1.jpeg", "худож свадебная 7/худож свадебная 2.jpeg", "худож свадебная 7/худож свадебная 3.jpeg", "худож свадебная 7/худож свадебная 4.jpeg", "худож свадебная 7/худож свадебная 5.jpeg", "худож свадебная 7/худож свадебная 6.jpeg", "худож свадебная 7/худож свадебная 7.jpeg", "худож свадебная 7/худож свадебная 8.jpeg", "худож свадебная 7/худож свадебная 9.jpeg"] },
+            { id: 15, title: "Художественная зелёная с мечетью", description: "Подарите семье книгу с уважением к традициям. Она сохранит родовую память, веру и связь поколений.", price: 7200, image: "худож мечеть 7/худож мечеть 1.jpeg", images: ["худож мечеть 7/худож мечеть 1.jpeg", "худож мечеть 7/худож мечеть 2.jpeg", "худож мечеть 7/худож мечеть 3.jpeg", "худож мечеть 7/худож мечеть 4.jpeg", "худож мечеть 7/худож мечеть 5.jpeg", "худож мечеть 7/худож мечеть 6.jpeg", "худож мечеть 7/худож мечеть 7.jpeg", "худож мечеть 7/худож мечеть 8.jpeg", "худож мечеть 7/худож мечеть 9.jpeg"] },
+            { id: 16, title: "Художественная мусульманская", description: "Подарите тёплую семейную книгу с особым смыслом. Она сохранит историю рода бережно, достойно и уважительно.", price: 7200, image: "худож мусульман 7/худож мусульман 1.jpeg", images: ["худож мусульман 7/худож мусульман 1.jpeg", "худож мусульман 7/худож мусульман 2.jpeg", "худож мусульман 7/худож мусульман 3.jpeg", "худож мусульман 7/худож мусульман 4.jpeg", "худож мусульман 7/худож мусульман 5.jpeg", "худож мусульман 7/худож мусульман 6.jpeg", "худож мусульман 7/худож мусульман 7.jpeg", "худож мусульман 7/худож мусульман 8.jpeg", "худож мусульман 7/худож мусульман 9.jpeg"] },
+            { id: 17, title: "Художественная на английском", description: "Подарите книгу, которая соединит родственников из разных стран. Она сохранит семейную историю на понятном языке.", price: 7200, image: "худож англ 10/худож англ 1.jpeg", images: ["худож англ 10/худож англ 1.jpeg", "худож англ 10/худож англ 2.jpeg", "худож англ 10/худож англ 3.jpeg", "худож англ 10/худож англ 4.jpeg", "худож англ 10/худож англ 5.jpeg", "худож англ 10/худож англ 6.jpeg", "худож англ 10/худож англ 7.jpeg", "худож англ 10/худож англ 8.jpeg", "худож англ 10/худож англ 9.jpeg"], callbackOnly: true },
+            { id: 18, title: "Изысканная на английском", description: "Подарите семейную историю без границ. Эта книга объединит поколения, языки и родных по всему миру.", price: 7200, image: "изыск англ 10/изыск англ 1.jpeg", images: ["изыск англ 10/изыск англ 1.jpeg", "изыск англ 10/изыск англ 2.jpeg", "изыск англ 10/изыск англ 3.jpeg", "изыск англ 10/изыск англ 4.jpeg", "изыск англ 10/изыск англ 5.jpeg", "изыск англ 10/изыск англ 6.jpeg", "изыск англ 10/изыск англ 7.jpeg", "изыск англ 10/изыск англ 8.jpeg", "изыск англ 10/изыск англ 9.jpeg"], callbackOnly: true },
+            { id: 19, title: "Изысканная эко-кожа", description: "Подарите современную семейную книгу с тёплым смыслом. Эко-кожа делает её стильной, аккуратной и душевной.", price: 7200, image: "изыск экокожа 7/изыск экокожа 1.jpeg", images: ["изыск экокожа 7/изыск экокожа 1.jpeg", "изыск экокожа 7/изыск экокожа 2.jpeg", "изыск экокожа 7/изыск экокожа 3.jpeg", "изыск экокожа 7/изыск экокожа 4.jpeg", "изыск экокожа 7/изыск экокожа 5.jpeg", "изыск экокожа 7/изыск экокожа 6.jpeg", "изыск экокожа 7/изыск экокожа 7.jpeg", "изыск экокожа 7/изыск экокожа 8.jpeg", "изыск экокожа 7/изыск экокожа 9.jpeg"] },
+            { id: 20, title: "Подарочный пакет", description: "Дополните подарок красивой упаковкой. Такой пакет сразу превращает книгу в готовый семейный сюрприз.", price: 150, image: "подарочный пакет.jpeg", images: ["подарочный пакет.jpeg"] }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let currentBookId = null;
+        let currentImageIndex = 0;
+        let currentPage = 'catalog';
+        let previousPage = 'catalog';
+        let filteredBooks = [...books];
+        let isPriceFiltered = false;
+        let quantity = 1;
+        let modalBookId = null;
+        let selectedContactType = null;
+        let selectedContactTime = null;
+        let pendingCallbackBookId = null;
+
+        const logoBtn = document.getElementById('logoBtn');
+        const sidebarProfileBtn = document.getElementById('sidebarProfileBtn');
+        const sidebarInitials = document.getElementById('sidebarInitials');
+        const cartIconBtn = document.getElementById('cartIconBtn');
+        const cartIconBadge = document.getElementById('cartIconBadge');
+        const profileSidebar = document.getElementById('profileSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const booksGrid = document.getElementById('booksGrid');
+        const catalogPage = document.getElementById('catalogPage');
+        const bookDetailPage = document.getElementById('bookDetailPage');
+        const cartPage = document.getElementById('cartPage');
+        const favoritesPage = document.getElementById('favoritesPage');
+        const orderHistoryPage = document.getElementById('orderHistoryPage');
+        const profilePage = document.getElementById('profilePage');
+        const paymentPage = document.getElementById('paymentPage');
+        const backToCatalog = document.getElementById('backToCatalog');
+        const backToCatalogFromCart = document.getElementById('backToCatalogFromCart');
+        const backToCatalogFromFavorites = document.getElementById('backToCatalogFromFavorites');
+        const backToCatalogFromHistory = document.getElementById('backToCatalogFromHistory');
+        const backToCatalogFromProfile = document.getElementById('backToCatalogFromProfile');
+        const backToCart = document.getElementById('backToCart');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailPrice = document.getElementById('detailPrice');
+        const detailDescription = document.getElementById('detailDescription');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        const detailLikeBtn = document.getElementById('detailLikeBtn');
+        const mobileFixedCartBtn = document.getElementById('mobileFixedCartBtn');
+        const cartItems = document.getElementById('cartItems');
+        const cartEmpty = document.getElementById('cartEmpty');
+        const cartSummary = document.getElementById('cartSummary');
+        const itemCount = document.getElementById('itemCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const favoritesItems = document.getElementById('favoritesItems');
+        const favoritesEmpty = document.getElementById('favoritesEmpty');
+        const browseCatalogBtn = document.getElementById('browseCatalogBtn');
+        const browseCatalogFavoritesBtn = document.getElementById('browseCatalogFavoritesBtn');
+        const profileAvatar = document.getElementById('profileAvatar');
+        const profileName = document.getElementById('profileName');
+        const cartBadge = document.getElementById('cartBadge');
+        const favoritesBadge = document.getElementById('favoritesBadge');
+        const mainImage = document.getElementById('mainImage');
+        const galleryThumbnails = document.getElementById('galleryThumbnails');
+        const navIndicator = document.getElementById('navIndicator');
+        const prevZone = document.getElementById('prevZone');
+        const nextZone = document.getElementById('nextZone');
+        const fullNameInput = document.getElementById('fullName');
+        const phoneInput = document.getElementById('phone');
+        const telegramInput = document.getElementById('telegram');
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const termsError = document.getElementById('termsError');
+        const saveProfileBtn = document.getElementById('saveProfileBtn');
+        const paymentRegistration = document.getElementById('paymentRegistration');
+        const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+        const globalSuccessMessage = document.getElementById('globalSuccessMessage');
+        const priceInput = document.getElementById('priceInput');
+        const priceFilterBtn = document.getElementById('priceFilterBtn');
+        const clearPriceFilterBtn = document.getElementById('clearPriceFilterBtn');
+        const quantitySelector = document.getElementById('quantitySelector');
+        const quantityMinus = document.getElementById('quantityMinus');
+        const quantityPlus = document.getElementById('quantityPlus');
+        const quantityInput = document.getElementById('quantityInput');
+        const quantityPrice = document.getElementById('quantityPrice');
+        const quantityModal = document.getElementById('quantityModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalMinus = document.getElementById('modalMinus');
+        const modalPlus = document.getElementById('modalPlus');
+        const modalQuantity = document.getElementById('modalQuantity');
+        const modalTotalPrice = document.getElementById('modalTotalPrice');
+        const modalSave = document.getElementById('modalSave');
+        const contactOptions = document.querySelectorAll('.contact-option');
+        const timeOptions = document.querySelectorAll('.time-option');
+        const orderHistoryEmpty = document.getElementById('orderHistoryEmpty');
+        const orderHistoryList = document.getElementById('orderHistoryList');
+
+        async function sendOrderToGoogleSheets(orderData) {
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(orderData),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            } catch (e) {
+                console.error('Ошибка отправки', e);
+            }
+        }
+
+        function init() {
+            updateCartBadge();
+            updateFavoritesBadge();
+            renderBooks(filteredBooks);
+            setupEventListeners();
+            updateActiveMenuItem();
+            checkCartEmpty();
+            checkFavoritesEmpty();
+            updateProfileDisplay();
+            updateSidebarInitials();
+            updateTermsCheckboxState();
+            renderOrderHistory();
+        }
+
+        function updateTermsCheckboxState() {
+            if (currentUser && currentUser.termsAccepted) {
+                termsCheckbox.checked = true;
+                termsCheckbox.disabled = true;
+                termsCheckbox.parentElement.style.opacity = '0.7';
+            } else {
+                termsCheckbox.checked = false;
+                termsCheckbox.disabled = false;
+                termsCheckbox.parentElement.style.opacity = '';
+            }
+        }
+
+        function updateCartBadge() {
+            const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+            cartBadge.textContent = count;
+            cartIconBadge.textContent = count;
+            if (count > 0) {
+                cartBadge.classList.remove('hidden');
+                cartIconBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+                cartIconBadge.classList.add('hidden');
+            }
+        }
+
+        function updateFavoritesBadge() {
+            const count = favorites.length;
+            favoritesBadge.textContent = count;
+            if (count > 0) favoritesBadge.classList.remove('hidden');
+            else favoritesBadge.classList.add('hidden');
+        }
+
+        function updateActiveMenuItem() {
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.sidebar-item[data-page="${currentPage}"]`);
+            if (activeItem) activeItem.classList.add('active');
+        }
+
+        function formatPrice(p) {
+            if (p === 0) return 'По запросу';
+            return p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽';
+        }
+
+        function renderBooks(booksToShow) {
+            booksGrid.innerHTML = '';
+            booksToShow.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                bookCard.dataset.id = book.id;
+                const isLiked = favorites.some(fav => fav.id === book.id);
+                const priceDisplay = book.price === 0 ? 'По запросу' : formatPrice(book.price);
+                bookCard.innerHTML = `
+                    <div class="book-image-container">
+                        <img class="book-image" src="images/${book.image}" alt="${book.title}">
+                        <div class="book-like-mobile ${isLiked ? 'liked' : ''}" data-id="${book.id}">
+                            <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <div class="book-price">${priceDisplay}</div>
+                        <p class="book-description">${book.description}</p>
+                    </div>
+                `;
+                booksGrid.appendChild(bookCard);
+            });
+        }
+
+        function renderCartItems() {
+            cartItems.innerHTML = '';
+            if (cart.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+                return;
+            }
+            cartEmpty.classList.add('hidden');
+            cartSummary.classList.remove('hidden');
+            let total = 0, totalCount = 0;
+            cart.forEach(item => {
+                total += item.price * (item.quantity || 1);
+                totalCount += (item.quantity || 1);
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.dataset.id = item.id;
+                cartItem.innerHTML = `
+                    <div class="cart-image-container">
+                        <img class="cart-item-image" src="images/${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">${formatPrice(item.price)}</div>
+                    </div>
+                    <div class="cart-quantity" data-id="${item.id}">${item.quantity || 1}</div>
+                    <div class="cart-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            itemCount.textContent = `${totalCount} ${getPluralForm(totalCount, ['товар','товара','товаров'])}`;
+            cartSubtotal.textContent = formatPrice(total);
+            cartTotal.textContent = formatPrice(total);
+        }
+
+        function renderFavoritesItems() {
+            favoritesItems.innerHTML = '';
+            if (favorites.length === 0) {
+                favoritesEmpty.classList.remove('hidden');
+                return;
+            }
+            favoritesEmpty.classList.add('hidden');
+            favorites.forEach(book => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'favorite-item';
+                favoriteItem.dataset.id = book.id;
+                favoriteItem.innerHTML = `
+                    <div class="favorite-image-container">
+                        <img class="favorite-item-image" src="images/${book.image}" alt="${book.title}">
+                    </div>
+                    <div class="favorite-item-info">
+                        <div class="favorite-item-title">${book.title}</div>
+                        <div class="favorite-item-price">${formatPrice(book.price)}</div>
+                    </div>
+                    <div class="favorite-remove" data-id="${book.id}"><i class="fas fa-heart"></i></div>
+                `;
+                favoritesItems.appendChild(favoriteItem);
+            });
+        }
+
+        function renderOrderHistory() {
+            orderHistoryList.innerHTML = '';
+            if (orderHistory.length === 0) {
+                orderHistoryEmpty.classList.remove('hidden');
+                return;
+            }
+            orderHistoryEmpty.classList.add('hidden');
+            orderHistory.sort((a,b)=> b.id - a.id).forEach(order=>{
+                const orderElement = document.createElement('div');
+                orderElement.className = 'order-history-item';
+                orderElement.innerHTML = `
+                    <div class="order-history-header">
+                        <div class="order-history-date">${order.date}</div>
+                        <div class="order-history-total">${formatPrice(order.total)}</div>
+                    </div>
+                    ${order.contactType?`
+                    <div class="order-history-contact">
+                        <div><strong>Способ связи:</strong> ${order.contactType==='write'?'Написать':'Позвонить'}</div>
+                        <div><strong>Время:</strong> ${getTimeLabel(order.contactTime)}</div>
+                    </div>`:''}
+                    <div class="order-history-books">
+                        ${order.items.map(item=>`
+                        <div class="order-history-book">
+                            <div class="order-history-book-title">${item.title}</div>
+                            <div class="order-history-book-info">
+                                <span>${item.quantity||1} шт.</span>
+                                <span>${formatPrice(item.price*(item.quantity||1))}</span>
+                            </div>
+                        </div>
+                        `).join('')}
+                    </div>
+                    <div class="order-history-actions">
+                        <button class="btn-repeat-order" data-id="${order.id}"><i class="fas fa-redo"></i> Повторить заказ</button>
+                        <button class="btn-delete-order" data-id="${order.id}"><i class="fas fa-trash-alt"></i> Удалить</button>
+                    </div>
+                `;
+                orderHistoryList.appendChild(orderElement);
+            });
+        }
+
+        function checkCartEmpty() { cartEmpty.classList.toggle('hidden', cart.length > 0); cartSummary.classList.toggle('hidden', cart.length === 0); }
+        function checkFavoritesEmpty() { favoritesEmpty.classList.toggle('hidden', favorites.length > 0); }
+        function getPluralForm(n,t){ return t[(n%100>4&&n%100<20)?2:[2,0,1,1,1,2][(n%10<5)?n%10:5]]; }
+        function getTimeLabel(t){ const ts={'asap':'Как можно скорее','morning':'Утро (8:00-12:00)','day':'День (12:00-18:00)','evening':'Вечер (18:00-22:00)'}; return ts[t]||t; }
+        function formatDate(d){ const dt=new Date(d); return `${dt.getDate().toString().padStart(2,'0')}.${(dt.getMonth()+1).toString().padStart(2,'0')}.${dt.getFullYear()} ${dt.getHours().toString().padStart(2,'0')}:${dt.getMinutes().toString().padStart(2,'0')} (МСК)`; }
+
+        function generateGalleryThumbnails(images) {
+            galleryThumbnails.innerHTML = '';
+            images.forEach((image, index) => {
+                const thumb = document.createElement('img');
+                thumb.className = `thumbnail ${index===0?'active':''}`;
+                thumb.dataset.index = index;
+                thumb.src = `images/${image}`;
+                thumb.alt = `Миниатюра ${index+1}`;
+                galleryThumbnails.appendChild(thumb);
+            });
+        }
+
+        function generateNavDots(count) {
+            navIndicator.innerHTML = '';
+            for(let i=0;i<count;i++){
+                const dot = document.createElement('div');
+                dot.className = `nav-dot ${i===0?'active':''}`;
+                dot.dataset.index = i;
+                navIndicator.appendChild(dot);
+            }
+        }
+
+        function changeGalleryImage(index) {
+            const book = books.find(b=>b.id===currentBookId);
+            if(!book) return;
+            currentImageIndex = index;
+            mainImage.src = `images/${book.images[index]}`;
+            document.querySelectorAll('.thumbnail').forEach((thumb,i)=>thumb.classList.toggle('active',i===index));
+            document.querySelectorAll('.nav-dot').forEach((dot,i)=>dot.classList.toggle('active',i===index));
+        }
+
+        function nextImage() {
+            const book = books.find(b=>b.id===currentBookId);
+            if(book){
+                currentImageIndex = (currentImageIndex + 1) % book.images.length;
+                changeGalleryImage(currentImageIndex);
+            }
+        }
+
+        function prevImage() {
+            const book = books.find(b=>b.id===currentBookId);
+            if(book){
+                currentImageIndex = (currentImageIndex - 1 + book.images.length) % book.images.length;
+                changeGalleryImage(currentImageIndex);
+            }
+        }
+
+        function showBookDetail(bookId, fromPage = 'catalog') {
+            quantity = 1;
+            const book = books.find(b => b.id === bookId);
+            if (!book) return;
+            currentBookId = bookId;
+            currentImageIndex = 0;
+            previousPage = fromPage;
+            detailTitle.textContent = book.title;
+            detailPrice.textContent = formatPrice(book.price);
+            detailDescription.textContent = book.description;
+            mainImage.src = `images/${book.images[0]}`;
+            mainImage.alt = book.title;
+            const isLiked = favorites.some(fav => fav.id === bookId);
+            detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
+            detailLikeBtn.classList.toggle('liked', isLiked);
+            
+            if (book.callbackOnly) {
+                addToCartBtn.disabled = false;
+                addToCartBtn.textContent = 'Заказать обратный звонок';
+                addToCartBtn.classList.remove('hidden');
+                quantitySelector.classList.add('hidden');
+                mobileFixedCartBtn.classList.add('hidden');
+            } else if (book.price === 0) {
+                addToCartBtn.disabled = true;
+                addToCartBtn.textContent = 'Только под заказ';
+                quantitySelector.classList.add('hidden');
+                mobileFixedCartBtn.classList.add('hidden');
+            } else {
+                addToCartBtn.disabled = false;
+                addToCartBtn.textContent = 'Добавить в корзину';
+                mobileFixedCartBtn.classList.remove('hidden');
+            }
+            generateGalleryThumbnails(book.images);
+            generateNavDots(book.images.length);
+            hideAllPages();
+            bookDetailPage.classList.remove('hidden');
+            currentPage = 'bookDetail';
+            updateActiveMenuItem();
+            window.scrollTo(0,0);
+        }
+
+        function updateQuantityDisplay() {
+            const book = books.find(b => b.id === currentBookId);
+            if(!book) return;
+            quantityInput.value = quantity;
+            quantityPrice.textContent = formatPrice(book.price * quantity);
+            if (quantity > 1) {
+                quantitySelector.classList.remove('hidden');
+                addToCartBtn.classList.add('hidden');
+            } else {
+                quantitySelector.classList.add('hidden');
+                addToCartBtn.classList.remove('hidden');
+            }
+        }
+
+        function addToCart(bookId) {
+            const book = books.find(b=>b.id===bookId);
+            if(!book || book.price === 0) return;
+            const existing = cart.find(item=>item.id===bookId);
+            if(existing){
+                const newQty = Math.min((existing.quantity||1)+quantity, 99);
+                existing.quantity = newQty;
+                showGlobalSuccessMessage(`Количество увеличено до ${newQty}`);
+            }
+            else {
+                cart.push({...book, quantity});
+                showGlobalSuccessMessage('Книга добавлена в корзину!');
+            }
+            localStorage.setItem('cart',JSON.stringify(cart));
+            updateCartBadge();
+            renderCartItems();
+            quantity=1;
+            updateQuantityDisplay();
+        }
+
+        async function sendCallbackRequestToGoogleSheets(callbackData) {
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(callbackData),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            } catch (e) {
+                console.error('Ошибка отправки заявки на обратный звонок', e);
+                throw e;
+            }
+        }
+
+        function handleCallbackRequest(bookId) {
+            const book = books.find(b => b.id === bookId);
+            if (!book) return;
+            
+            // Проверяем, есть ли сохраненные данные пользователя
+            if (currentUser && currentUser.fullName && currentUser.fullName.trim() !== '' && currentUser.phone && currentUser.phone.trim() !== '') {
+                // Данные уже заполнены - отправляем заявку сразу
+                sendCallbackRequest(book);
+            } else {
+                // Сохраняем ID книги для callback и открываем страницу оплаты
+                pendingCallbackBookId = bookId;
+                showPage('payment');
+            }
+        }
+
+        function sendCallbackRequest(book) {
+            const callbackData = {
+                requestType: "callback_book_request",
+                requestTitle: "Обратный звонок по книге",
+                customerName: currentUser.fullName,
+                customerPhone: currentUser.phone,
+                contactMethod: currentUser.telegram || '',
+                preferredTime: '',
+                comment: '',
+                items: [
+                    {
+                        name: book.title,
+                        quantity: 1,
+                        price: 0,
+                        type: "callback_book"
+                    }
+                ],
+                total: 0
+            };
+
+            sendCallbackRequestToGoogleSheets(callbackData)
+                .then(() => {
+                    showGlobalSuccessMessage('Заявка на обратный звонок оставлена. Мы скоро свяжемся с вами.');
+                })
+                .catch(() => {
+                    showGlobalSuccessMessage('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам.');
+                });
+        }
+
+        function removeFromCart(bookId) {
+            const item = cart.find(item=>item.id===bookId);
+            if(item){
+                if(item.quantity && item.quantity>1){ item.quantity--; showGlobalSuccessMessage('Количество уменьшено'); }
+                else { cart = cart.filter(item=>item.id!==bookId); showGlobalSuccessMessage('Книга удалена из корзины'); }
+                localStorage.setItem('cart',JSON.stringify(cart));
+                updateCartBadge();
+                renderCartItems();
+                checkCartEmpty();
+            }
+        }
+
+        function removeAllFromCart(bookId){ cart=cart.filter(item=>item.id!==bookId); localStorage.setItem('cart',JSON.stringify(cart)); updateCartBadge(); renderCartItems(); checkCartEmpty(); quantityModal.classList.remove('active'); showGlobalSuccessMessage('Книга удалена из корзины'); }
+
+        function updateCartQuantity(bookId, newQuantity){
+            const item=cart.find(item=>item.id===bookId);
+            if(item){
+                item.quantity=Math.min(newQuantity,99);
+                localStorage.setItem('cart',JSON.stringify(cart));
+                renderCartItems();
+                updateCartBadge();
+                showGlobalSuccessMessage(`Количество обновлено: ${newQuantity}`);
+            }
+            quantityModal.classList.remove('active');
+        }
+
+        function showQuantityModal(bookId){ const item=cart.find(item=>item.id===bookId); if(!item)return; modalBookId=bookId; modalQuantity.value=item.quantity||1; updateModalTotalPrice(); quantityModal.classList.add('active'); }
+        function updateModalTotalPrice(){ const book=books.find(b=>b.id===modalBookId); if(!book)return; const qty=parseInt(modalQuantity.value)||1; modalTotalPrice.textContent=formatPrice(book.price*qty); }
+
+        function toggleFavorite(bookId) {
+            const book = books.find(b=>b.id===bookId);
+            if(!book) return;
+            const index = favorites.findIndex(fav=>fav.id===bookId);
+            if(index===-1) favorites.push({...book}); else favorites.splice(index,1);
+            localStorage.setItem('favorites',JSON.stringify(favorites));
+            updateFavoritesBadge();
+            renderBooks(filteredBooks);
+            renderFavoritesItems();
+            checkFavoritesEmpty();
+            if(currentPage==='bookDetail' && currentBookId===bookId){
+                const isLiked = favorites.some(fav=>fav.id===bookId);
+                detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
+                detailLikeBtn.classList.toggle('liked',isLiked);
+            }
+            showGlobalSuccessMessage(index===-1?'Книга добавлена в избранное!':'Книга удалена из избранного');
+        }
+
+        function showGlobalSuccessMessage(msg){
+            globalSuccessMessage.querySelector('.message').textContent=msg;
+            globalSuccessMessage.classList.add('show');
+            setTimeout(()=>globalSuccessMessage.classList.remove('show'),1000);
+        }
+
+        function hideAllPages(){ document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden')); mobileFixedCartBtn.classList.add('hidden'); }
+
+        function resetPaymentPage(){
+            contactOptions.forEach(opt=>opt.classList.remove('selected'));
+            timeOptions.forEach(opt=>opt.classList.remove('selected'));
+            selectedContactType=null;
+            selectedContactTime=null;
+            renderPaymentRegistration();
+            updateConfirmButtonState();
+        }
+
+        function renderPaymentRegistration() {
+            if (!paymentRegistration) return;
+            const hasRequiredData = currentUser && currentUser.fullName && currentUser.fullName.trim() !== '' && currentUser.phone && currentUser.phone.trim() !== '' && currentUser.termsAccepted;
+            if (hasRequiredData) {
+                paymentRegistration.innerHTML = '';
+                paymentRegistration.classList.add('hidden');
+            } else {
+                paymentRegistration.classList.remove('hidden');
+                const termsChecked = (currentUser && currentUser.termsAccepted) ? 'checked disabled' : '';
+                paymentRegistration.innerHTML = `
+                    <div class="form-group" id="customerDataSection"><label class="form-label">Ваше имя *</label><input type="text" class="form-input" id="paymentFullName" placeholder="Имя / ФИО" value="${currentUser?.fullName || ''}"></div>
+                    <div class="form-group"><label class="form-label">Телефон *</label><input type="tel" class="form-input" id="paymentPhone" placeholder="+7 (___) ___-__-__" value="${currentUser?.phone || ''}"></div>
+                    <div class="terms-group">
+                        <input type="checkbox" id="paymentTermsCheckbox" class="terms-checkbox" ${termsChecked}>
+                        <label class="terms-label" for="paymentTermsCheckbox">Я согласен на обработку персональных данных и использование файлов cookie</label>
+                    </div>
+                `;
+                const payFullName = document.getElementById('paymentFullName');
+                const payPhone = document.getElementById('paymentPhone');
+                const payTerms = document.getElementById('paymentTermsCheckbox');
+                if(payFullName) payFullName.addEventListener('input', updateConfirmButtonState);
+                if(payPhone){
+                    payPhone.addEventListener('input', function(e){
+                        let v = e.target.value.replace(/\D/g, '');
+                        if (v.length > 11) v = v.slice(0, 11);
+                        if (v.length === 0) {
+                            e.target.value = '';
+                            return;
+                        }
+                        let formatted = '+7';
+                        if (v.startsWith('8') && v.length >= 1) {
+                            v = v.slice(1);
+                        } else if (v.startsWith('7') && v.length >= 1) {
+                            v = v.slice(1);
+                        }
+                        if (v.length > 0) {
+                            formatted += ' (' + v.slice(0, 3);
+                        }
+                        if (v.length >= 4) {
+                            formatted += ') ' + v.slice(3, 6);
+                        }
+                        if (v.length >= 7) {
+                            formatted += '-' + v.slice(6, 8);
+                        }
+                        if (v.length >= 9) {
+                            formatted += '-' + v.slice(8, 10);
+                        }
+                        e.target.value = formatted;
+                        updateConfirmButtonState();
+                    });
+                }
+                if(payTerms) payTerms.addEventListener('change', updateConfirmButtonState);
+            }
+            updateConfirmButtonState();
+        }
+
+        function updateConfirmButtonState() {
+            let nameFilled, phoneFilled, termsAccepted;
+            const hasRequiredData = currentUser && currentUser.fullName && currentUser.fullName.trim() !== '' && currentUser.phone && currentUser.phone.trim() !== '' && currentUser.termsAccepted;
+            if (hasRequiredData) {
+                nameFilled = true; phoneFilled = true; termsAccepted = true;
+            } else {
+                const payFullName = document.getElementById('paymentFullName');
+                const payPhone = document.getElementById('paymentPhone');
+                const payTerms = document.getElementById('paymentTermsCheckbox');
+                nameFilled = payFullName ? payFullName.value.trim() !== '' : false;
+                phoneFilled = payPhone ? payPhone.value.trim() !== '' : false;
+                termsAccepted = payTerms ? payTerms.checked : false;
+            }
+            let canSubmit = false;
+            if (selectedContactType === 'call' || selectedContactType === 'write') {
+                canSubmit = nameFilled && phoneFilled && termsAccepted && selectedContactTime !== null;
+            }
+            confirmPaymentBtn.disabled = !canSubmit;
+        }
+
+        function showPage(pageName) {
+            hideAllPages();
+            switch(pageName){
+                case 'catalog': renderBooks(filteredBooks); catalogPage.classList.remove('hidden'); currentPage='catalog'; break;
+                case 'cart': renderCartItems(); cartPage.classList.remove('hidden'); currentPage='cart'; setTimeout(()=>window.scrollTo(0,document.body.scrollHeight),100); break;
+                case 'favorites': renderFavoritesItems(); favoritesPage.classList.remove('hidden'); currentPage='favorites'; break;
+                case 'orderHistory': renderOrderHistory(); orderHistoryPage.classList.remove('hidden'); currentPage='orderHistory'; break;
+                case 'profile': loadProfileForm(); profilePage.classList.remove('hidden'); currentPage='profile'; break;
+                case 'payment':
+                    if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); showPage('cart'); return; }
+                    resetPaymentPage();
+                    paymentPage.classList.remove('hidden');
+                    currentPage='payment';
+                    break;
+                default: renderBooks(filteredBooks); catalogPage.classList.remove('hidden'); currentPage='catalog';
+            }
+            updateActiveMenuItem();
+            window.scrollTo(0,0);
+        }
+
+        function goBack(){
+            switch(previousPage){
+                case 'cart': showPage('cart'); break;
+                case 'favorites': showPage('favorites'); break;
+                case 'orderHistory': showPage('orderHistory'); break;
+                default: showPage('catalog');
+            }
+        }
+
+        function calculateCartTotal(){ return cart.reduce((t,item)=>t+(item.price*(item.quantity||1)),0); }
+
+        function updateSidebarInitials(){
+            if(currentUser && currentUser.fullName){
+                const inits = currentUser.fullName.split(' ').map(n=>n[0]).join('').toUpperCase() || 'Г';
+                sidebarInitials.textContent=inits;
+            } else sidebarInitials.textContent='Г';
+        }
+
+        function updateProfileDisplay(){
+            if(currentUser && currentUser.fullName){
+                const inits = currentUser.fullName.split(' ').map(n=>n[0]).join('').toUpperCase() || 'Г';
+                profileAvatar.textContent=inits;
+                profileName.textContent=currentUser.fullName || 'Пользователь';
+            } else {
+                profileAvatar.textContent='Г';
+                profileName.textContent='Гость';
+            }
+        }
+
+        function loadProfileForm(){
+            if(currentUser){
+                fullNameInput.value=currentUser.fullName||'';
+                phoneInput.value=currentUser.phone||'';
+                telegramInput.value=currentUser.telegram||'';
+            } else {
+                fullNameInput.value='';
+                phoneInput.value='';
+                telegramInput.value='';
+            }
+            updateTermsCheckboxState();
+            termsError.style.display='none';
+        }
+
+        function saveProfileData(){
+            if(!termsCheckbox.checked){ termsError.style.display='block'; showGlobalSuccessMessage('Пожалуйста, примите условия использования'); return; }
+            const fn=fullNameInput.value.trim();
+            if (!fn) { showGlobalSuccessMessage('Пожалуйста, введите имя'); return; }
+            const phoneDigits = phoneInput.value.replace(/\D/g, '');
+            if (phoneInput.value.trim() !== '' && (phoneDigits.length < 10 || phoneDigits.length > 11)) {
+                showGlobalSuccessMessage('Пожалуйста, введите корректный номер телефона (10 или 11 цифр)');
+                return;
+            }
+            termsError.style.display='none';
+            currentUser = {
+                fullName: fn,
+                phone: phoneInput.value.trim() || '',
+                telegram: telegramInput.value.trim() || '',
+                termsAccepted: true,
+                lastUpdated: new Date().toISOString()
+            };
+            localStorage.setItem('currentUser',JSON.stringify(currentUser));
+            updateSidebarInitials();
+            updateProfileDisplay();
+            updateTermsCheckboxState();
+            showPage(previousPage!=='profile'?previousPage:'catalog');
+            showGlobalSuccessMessage('Профиль успешно обновлен!');
+        }
+
+        function filterBooksByPrice(targetPrice) {
+            if (!targetPrice || targetPrice <= 0) { showGlobalSuccessMessage('Введите корректную цену'); return; }
+            let actualPrice = targetPrice * 1000;
+            const allPrices = books.filter(b => b.price > 0).map(b => b.price);
+            const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
+            let lowerPrice = null;
+            for (let i = uniquePrices.length - 1; i >= 0; i--) { if (uniquePrices[i] <= actualPrice) { lowerPrice = uniquePrices[i]; break; } }
+            let upperPrice = null;
+            for (let i = 0; i < uniquePrices.length; i++) { if (uniquePrices[i] > actualPrice) { upperPrice = uniquePrices[i]; break; } }
+            let result = [];
+            if (lowerPrice !== null) result = result.concat(books.filter(b => b.price === lowerPrice));
+            if (upperPrice !== null && upperPrice !== lowerPrice) result = result.concat(books.filter(b => b.price === upperPrice));
+            result = result.filter((book, index, self) => index === self.findIndex(b => b.id === book.id));
+            filteredBooks = result;
+            isPriceFiltered = true;
+            renderBooks(filteredBooks);
+            showGlobalSuccessMessage(`Найдено ${result.length} книг по цене около ${formatPrice(actualPrice)}`);
+        }
+
+        function clearPriceFilter() {
+            filteredBooks = [...books];
+            isPriceFiltered = false;
+            priceInput.value = '';
+            renderBooks(filteredBooks);
+            showGlobalSuccessMessage('Фильтр сброшен');
+        }
+
+        function addToOrderHistory(contactType, contactTime) {
+            if (cart.length === 0) return;
+            const order = {
+                id: Date.now(),
+                date: formatDate(new Date()),
+                items: JSON.parse(JSON.stringify(cart)),
+                total: calculateCartTotal(),
+                contactType, contactTime,
+                user: {
+                    name: currentUser.fullName || '',
+                    phone: currentUser.phone || '',
+                    telegram: currentUser.telegram || ''
+                }
+            };
+            orderHistory.unshift(order);
+            if (orderHistory.length > 50) orderHistory = orderHistory.slice(0,50);
+            localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+        }
+
+        function repeatOrder(orderId) {
+            const order = orderHistory.find(o => o.id === orderId);
+            if (!order) return;
+            order.items.forEach(orderItem => {
+                if (orderItem.price > 0) {
+                    const existing = cart.find(item => item.id === orderItem.id);
+                    if (existing) {
+                        const newQty = Math.min((existing.quantity||1) + (orderItem.quantity||1), 99);
+                        existing.quantity = newQty;
+                    } else cart.push({ ...orderItem });
+                }
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            renderCartItems();
+            checkCartEmpty();
+            showGlobalSuccessMessage('Заказ добавлен в корзину!');
+            showPage('cart');
+        }
+
+        function deleteOrder(orderId) {
+            orderHistory = orderHistory.filter(order => order.id !== orderId);
+            localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+            renderOrderHistory();
+            showGlobalSuccessMessage('Заказ удален из истории!');
+        }
+
+        function setupEventListeners() {
+            logoBtn.addEventListener('click', ()=>{ profileSidebar.classList.add('open'); sidebarOverlay.classList.add('active'); });
+            sidebarProfileBtn.addEventListener('click', ()=>{ profileSidebar.classList.add('open'); sidebarOverlay.classList.add('active'); });
+            cartIconBtn.addEventListener('click', ()=>showPage('cart'));
+            sidebarOverlay.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
+            document.querySelectorAll('.sidebar-item').forEach(item=>{ if(item.dataset.page) item.addEventListener('click', ()=>{ showPage(item.dataset.page); profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }); });
+            booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-card')&&!e.target.closest('.book-like-mobile')){ const id=parseInt(e.target.closest('.book-card').dataset.id); showBookDetail(id,'catalog'); } });
+            booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); } });
+            backToCatalog.addEventListener('click', goBack);
+            backToCatalogFromCart.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromFavorites.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromHistory.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromProfile.addEventListener('click', ()=>showPage('catalog'));
+            backToCart.addEventListener('click', ()=>showPage('cart'));
+            addToCartBtn.addEventListener('click', ()=>{ 
+                if(currentBookId) {
+                    const book = books.find(b => b.id === currentBookId);
+                    if (book && book.callbackOnly) {
+                        handleCallbackRequest(currentBookId);
+                    } else {
+                        addToCart(currentBookId);
+                    }
+                }
+            });
+            mobileFixedCartBtn.addEventListener('click', ()=>{ if(currentBookId) addToCart(currentBookId); });
+            detailLikeBtn.addEventListener('click', ()=>{ if(currentBookId) toggleFavorite(currentBookId); });
+            quantityMinus.addEventListener('click', ()=>{ if(quantity>1){ quantity--; updateQuantityDisplay(); } });
+            quantityPlus.addEventListener('click', ()=>{ if(quantity<99){ quantity++; updateQuantityDisplay(); } });
+            quantityInput.addEventListener('change', ()=>{ quantity=parseInt(quantityInput.value)||1; if(quantity<1)quantity=1; if(quantity>99)quantity=99; updateQuantityDisplay(); });
+            cartItems.addEventListener('click', e=>{
+                if(e.target.closest('.cart-item')&&!e.target.closest('.cart-remove')&&!e.target.closest('.cart-quantity')){ const id=parseInt(e.target.closest('.cart-item').dataset.id); showBookDetail(id,'cart'); }
+                if(e.target.closest('.cart-remove')){ const btn=e.target.closest('.cart-remove'); const id=parseInt(btn.dataset.id); const item=cart.find(i=>i.id===id); if(item&&item.quantity&&item.quantity>5) showQuantityModal(id); else removeFromCart(id); e.stopPropagation(); }
+                if(e.target.closest('.cart-quantity')){ const btn=e.target.closest('.cart-quantity'); const id=parseInt(btn.dataset.id); showQuantityModal(id); e.stopPropagation(); }
+            });
+            favoritesItems.addEventListener('click', e=>{
+                if(e.target.closest('.favorite-item')&&!e.target.closest('.favorite-remove')){ const id=parseInt(e.target.closest('.favorite-item').dataset.id); showBookDetail(id,'favorites'); }
+                if(e.target.closest('.favorite-remove')){ const btn=e.target.closest('.favorite-remove'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); }
+            });
+            orderHistoryList.addEventListener('click', e=>{
+                if(e.target.closest('.btn-repeat-order')){ const btn=e.target.closest('.btn-repeat-order'); const id=parseInt(btn.dataset.id); repeatOrder(id); }
+                if(e.target.closest('.btn-delete-order')){ const btn=e.target.closest('.btn-delete-order'); const id=parseInt(btn.dataset.id); deleteOrder(id); }
+            });
+            checkoutBtn.addEventListener('click', ()=>{ if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); return; } showPage('payment'); });
+            browseCatalogBtn.addEventListener('click', ()=>showPage('catalog'));
+            browseCatalogFavoritesBtn.addEventListener('click', ()=>showPage('catalog'));
+            galleryThumbnails.addEventListener('click', e=>{ if(e.target.classList.contains('thumbnail')) changeGalleryImage(parseInt(e.target.dataset.index)); });
+            navIndicator.addEventListener('click', e=>{ if(e.target.classList.contains('nav-dot')) changeGalleryImage(parseInt(e.target.dataset.index)); });
+            prevZone.addEventListener('click', e=>{ e.stopPropagation(); e.preventDefault(); prevImage(); });
+            nextZone.addEventListener('click', e=>{ e.stopPropagation(); e.preventDefault(); nextImage(); });
+            saveProfileBtn.addEventListener('click', saveProfileData);
+            contactOptions.forEach(opt=>{
+                opt.addEventListener('click', ()=>{
+                    contactOptions.forEach(o=>o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    selectedContactType=opt.dataset.type;
+                    updateConfirmButtonState();
+                    // Плавный скролл к выбору времени
+                    const timeSection = document.getElementById('timeSection');
+                    if (timeSection) {
+                        timeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            });
+            timeOptions.forEach(opt=>{
+                opt.addEventListener('click', ()=>{
+                    timeOptions.forEach(o=>o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    selectedContactTime=opt.dataset.time;
+                    updateConfirmButtonState();
+                    // Плавный скролл к данным клиента или кнопке отправки
+                    const hasRequiredData = currentUser && currentUser.fullName && currentUser.fullName.trim() !== '' && currentUser.phone && currentUser.phone.trim() !== '' && currentUser.termsAccepted;
+                    const customerDataSection = document.getElementById('customerDataSection');
+                    const confirmBtn = document.getElementById('confirmPaymentBtn');
+                    if (hasRequiredData) {
+                        if (confirmBtn) {
+                            confirmBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    } else {
+                        if (customerDataSection) {
+                            customerDataSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else if (confirmBtn) {
+                            confirmBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                });
+            });
+
+            confirmPaymentBtn.addEventListener('click', async function handler() {
+                if (confirmPaymentBtn.disabled) return;
+                confirmPaymentBtn.disabled = true;
+                const originalText = confirmPaymentBtn.textContent;
+                confirmPaymentBtn.textContent = 'Отправка...';
+
+                // Проверяем, есть ли ожидающая заявка на обратный звонок
+                if (pendingCallbackBookId !== null) {
+                    const callbackBook = books.find(b => b.id === pendingCallbackBookId);
+                    if (callbackBook) {
+                        // Собираем данные из формы
+                        const payFullName = document.getElementById('paymentFullName');
+                        const payPhone = document.getElementById('paymentPhone');
+                        const payTerms = document.getElementById('paymentTermsCheckbox');
+                        
+                        if (!payFullName || !payPhone || !payTerms) {
+                            showGlobalSuccessMessage('Ошибка: не удалось получить данные формы');
+                            confirmPaymentBtn.disabled = false;
+                            confirmPaymentBtn.textContent = originalText;
+                            return;
+                        }
+                        
+                        const fullName = payFullName.value.trim();
+                        const phone = payPhone.value.trim();
+                        
+                        if (!fullName || !phone || !payTerms.checked) {
+                            showGlobalSuccessMessage('Пожалуйста, заполните все обязательные поля');
+                            confirmPaymentBtn.disabled = false;
+                            confirmPaymentBtn.textContent = originalText;
+                            return;
+                        }
+                        
+                        const phoneDigits = phone.replace(/\D/g, '');
+                        if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+                            showGlobalSuccessMessage('Пожалуйста, введите корректный номер телефона');
+                            confirmPaymentBtn.disabled = false;
+                            confirmPaymentBtn.textContent = originalText;
+                            return;
+                        }
+                        
+                        let normalizedPhone = phoneDigits;
+                        if (normalizedPhone.length === 11 && (normalizedPhone.startsWith('7') || normalizedPhone.startsWith('8'))) {
+                            normalizedPhone = '7' + normalizedPhone.slice(1);
+                        } else if (normalizedPhone.length === 10) {
+                            normalizedPhone = '7' + normalizedPhone;
+                        }
+                        const formattedPhone = '+7 ' +
+                            normalizedPhone.slice(1, 4) + ' ' +
+                            normalizedPhone.slice(4, 7) + '-' +
+                            normalizedPhone.slice(7, 9) + '-' +
+                            normalizedPhone.slice(9, 11);
+                        
+                        // Сохраняем данные пользователя
+                        currentUser = {
+                            fullName: fullName,
+                            phone: formattedPhone,
+                            telegram: '',
+                            termsAccepted: true,
+                            lastUpdated: new Date().toISOString()
+                        };
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        
+                        // Отправляем заявку на обратный звонок
+                        const callbackData = {
+                            requestType: "callback_book_request",
+                            requestTitle: "Обратный звонок по книге",
+                            customerName: fullName,
+                            customerPhone: formattedPhone,
+                            contactMethod: selectedContactType || '',
+                            preferredTime: selectedContactTime || '',
+                            comment: '',
+                            items: [
+                                {
+                                    name: callbackBook.title,
+                                    quantity: 1,
+                                    price: 0,
+                                    type: "callback_book"
+                                }
+                            ],
+                            total: 0
+                        };
+                        
+                        await sendCallbackRequestToGoogleSheets(callbackData);
+                        
+                        confirmPaymentBtn.disabled = false;
+                        confirmPaymentBtn.textContent = originalText;
+                        pendingCallbackBookId = null;
+                        resetPaymentPage();
+                        showPage('catalog');
+                        showGlobalSuccessMessage('Заявка на обратный звонок оставлена. Мы скоро свяжемся с вами.');
+                        return;
+                    }
+                }
+
+                if (cart.length === 0) {
+                    showGlobalSuccessMessage('Нет товаров для оформления');
+                    showPage('catalog');
+                    confirmPaymentBtn.disabled = false;
+                    confirmPaymentBtn.textContent = originalText;
+                    return;
+                }
+
+                let fullName, phone, telegram;
+                const hasRequiredData = currentUser && currentUser.fullName && currentUser.fullName.trim() !== '' && currentUser.phone && currentUser.phone.trim() !== '' && currentUser.termsAccepted;
+                if (hasRequiredData) {
+                    fullName = currentUser.fullName;
+                    phone = currentUser.phone;
+                    telegram = currentUser.telegram || '';
+                } else {
+                    const payFullName = document.getElementById('paymentFullName');
+                    const payPhone = document.getElementById('paymentPhone');
+                    const payTerms = document.getElementById('paymentTermsCheckbox');
+                    if (!payFullName || !payPhone || !payTerms) {
+                        showGlobalSuccessMessage('Ошибка: не удалось получить данные формы');
+                        confirmPaymentBtn.disabled = false;
+                        confirmPaymentBtn.textContent = originalText;
+                        return;
+                    }
+                    fullName = payFullName.value.trim();
+                    phone = payPhone.value.trim();
+                    telegram = '';
+                    if (!fullName || !phone || !payTerms.checked) {
+                        showGlobalSuccessMessage('Пожалуйста, заполните все обязательные поля');
+                        confirmPaymentBtn.disabled = false;
+                        confirmPaymentBtn.textContent = originalText;
+                        return;
+                    }
+                    currentUser = {
+                        fullName: fullName,
+                        phone: phone,
+                        telegram: telegram,
+                        termsAccepted: true,
+                        lastUpdated: new Date().toISOString()
+                    };
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+
+                const phoneDigits = phone.replace(/\D/g, '');
+                if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+                    showGlobalSuccessMessage('Пожалуйста, введите корректный номер телефона');
+                    confirmPaymentBtn.disabled = false;
+                    confirmPaymentBtn.textContent = originalText;
+                    return;
+                }
+
+                let normalizedPhone = phoneDigits;
+                if (normalizedPhone.length === 11 && (normalizedPhone.startsWith('7') || normalizedPhone.startsWith('8'))) {
+                    normalizedPhone = '7' + normalizedPhone.slice(1);
+                } else if (normalizedPhone.length === 10) {
+                    normalizedPhone = '7' + normalizedPhone;
+                }
+                const formattedPhone = '+7 ' +
+                    normalizedPhone.slice(1, 4) + ' ' +
+                    normalizedPhone.slice(4, 7) + '-' +
+                    normalizedPhone.slice(7, 9) + '-' +
+                    normalizedPhone.slice(9, 11);
+                phone = formattedPhone;
+
+                const itemsList = cart.map(item => `${item.title} × ${item.quantity || 1} — ${formatPrice(item.price * (item.quantity || 1))}`).join('\n');
+                const totalFormatted = formatPrice(calculateCartTotal());
+                const orderData = {
+                    name: fullName,
+                    phone: phone,
+                    telegram: telegram,
+                    contactType: selectedContactType,
+                    contactTime: selectedContactTime,
+                    items: itemsList,
+                    total: totalFormatted
+                };
+
+                await sendOrderToGoogleSheets(orderData);
+                addToOrderHistory(selectedContactType, selectedContactTime);
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartBadge();
+                resetPaymentPage();
+
+                confirmPaymentBtn.disabled = false;
+                confirmPaymentBtn.textContent = originalText;
+
+                showPage('catalog');
+                showGlobalSuccessMessage('Заявка отправлена!');
+            });
+
+            clearPriceFilterBtn.addEventListener('click', clearPriceFilter);
+            priceFilterBtn.addEventListener('click', ()=>{ const p=parseInt(priceInput.value); if(p&&p>0){ filterBooksByPrice(p); priceInput.blur(); } else showGlobalSuccessMessage('Введите корректную цену'); });
+            priceInput.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); const p=parseInt(priceInput.value); if(p&&p>0){ filterBooksByPrice(p); priceInput.blur(); } } });
+            modalClose.addEventListener('click', ()=>quantityModal.classList.remove('active'));
+            modalMinus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q>1){ modalQuantity.value=q-1; updateModalTotalPrice(); } });
+            modalPlus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<99){ modalQuantity.value=q+1; updateModalTotalPrice(); } });
+            modalQuantity.addEventListener('change', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<1)modalQuantity.value=1; if(q>99)modalQuantity.value=99; updateModalTotalPrice(); });
+            modalSave.addEventListener('click', ()=>{ if(modalBookId){ const q=parseInt(modalQuantity.value)||1; updateCartQuantity(modalBookId,q); } });
+            quantityModal.addEventListener('click', e=>{ if(e.target===quantityModal) quantityModal.classList.remove('active'); });
+        }
+
+        init();
+    </script>
+</body>
+</html>

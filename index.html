@@ -781,7 +781,7 @@
                 const priceDisplay = book.price === 0 ? 'По запросу' : formatPrice(book.price);
                 bookCard.innerHTML = `
                     <div class="book-image-container">
-                        <img class="book-image" src="images/${book.image}" alt="${book.title}">
+                        <img class="book-image" src="${book.image}" alt="${book.title}">
                         <div class="book-like-mobile ${isLiked ? 'liked' : ''}" data-id="${book.id}">
                             <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
                         </div>
@@ -814,7 +814,7 @@
                 cartItem.dataset.id = item.id;
                 cartItem.innerHTML = `
                     <div class="cart-image-container">
-                        <img class="cart-item-image" src="images/${item.image}" alt="${item.title}">
+                        <img class="cart-item-image" src="${item.image}" alt="${item.title}">
                     </div>
                     <div class="cart-item-info">
                         <div class="cart-item-title">${item.title}</div>
@@ -843,7 +843,7 @@
                 favoriteItem.dataset.id = book.id;
                 favoriteItem.innerHTML = `
                     <div class="favorite-image-container">
-                        <img class="favorite-item-image" src="images/${book.image}" alt="${book.title}">
+                        <img class="favorite-item-image" src="${book.image}" alt="${book.title}">
                     </div>
                     <div class="favorite-item-info">
                         <div class="favorite-item-title">${book.title}</div>

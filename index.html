@@ -1674,6 +1674,20 @@
             modalQuantity.addEventListener('change', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<1)modalQuantity.value=1; if(q>99)modalQuantity.value=99; updateModalTotalPrice(); });
             modalSave.addEventListener('click', ()=>{ if(modalBookId){ const q=parseInt(modalQuantity.value)||1; updateCartQuantity(modalBookId,q); } });
             quantityModal.addEventListener('click', e=>{ if(e.target===quantityModal) quantityModal.classList.remove('active'); });
+            
+            // Скролл к кнопке отправки при согласии с условиями (cookie)
+            if (termsCheckbox) {
+                termsCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        const confirmBtn = document.getElementById('confirmPaymentBtn');
+                        if (confirmBtn) {
+                            setTimeout(() => {
+                                confirmBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 100);
+                        }
+                    }
+                });
+            }
         }
 
         init();

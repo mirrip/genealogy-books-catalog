@@ -80,7 +80,7 @@
         .book-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0)); opacity: 0; transition: var(--transition); z-index: 1; }
         .book-card:hover { transform: translateY(-8px) rotateX(2deg) scale(1.01); box-shadow: var(--shadow-lg); border-color: rgba(212, 175, 55, 0.5); }
         .book-card:hover::before { opacity: 1; }
-        .book-image-container { position: relative; aspect-ratio: 3/4; overflow: hidden; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); transition: var(--transition); }
+        .book-image-container { position: relative; aspect-ratio: 4/3; overflow: hidden; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); transition: var(--transition); }
         .book-image, .main-image, .cart-item-image, .favorite-item-image, .order-history-item-image, .thumbnail { width: 100%; height: 100%; display: block; transition: var(--transition); object-fit: cover; }
         .book-image-container .book-image, .main-image, .cart-item-image, .favorite-item-image, .order-history-item-image { object-fit: cover; }
         .thumbnail { object-fit: cover; }
@@ -100,7 +100,7 @@
         .book-detail { max-width: 1320px; margin: 32px auto; padding: 0 24px; }
         .gallery-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .gallery-main { position: relative; }
-        .main-image-container { width: 100%; aspect-ratio: 3/4; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); border: 3px solid rgba(212, 175, 55, 0.4); cursor: pointer; transition: var(--transition); max-height: 600px; }
+        .main-image-container { width: 100%; aspect-ratio: 4/3; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); border: 3px solid rgba(212, 175, 55, 0.4); cursor: pointer; transition: var(--transition); max-height: 600px; }
         .main-image-container:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.3); transform: scale(1.01); }
         .main-image { width: 100%; height: 100%; object-fit: contain; display: block; }
         .image-navigation { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; pointer-events: none; }

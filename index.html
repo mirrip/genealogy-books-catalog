@@ -907,7 +907,7 @@
                 const thumb = document.createElement('img');
                 thumb.className = `thumbnail ${index===0?'active':''}`;
                 thumb.dataset.index = index;
-                thumb.src = `images/${image}`;
+                thumb.src = `${image}`;
                 thumb.alt = `Миниатюра ${index+1}`;
                 galleryThumbnails.appendChild(thumb);
             });
@@ -927,7 +927,7 @@
             const book = books.find(b=>b.id===currentBookId);
             if(!book) return;
             currentImageIndex = index;
-            mainImage.src = `images/${book.images[index]}`;
+            mainImage.src = `${book.images[index]}`;
             document.querySelectorAll('.thumbnail').forEach((thumb,i)=>thumb.classList.toggle('active',i===index));
             document.querySelectorAll('.nav-dot').forEach((dot,i)=>dot.classList.toggle('active',i===index));
         }
@@ -958,7 +958,7 @@
             detailTitle.textContent = book.title;
             detailPrice.textContent = formatPrice(book.price);
             detailDescription.textContent = book.description;
-            mainImage.src = `images/${book.images[0]}`;
+            mainImage.src = `${book.images[0]}`;
             mainImage.alt = book.title;
             const isLiked = favorites.some(fav => fav.id === bookId);
             detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;

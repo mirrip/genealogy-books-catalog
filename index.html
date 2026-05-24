@@ -285,8 +285,22 @@
         .terms-checkbox { width: 22px; height: 22px; cursor: pointer; margin-top: 2px; }
         .terms-checkbox:disabled { cursor: not-allowed; opacity: 0.7; }
         .terms-label { font-size: 15px; color: var(--text-dark); line-height: 1.6; font-family: 'Montserrat', sans-serif; }
-        .terms-label a { color: var(--gold-accent); text-decoration: none; font-weight: 600; }
-        .terms-label a:hover { text-decoration: underline; }
+        .terms-label a.legal-link { color: var(--gold-accent); text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(212, 175, 55, 0.4); transition: var(--transition); }
+        .terms-label a.legal-link:hover { border-bottom-color: var(--gold-accent); }
+        .payment-note { text-align: center; color: #6b5a4e; font-size: 14px; margin-top: 16px; line-height: 1.6; }
+        .legal-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+        .legal-modal.active { display: flex; }
+        .legal-modal-content { background: white; border-radius: 16px; max-width: 720px; width: 100%; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .legal-modal-header { padding: 24px 28px 20px; border-bottom: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, #fdfcfb, #faf8f5); }
+        .legal-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-brown); margin: 0; }
+        .legal-modal-close { background: none; border: none; font-size: 28px; color: var(--text-light); cursor: pointer; padding: 4px 8px; line-height: 1; transition: var(--transition); }
+        .legal-modal-close:hover { color: var(--primary-brown); transform: scale(1.1); }
+        .legal-modal-body { padding: 28px; overflow-y: auto; flex: 1; }
+        .legal-modal-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--primary-brown); margin: 24px 0 12px; }
+        .legal-modal-body h2:first-child { margin-top: 0; }
+        .legal-modal-body p { font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-dark); line-height: 1.7; margin: 0 0 14px; }
+        .legal-modal-body ul { font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-dark); line-height: 1.7; margin: 0 0 14px; padding-left: 24px; }
+        .legal-modal-body li { margin-bottom: 8px; }
         .terms-error { color: var(--error-color); font-size: 14px; margin-top: 8px; display: none; }
         .order-history-contact { background: rgba(212, 175, 55, 0.05); border-radius: var(--border-radius); padding: 12px; margin-bottom: 15px; border: 1px solid rgba(212, 175, 55, 0.1); font-size: 14px; color: var(--text-light); }
         .order-history-contact div { margin-bottom: 5px; }
@@ -585,7 +599,7 @@
                     <div class="form-group"><label class="form-label">Telegram (username)</label><input type="text" class="form-input" id="telegram" placeholder="@username или ссылка"></div>
                     <div class="terms-group">
                         <input type="checkbox" id="termsCheckbox" class="terms-checkbox">
-                        <label class="terms-label" for="termsCheckbox">Я согласен на обработку персональных данных и использование файлов cookie в соответствии с <a href="#" onclick="event.preventDefault();">Политикой конфиденциальности</a></label>
+                        <label class="terms-label" for="termsCheckbox">Я согласен(а) на обработку персональных данных и ознакомлен(а) с <a href="#" class="legal-link" data-doc="agreement">обработкой персональных данных</a>, <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
                     </div>
                     <div class="terms-error" id="termsError">Пожалуйста, примите условия использования для сохранения профиля</div>
                     <button type="button" class="btn-save-profile" id="saveProfileBtn">Сохранить изменения</button>
@@ -615,7 +629,8 @@
                         <div class="time-option" data-time="evening">Вечер<span class="time-desc">18:00 - 22:00</span></div>
                     </div>
                     <div class="payment-registration" id="paymentRegistration"></div>
-                    <button class="btn-confirm-payment" id="confirmPaymentBtn" disabled>Оставить заявку</button>
+                    <button class="btn-confirm-payment" id="confirmPaymentBtn" disabled>Оставить заявку на согласование</button>
+                    <p class="payment-note">Оплата не происходит автоматически. Мы свяжемся с вами, уточним детали и согласуем заказ лично.</p>
                 </div>
             </div>
         </div>
@@ -1351,7 +1366,7 @@
                     <div class="form-group"><label class="form-label">Телефон *</label><input type="tel" class="form-input" id="paymentPhone" placeholder="+7 (___) ___-__-__" value="${currentUser?.phone || ''}"></div>
                     <div class="terms-group">
                         <input type="checkbox" id="paymentTermsCheckbox" class="terms-checkbox" ${termsChecked}>
-                        <label class="terms-label" for="paymentTermsCheckbox">Я согласен на обработку персональных данных и использование файлов cookie</label>
+                        <label class="terms-label" for="paymentTermsCheckbox">Я согласен(а) на обработку персональных данных и ознакомлен(а) с <a href="#" class="legal-link" data-doc="agreement">обработкой персональных данных</a>, <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
                     </div>
                 `;
                 const payFullName = document.getElementById('paymentFullName');
@@ -1928,6 +1943,210 @@
                 });
             }
         }
+
+        // Legal Modal
+        const legalDocs = {
+            privacy: {
+                title: 'Политика конфиденциальности',
+                content: `<h2>Политика конфиденциальности сайта РодКод</h2>
+<p>Дата редакции: 2026 г.</p>
+
+<h2>1. Общие положения</h2>
+<p>Настоящая Политика конфиденциальности описывает, какие данные могут обрабатываться при использовании сайта РодКод, размещённого по адресу rodkod.ru.</p>
+<p>Сайт РодКод является витриной родословных книг и позволяет пользователю выбрать книгу, добавить её в корзину и оставить заявку на согласование заказа.</p>
+<p>Оператором обработки данных является владелец сайта РодКод. Для связи по вопросам обработки данных пользователь может обратиться через официальное сообщество VK: <a href="https://vk.me/rodkod" target="_blank">vk.me/rodkod</a>.</p>
+
+<h2>2. Какие данные обрабатываются</h2>
+<p>При использовании сайта могут обрабатываться следующие данные:</p>
+<ul>
+<li>имя или ФИО, указанное пользователем;</li>
+<li>номер телефона;</li>
+<li>Telegram username, если пользователь указал его добровольно;</li>
+<li>выбранный способ связи;</li>
+<li>удобное время связи;</li>
+<li>состав заказа;</li>
+<li>сумма заказа;</li>
+<li>дата и время заявки;</li>
+<li>сведения, сохранённые в браузере пользователя для работы корзины, избранного, истории заказов и профиля.</li>
+</ul>
+<p>Сайт не требует указывать паспортные данные, адрес доставки, платёжные реквизиты или иные избыточные сведения на этапе отправки заявки.</p>
+
+<h2>3. Цели обработки данных</h2>
+<p>Данные используются для следующих целей:</p>
+<ul>
+<li>приём заявки;</li>
+<li>связь с пользователем по выбранному способу связи;</li>
+<li>согласование деталей заказа;</li>
+<li>уточнение формата оформления книги;</li>
+<li>обработка корзины и состава заказа;</li>
+<li>ведение истории заявок внутри сайта;</li>
+<li>улучшение удобства использования сайта.</li>
+</ul>
+<p>Оплата на сайте не происходит автоматически. После отправки заявки представитель РодКод связывается с пользователем, уточняет детали и согласует заказ лично.</p>
+
+<h2>4. Как обрабатываются и хранятся данные</h2>
+<p>В текущей версии сайта заявки временно отправляются через Google Apps Script / Google Sheets.</p>
+<p>Данные заявки могут передаваться в технический сервис Google Apps Script / Google Sheets исключительно для приёма, хранения и обработки заявок.</p>
+<p>Также часть данных может сохраняться в браузере пользователя с помощью localStorage. Это нужно для работы корзины, избранного, истории заказов и профиля на устройстве пользователя.</p>
+<p>В будущем РодКод может перенести обработку заявок на российский хостинг, российскую CRM или иной сервис, расположенный на территории Российской Федерации.</p>
+
+<h2>5. Доступ к данным</h2>
+<p>Доступ к заявкам имеет только владелец сайта РодКод и лица, которым такой доступ необходим для обработки заявки и связи с пользователем.</p>
+<p>РодКод не продаёт персональные данные третьим лицам и не передаёт их для посторонней рекламы.</p>
+
+<h2>6. Срок хранения данных</h2>
+<p>Данные хранятся в течение срока, необходимого для обработки заявки, согласования заказа и последующего обслуживания пользователя.</p>
+<p>Пользователь может запросить удаление своих данных, обратившись через VK: <a href="https://vk.me/rodkod" target="_blank">vk.me/rodkod</a>.</p>
+
+<h2>7. Cookie и локальное хранение</h2>
+<p>В текущей версии сайта не используется отдельный cookie-баннер.</p>
+<p>Для работы сайта может использоваться локальное хранение данных в браузере пользователя — localStorage. Это позволяет сохранять корзину, избранное, историю заказов и данные профиля на устройстве пользователя.</p>
+<p>Если в будущем на сайт будут добавлены аналитика, рекламные пиксели или cookie-файлы, Политика конфиденциальности будет обновлена.</p>
+
+<h2>8. Права пользователя</h2>
+<p>Пользователь вправе:</p>
+<ul>
+<li>запросить информацию об обработке своих данных;</li>
+<li>попросить уточнить данные;</li>
+<li>попросить удалить данные;</li>
+<li>отозвать согласие на обработку персональных данных.</li>
+</ul>
+<p>Для обращения пользователь может написать через VK: <a href="https://vk.me/rodkod" target="_blank">vk.me/rodkod</a>.</p>
+
+<h2>9. Изменение политики</h2>
+<p>РодКод может обновлять настоящую Политику конфиденциальности. Актуальная версия размещается на сайте.</p>`
+            },
+            agreement: {
+                title: 'Согласие на обработку персональных данных',
+                content: `<h2>Согласие на обработку персональных данных</h2>
+<p>Настоящим пользователь сайта РодКод, оставляя заявку, заполняя профиль или указывая контактные данные на сайте rodkod.ru, даёт согласие владельцу сайта РодКод на обработку своих персональных данных.</p>
+
+<h2>1. Состав персональных данных</h2>
+<p>Пользователь может передавать следующие данные:</p>
+<ul>
+<li>имя или ФИО;</li>
+<li>номер телефона;</li>
+<li>Telegram username, если указан добровольно;</li>
+<li>выбранный способ связи;</li>
+<li>удобное время связи;</li>
+<li>состав заказа;</li>
+<li>сумму заказа.</li>
+</ul>
+
+<h2>2. Цели обработки</h2>
+<p>Данные обрабатываются для:</p>
+<ul>
+<li>приёма заявки;</li>
+<li>связи с пользователем;</li>
+<li>согласования заказа;</li>
+<li>уточнения деталей оформления книги;</li>
+<li>обработки состава корзины;</li>
+<li>ведения истории заявок;</li>
+<li>оказания консультации по выбранной книге.</li>
+</ul>
+
+<h2>3. Действия с данными</h2>
+<p>Пользователь соглашается на следующие действия с персональными данными:</p>
+<ul>
+<li>сбор;</li>
+<li>запись;</li>
+<li>хранение;</li>
+<li>уточнение;</li>
+<li>использование;</li>
+<li>передача в технический сервис обработки заявок;</li>
+<li>удаление.</li>
+</ul>
+
+<h2>4. Использование Google Apps Script / Google Sheets</h2>
+<p>Пользователь уведомлён, что в текущей версии сайта заявки временно могут обрабатываться с использованием Google Apps Script / Google Sheets.</p>
+<p>Данные передаются туда только для приёма, хранения и обработки заявок РодКод.</p>
+
+<h2>5. Срок действия согласия</h2>
+<p>Согласие действует до достижения целей обработки или до момента его отзыва пользователем.</p>
+<p>Пользователь может отозвать согласие и запросить удаление данных, написав через VK: <a href="https://vk.me/rodkod" target="_blank">vk.me/rodkod</a>.</p>
+
+<h2>6. Подтверждение согласия</h2>
+<p>Отметка чекбокса на сайте означает, что пользователь ознакомлен с настоящим согласием, Политикой конфиденциальности и Пользовательским соглашением, понимает условия обработки данных и соглашается с ними.</p>`
+            },
+            userAgreement: {
+                title: 'Пользовательское соглашение',
+                content: `<h2>Пользовательское соглашение сайта РодКод</h2>
+<p>Дата редакции: 2026 г.</p>
+
+<h2>1. Общие положения</h2>
+<p>Настоящее Пользовательское соглашение регулирует использование сайта РодКод, размещённого по адресу rodkod.ru.</p>
+<p>Сайт является витриной родословных книг и позволяет пользователю ознакомиться с вариантами книг, добавить выбранные позиции в корзину и оставить заявку на согласование заказа.</p>
+
+<h2>2. Статус заявки</h2>
+<p>Оставление заявки на сайте не является автоматической покупкой и не означает моментального заключения договора купли-продажи.</p>
+<p>После отправки заявки представитель РодКод связывается с пользователем, уточняет детали, формат оформления, способ связи, возможные условия доставки и порядок оплаты.</p>
+<p>Оплата на сайте не происходит автоматически.</p>
+
+<h2>3. Информация о книгах</h2>
+<p>Описание, фотографии, цены и характеристики книг размещаются для ознакомления пользователя с доступными вариантами.</p>
+<p>РодКод стремится поддерживать актуальность информации, однако отдельные детали оформления, наличие, стоимость и условия заказа могут уточняться при личном согласовании.</p>
+
+<h2>4. Корзина и заявка</h2>
+<p>Пользователь может добавить книгу в корзину и оставить заявку на согласование.</p>
+<p>Корзина используется для удобства выбора и не является окончательным оформлением покупки без последующего подтверждения.</p>
+
+<h2>5. Связь с пользователем</h2>
+<p>Пользователь самостоятельно выбирает удобный способ связи: написать или позвонить.</p>
+<p>РодКод связывается с пользователем для уточнения деталей заявки и дальнейшего согласования заказа.</p>
+
+<h2>6. Персональные данные</h2>
+<p>При оставлении заявки пользователь соглашается на обработку персональных данных в соответствии с Политикой конфиденциальности и Согласием на обработку персональных данных.</p>
+
+<h2>7. Ограничения ответственности</h2>
+<p>РодКод не несёт ответственности за невозможность связи с пользователем, если пользователь указал некорректные контактные данные.</p>
+<p>РодКод не несёт ответственности за временную недоступность сайта, вызванную техническими причинами, работой хостинга, GitHub Pages, браузера пользователя или сторонних сервисов.</p>
+
+<h2>8. Интеллектуальные права</h2>
+<p>Тексты, оформление, визуальные элементы и структура сайта РодКод используются в рамках проекта РодКод.</p>
+<p>Копирование материалов сайта без согласования не допускается, если иное не предусмотрено законом.</p>
+
+<h2>9. Изменение соглашения</h2>
+<p>РодКод может обновлять настоящее Пользовательское соглашение. Актуальная версия размещается на сайте.</p>
+
+<h2>10. Контакты</h2>
+<p>По вопросам использования сайта, заявок и обработки данных пользователь может обратиться через официальное сообщество VK: <a href="https://vk.me/rodkod" target="_blank">vk.me/rodkod</a>.</p>`
+            }
+        };
+
+        // Create modal HTML
+        const modalHtml = '<div class="legal-modal" id="legalModal"><div class="legal-modal-content"><div class="legal-modal-header"><h2 class="legal-modal-title" id="legalModalTitle"></h2><button class="legal-modal-close" id="legalModalClose">&times;</button></div><div class="legal-modal-body" id="legalModalBody"></div></div></div>';
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+        const legalModal = document.getElementById('legalModal');
+        const legalModalTitle = document.getElementById('legalModalTitle');
+        const legalModalBody = document.getElementById('legalModalBody');
+        const legalModalClose = document.getElementById('legalModalClose');
+
+        function openLegalDoc(docId) {
+            const doc = legalDocs[docId];
+            if (!doc) return;
+            legalModalTitle.textContent = doc.title;
+            legalModalBody.innerHTML = doc.content;
+            legalModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegalModal() {
+            legalModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        legalModalClose.addEventListener('click', closeLegalModal);
+        legalModal.addEventListener('click', e => { if (e.target === legalModal) closeLegalModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && legalModal.classList.contains('active')) closeLegalModal(); });
+
+        document.addEventListener('click', e => {
+            const link = e.target.closest('.legal-link');
+            if (link) {
+                e.preventDefault();
+                openLegalDoc(link.dataset.doc);
+            }
+        });
 
         init();
     </script>

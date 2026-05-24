@@ -1415,7 +1415,12 @@
                         updateConfirmButtonState();
                     });
                 }
-                if(payTerms) payTerms.addEventListener('change', updateConfirmButtonState);
+                if(payTerms) payTerms.addEventListener('change', () => {
+                    updateConfirmButtonState();
+                    if (payTerms.checked) {
+                        payTerms.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
             }
             updateConfirmButtonState();
         }

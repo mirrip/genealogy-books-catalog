@@ -763,6 +763,7 @@
         const sidebarOverlay = document.getElementById('sidebarOverlay');
         const booksGrid = document.getElementById('booksGrid');
         const catalogPage = document.getElementById('catalogPage');
+        const faqPage = document.getElementById('faqPage');
         const bookDetailPage = document.getElementById('bookDetailPage');
         const cartPage = document.getElementById('cartPage');
         const favoritesPage = document.getElementById('favoritesPage');
@@ -1375,6 +1376,7 @@
                 case 'favorites': renderFavoritesItems(); favoritesPage.classList.remove('hidden'); currentPage='favorites'; break;
                 case 'orderHistory': renderOrderHistory(); orderHistoryPage.classList.remove('hidden'); currentPage='orderHistory'; break;
                 case 'profile': loadProfileForm(); profilePage.classList.remove('hidden'); currentPage='profile'; break;
+                case 'faq': faqPage.classList.remove('hidden'); currentPage='faq'; break;
                 case 'payment':
                     if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); showPage('cart'); return; }
                     resetPaymentPage();

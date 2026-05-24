@@ -365,6 +365,39 @@
             .filter-input, .filter-select, .quantity-input { font-size: 16px; }
             .page { min-height: calc(100vh - 120px); }
         }
+
+        /* === FAQ Section Styles === */
+        .faq-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .faq-subtitle { text-align: center; color: var(--text-light); font-size: 18px; margin-bottom: 35px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .faq-accordion { display: flex; flex-direction: column; gap: 12px; }
+        .faq-item { background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 175, 55, 0.15); transition: var(--transition); }
+        .faq-item:hover { box-shadow: var(--shadow-md); border-color: rgba(212, 175, 55, 0.3); }
+        .faq-question { padding: 20px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 17px; color: var(--primary-brown); transition: var(--transition); }
+        .faq-question:hover { color: var(--gold-accent); }
+        .faq-question i { font-size: 14px; transition: transform 0.3s ease; color: var(--gold-accent); flex-shrink: 0; margin-left: 12px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 24px; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.7; color: var(--text-light); }
+        .faq-item.active .faq-answer { max-height: 500px; padding: 0 24px 20px; }
+        .faq-contact { background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(109, 82, 61, 0.05)); border-radius: var(--border-radius); padding: 30px; margin-top: 40px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .faq-contact-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-brown); margin-bottom: 10px; }
+        .faq-contact-text { font-family: 'Montserrat', sans-serif; font-size: 16px; color: var(--text-light); margin-bottom: 25px; }
+        .faq-contact-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .faq-btn { padding: 14px 28px; border-radius: var(--border-radius); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; transition: var(--transition); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        .faq-btn-vk { background: #4680C2; color: white; }
+        .faq-btn-vk:hover { background: #3a6da8; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .faq-btn-catalog { background: var(--gradient-gold); color: white; }
+        .faq-btn-catalog:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* === Social Section Styles === */
+        .social-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .social-subtitle { text-align: center; color: var(--text-light); font-size: 18px; margin-bottom: 40px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+        .social-card { background: white; border-radius: var(--border-radius); padding: 30px 25px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 175, 55, 0.15); transition: var(--transition); text-decoration: none; display: flex; flex-direction: column; align-items: center; }
+        .social-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(212, 175, 55, 0.4); }
+        .social-icon { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+        .social-icon i { font-size: 28px; color: var(--gold-accent); }
+        .social-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--primary-brown); margin-bottom: 8px; }
+        .social-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-light); line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -397,6 +430,8 @@
             <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
             <div class="sidebar-item" data-page="orderHistory"><i class="fas fa-history"></i><span>История заказов</span></div>
             <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Профиль</span></div>
+            <div class="sidebar-item" data-page="faq"><i class="fas fa-question-circle"></i><span>Вопросы</span></div>
+            <div class="sidebar-item" data-page="social"><i class="fas fa-share-alt"></i><span>Мы в соцсетях</span></div>
         </div>
         <div class="sidebar-footer"><div>© 2026 РодКод • Родословные книги</div></div>
     </div>
@@ -582,6 +617,100 @@
         <div class="message">Книга добавлена в корзину!</div>
     </div>
 
+    <!-- Раздел FAQ -->
+    <main class="container page hidden" id="faqPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromFaq"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">Частые вопросы</h1>
+        </div>
+        <div class="faq-container">
+            <p class="faq-subtitle">Ответы на вопросы о родословных книгах, подарке и оформлении заказа.</p>
+            
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Что такое родословная книга?</div>
+                    <div class="faq-answer">Родословная книга — это семейная книга о людях, событиях, фотографиях, памятных датах и историях, которые важно сохранить. Её создают не на один день, а как вещь, к которой возвращаются и которую передают дальше.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Чем она отличается от фотоальбома?</div>
+                    <div class="faq-answer">Фотоальбом хранит снимки. Родословная книга собирает их в цельную семейную историю: с подписями, датами, рассказами, оформлением и смыслом. Это не просто набор фотографий, а книга о семье.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Что можно разместить внутри книги?</div>
+                    <div class="faq-answer">В книгу можно добавить семейные фотографии, важные даты, истории близких, памятные события, родовые линии, пожелания, документы, подписи и любые материалы, которые хочется сохранить в красивом виде.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Кому обычно дарят такую книгу?</div>
+                    <div class="faq-answer">Чаще всего родословную книгу дарят родителям, бабушкам и дедушкам, семье на юбилей, годовщину или важный праздник. Это подарок, который выглядит личным, тёплым и значимым.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Подойдёт ли книга для детей и внуков?</div>
+                    <div class="faq-answer">Да. В этом и есть одна из главных ценностей родословной книги: она помогает сохранить память о семье для будущих поколений. Дети и внуки смогут открыть её и увидеть историю своего рода в одном месте.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Можно ли подарить книгу руководителю или партнёру?</div>
+                    <div class="faq-answer">Да, если нужен статусный и небанальный подарок. Родословная книга выглядит личнее и значимее обычных деловых подарков, потому что связана с семьёй, историей и наследием.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Как выбрать подходящий вариант?</div>
+                    <div class="faq-answer">Можно ориентироваться на внешний вид, формат, цену и повод. Для тёплого семейного подарка подойдут более мягкие варианты, для статусного подарка — более солидные и выразительные издания.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Как оформить заказ?</div>
+                    <div class="faq-answer">Выберите подходящую книгу в каталоге и добавьте её в корзину. Если перед заказом остались вопросы, можно написать нам в VK — подскажем, какой вариант лучше подойдёт под ваш повод.</div>
+                </div>
+            </div>
+            
+            <div class="faq-contact">
+                <p class="faq-contact-title">Не нашли ответ?</p>
+                <p class="faq-contact-text">Напишите нам — подскажем, какая книга подойдёт для вашей семьи.</p>
+                <div class="faq-contact-buttons">
+                    <a href="https://vk.me/rodkod" target="_blank" rel="noopener noreferrer" class="faq-btn faq-btn-vk">Написать в VK</a>
+                    <button class="faq-btn faq-btn-catalog" id="faqGoToCatalog">Смотреть книги</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Раздел Соцсети -->
+    <main class="container page hidden" id="socialPage">
+        <div class="back-button-container">
+            <button class="btn-back" id="backToCatalogFromSocial"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="page-title">РодКод в соцсетях</h1>
+        </div>
+        <div class="social-container">
+            <p class="social-subtitle">Следите за нами там, где вам удобно: показываем идеи подарков, примеры родословных книг и материалы о семейной памяти.</p>
+            
+            <div class="social-grid">
+                <a href="https://vk.com/rodkod" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon"><i class="fab fa-vk"></i></div>
+                    <div class="social-name">VK</div>
+                    <div class="social-desc">Официальное сообщество РодКод</div>
+                </a>
+                <a href="https://www.instagram.com/rodkod_ru/" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon"><i class="fab fa-instagram"></i></div>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-desc">Визуальная витрина книг и идей подарков</div>
+                </a>
+                <a href="https://www.tiktok.com/@rodkod_book" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+                    <div class="social-name">TikTok</div>
+                    <div class="social-desc">Короткие видео о книгах, памяти и наследии</div>
+                </a>
+                <a href="https://www.youtube.com/@rodkod_ru" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-desc">Shorts о родословных книгах и семейной памяти</div>
+                </a>
+                <a href="https://dzen.ru/rodkod" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon"><i class="fab fa-yandex"></i></div>
+                    <div class="social-name">Дзен</div>
+                    <div class="social-desc">Статьи о семейных книгах, подарках и наследии</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
     <script>
         // Новый URL скрипта
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwhWs5yVjijIgFgwLjH4GkvZ29qlS88akeNbPn29ZbDEpb9eCDVfo4g5dK095a4gmf1bQ/exec';
@@ -719,6 +848,7 @@
             updateFavoritesBadge();
             renderBooks(filteredBooks);
             setupEventListeners();
+            setupFaqAccordion();
             updateActiveMenuItem();
             checkCartEmpty();
             checkFavoritesEmpty();
@@ -726,6 +856,22 @@
             updateSidebarInitials();
             updateTermsCheckboxState();
             renderOrderHistory();
+        }
+
+        function setupFaqAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+                        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
         }
 
         function updateTermsCheckboxState() {
@@ -1407,6 +1553,9 @@
             backToCatalogFromFavorites.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromHistory.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromProfile.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromFaq.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromSocial.addEventListener('click', ()=>showPage('catalog'));
+            document.getElementById('faqGoToCatalog').addEventListener('click', ()=>showPage('catalog'));
             backToCart.addEventListener('click', ()=>showPage('cart'));
             addToCartBtn.addEventListener('click', ()=>{ 
                 if(currentBookId) {

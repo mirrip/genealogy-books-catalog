@@ -389,9 +389,10 @@
         .faq-btn-catalog:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
         /* === Social Section Styles === */
+        .social-header { text-align: center; margin-bottom: 30px; }
+        .social-page-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--primary-brown); line-height: 1.3; }
+        .social-page-title br { display: none; }
         .social-container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .social-title { text-align: center; margin-bottom: 30px; }
-        .social-title br { display: none; }
         .social-list { display: flex; flex-direction: column; gap: 12px; }
         .social-row { display: flex; align-items: center; background: white; border-radius: var(--border-radius); padding: 18px 22px; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 175, 55, 0.15); text-decoration: none; transition: var(--transition); }
         .social-row:hover { background: rgba(212, 175, 55, 0.06); border-color: rgba(212, 175, 55, 0.35); }
@@ -404,8 +405,8 @@
         .social-row:hover .social-row-arrow { transform: translateX(4px); }
         .social-footer-text { text-align: center; color: #6b5a4e; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-top: 30px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
         @media (max-width: 600px) {
-            .social-title { font-size: 24px; }
-            .social-title br { display: block; }
+            .social-page-title { font-size: 24px; }
+            .social-page-title br { display: block; }
         }
     </style>
 </head>
@@ -685,7 +686,9 @@
     <main class="container page hidden" id="socialPage">
         <div class="back-button-container">
             <button class="btn-back" id="backToCatalogFromSocial"><i class="fas fa-arrow-left"></i></button>
-            <h1 class="page-title social-title">Официальные страницы<br>РодКод</h1>
+        </div>
+        <div class="social-header">
+            <h1 class="social-page-title">Официальные страницы<br>РодКод</h1>
         </div>
         <div class="social-container">
             <div class="social-list">

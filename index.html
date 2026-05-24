@@ -296,11 +296,13 @@
         .legal-modal-close { background: none; border: none; font-size: 28px; color: var(--text-light); cursor: pointer; padding: 4px 8px; line-height: 1; transition: var(--transition); }
         .legal-modal-close:hover { color: var(--primary-brown); transform: scale(1.1); }
         .legal-modal-body { padding: 28px; overflow-y: auto; flex: 1; }
-        .legal-modal-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--primary-brown); margin: 24px 0 12px; }
-        .legal-modal-body h2:first-child { margin-top: 0; }
-        .legal-modal-body p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-dark); line-height: 1.7; margin: 0 0 14px; }
-        .legal-modal-body ul { font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-dark); line-height: 1.7; margin: 0 0 14px; padding-left: 24px; }
-        .legal-modal-body li { margin-bottom: 6px; }
+        .legal-modal-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: #8b6f4e; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(212, 175, 55, 0.25); }
+        .legal-modal-body h2:first-child { color: var(--primary-brown); font-size: 20px; margin-top: 0; border-bottom: 2px solid rgba(212, 175, 55, 0.3); padding-bottom: 12px; }
+        .legal-modal-body p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #4a3f35; line-height: 1.75; margin: 0 0 14px; }
+        .legal-modal-body ul, .legal-modal-body ol { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #4a3f35; line-height: 1.75; margin: 0 0 16px; padding-left: 28px; }
+        .legal-modal-body li { margin-bottom: 8px; padding-left: 4px; }
+        .legal-modal-body ol li { list-style-type: decimal; }
+        .legal-modal-body a { color: var(--gold-accent); text-decoration: underline; }
         @media (max-width: 480px) {
             .terms-label { font-size: 11px; line-height: 1.35; }
             .terms-group { padding: 12px; }
@@ -609,7 +611,7 @@
                     <div class="form-group"><label class="form-label">Telegram (username)</label><input type="text" class="form-input" id="telegram" placeholder="@username или ссылка"></div>
                     <div class="terms-group">
                         <input type="checkbox" id="termsCheckbox" class="terms-checkbox">
-                        <label class="terms-label" for="termsCheckbox">Я согласен(а) на обработку персональных данных и ознакомлен(а) с <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
+                        <label class="terms-label" for="termsCheckbox">Я согласен(а) на <a href="#" class="legal-link" data-doc="agreement">обработку персональных данных</a> и ознакомлен(а) с <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
                     </div>
                     <div class="terms-error" id="termsError">Пожалуйста, примите условия использования для сохранения профиля</div>
                     <button type="button" class="btn-save-profile" id="saveProfileBtn">Сохранить изменения</button>
@@ -1376,7 +1378,7 @@
                     <div class="form-group"><label class="form-label">Телефон *</label><input type="tel" class="form-input" id="paymentPhone" placeholder="+7 (___) ___-__-__" value="${currentUser?.phone || ''}"></div>
                     <div class="terms-group">
                         <input type="checkbox" id="paymentTermsCheckbox" class="terms-checkbox" ${termsChecked}>
-                        <label class="terms-label" for="paymentTermsCheckbox">Я согласен(а) на обработку персональных данных и ознакомлен(а) с <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
+                        <label class="terms-label" for="paymentTermsCheckbox">Я согласен(а) на <a href="#" class="legal-link" data-doc="agreement">обработку персональных данных</a> и ознакомлен(а) с <a href="#" class="legal-link" data-doc="privacy">Политикой конфиденциальности</a> и <a href="#" class="legal-link" data-doc="userAgreement">Пользовательским соглашением</a></label>
                     </div>
                 `;
                 const payFullName = document.getElementById('paymentFullName');

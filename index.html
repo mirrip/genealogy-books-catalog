@@ -414,6 +414,8 @@
         .social-row-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #6b5a4e; }
         .social-row-arrow { color: var(--gold-accent); font-size: 14px; margin-left: 16px; transition: transform 0.2s ease; }
         .social-row:hover .social-row-arrow { transform: translateX(4px); }
+        .social-row-internal { background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.04)); border-color: rgba(212, 175, 55, 0.25); }
+        .social-row-internal:hover { background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.06)); border-color: rgba(212, 175, 55, 0.4); }
         .social-footer-text { text-align: center; color: #6b5a4e; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-top: 30px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
         @media (max-width: 600px) {
             .social-page-title { font-size: 24px; }
@@ -707,7 +709,15 @@
                     <div class="social-row-icon"><i class="fas fa-comments"></i></div>
                     <div class="social-row-content">
                         <div class="social-row-name">VK</div>
-                        <div class="social-row-desc">Официальное сообщество РодКод</div>
+                        <div class="social-row-desc">Официальное сообщество</div>
+                    </div>
+                    <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
+                </a>
+                <a href="https://www.tiktok.com/@rodkod_book" target="_blank" rel="noopener noreferrer" class="social-row">
+                    <div class="social-row-icon"><i class="fas fa-play"></i></div>
+                    <div class="social-row-content">
+                        <div class="social-row-name">TikTok</div>
+                        <div class="social-row-desc">Короткие видео о книгах</div>
                     </div>
                     <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
@@ -727,16 +737,16 @@
                     </div>
                     <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
-                <a href="https://www.tiktok.com/@rodkod_book" target="_blank" rel="noopener noreferrer" class="social-row">
-                    <div class="social-row-icon"><i class="fas fa-play"></i></div>
+                <a href="#" id="catalogLinkBtn" class="social-row social-row-internal">
+                    <div class="social-row-icon"><i class="fas fa-book-open"></i></div>
                     <div class="social-row-content">
-                        <div class="social-row-name">TikTok</div>
-                        <div class="social-row-desc">Короткие видео о книгах</div>
+                        <div class="social-row-name">Каталог РодКод</div>
+                        <div class="social-row-desc">Вы сейчас здесь · вернуться к книгам</div>
                     </div>
                     <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
             </div>
-            <p class="social-footer-text">Выберите удобную площадку, чтобы смотреть идеи подарков, примеры книг и материалы о семейной памяти.</p>
+            <p class="social-footer-text">Основные материалы и варианты книг всегда доступны в каталоге РодКод.</p>
         </div>
     </main>
 
@@ -1592,6 +1602,10 @@
             backToCatalogFromProfile.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromFaq.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromSocial.addEventListener('click', ()=>showPage('catalog'));
+            const catalogLinkBtn = document.getElementById('catalogLinkBtn');
+            if (catalogLinkBtn) {
+                catalogLinkBtn.addEventListener('click', e => { e.preventDefault(); showPage('catalog'); });
+            }
             document.getElementById('faqGoToCatalog').addEventListener('click', ()=>showPage('catalog'));
             backToCart.addEventListener('click', ()=>showPage('cart'));
             addToCartBtn.addEventListener('click', ()=>{ 

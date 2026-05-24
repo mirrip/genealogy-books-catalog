@@ -390,7 +390,8 @@
 
         /* === Social Section Styles === */
         .social-header { text-align: center; margin-bottom: 30px; }
-        .social-page-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--primary-brown); line-height: 1.3; }
+        .social-page-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--primary-brown); line-height: 1.3; position: relative; display: inline-block; }
+        .social-page-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--gold-accent); border-radius: 2px; opacity: 0.7; }
         .social-page-title br { display: none; }
         .social-container { max-width: 800px; margin: 0 auto; padding: 20px; }
         .social-list { display: flex; flex-direction: column; gap: 12px; }
@@ -407,6 +408,7 @@
         @media (max-width: 600px) {
             .social-page-title { font-size: 24px; }
             .social-page-title br { display: block; }
+            .catalog-title { font-size: 32px; }
         }
     </style>
 </head>

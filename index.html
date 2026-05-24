@@ -390,7 +390,8 @@
 
         /* === Social Section Styles === */
         .social-container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .social-subtitle { text-align: center; color: var(--secondary-brown); font-size: 18px; margin-bottom: 35px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; line-height: 1.6; }
+        .social-title { text-align: center; margin-bottom: 30px; }
+        .social-title br { display: none; }
         .social-list { display: flex; flex-direction: column; gap: 12px; }
         .social-row { display: flex; align-items: center; background: white; border-radius: var(--border-radius); padding: 18px 22px; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 175, 55, 0.15); text-decoration: none; transition: var(--transition); }
         .social-row:hover { background: rgba(212, 175, 55, 0.06); border-color: rgba(212, 175, 55, 0.35); }
@@ -401,6 +402,11 @@
         .social-row-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #6b5a4e; }
         .social-row-arrow { color: var(--gold-accent); font-size: 14px; margin-left: 16px; transition: transform 0.2s ease; }
         .social-row:hover .social-row-arrow { transform: translateX(4px); }
+        .social-footer-text { text-align: center; color: #6b5a4e; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-top: 30px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
+        @media (max-width: 600px) {
+            .social-title { font-size: 24px; }
+            .social-title br { display: block; }
+        }
     </style>
 </head>
 <body>
@@ -679,11 +685,9 @@
     <main class="container page hidden" id="socialPage">
         <div class="back-button-container">
             <button class="btn-back" id="backToCatalogFromSocial"><i class="fas fa-arrow-left"></i></button>
-            <h1 class="page-title">Официальные страницы РодКод</h1>
+            <h1 class="page-title social-title">Официальные страницы<br>РодКод</h1>
         </div>
         <div class="social-container">
-            <p class="social-subtitle">Выберите удобную площадку, чтобы смотреть идеи подарков, примеры книг и материалы о семейной памяти.</p>
-            
             <div class="social-list">
                 <a href="https://vk.com/rodkod" target="_blank" rel="noopener noreferrer" class="social-row">
                     <div class="social-row-icon"><i class="fas fa-comments"></i></div>
@@ -726,6 +730,7 @@
                     <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
             </div>
+            <p class="social-footer-text">Выберите удобную площадку, чтобы смотреть идеи подарков, примеры книг и материалы о семейной памяти.</p>
         </div>
     </main>
 

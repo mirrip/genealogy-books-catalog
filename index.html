@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Генеалогия | Родословные Книги</title>
+    <title>РодКод | Родословные книги</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -68,7 +68,7 @@
         .catalog-header { text-align: center; margin: 20px 0 20px; padding: 0 20px; position: relative; }
         .catalog-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--primary-brown); margin-bottom: 10px; letter-spacing: -1.2px; background: linear-gradient(to right, var(--primary-brown), var(--gold-accent), var(--secondary-brown)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline-block; }
         .catalog-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--gold-accent); border-radius: 2px; }
-        .catalog-subtitle { color: var(--text-light); font-size: 22px; max-width: 800px; margin: 15px auto 0; line-height: 1.7; font-weight: 300; font-family: 'Cormorant Garamond', serif; opacity: 0; animation: typewriter 4s steps(40) 0.5s forwards, blink 0.75s step-end infinite; overflow: hidden; white-space: nowrap; border-right: 2px solid var(--gold-accent); }
+        .catalog-subtitle { color: var(--text-light); font-size: 18px; max-width: 800px; margin: 12px auto 0; line-height: 1.6; font-weight: 400; font-family: 'Cormorant Garamond', serif; opacity: 0.85; font-style: italic; }
         @keyframes typewriter { from { width: 0; } to { width: 100%; } }
         @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--gold-accent); } }
         .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 25px 0 50px; padding: 0 8px; }
@@ -373,7 +373,7 @@
             <div class="logo-container">
                 <div class="logo" id="logoBtn">
                     <i class="fas fa-bars"></i>
-                    Генеалогия
+                    РодКод
                 </div>
             </div>
             <div class="nav-buttons">
@@ -387,9 +387,9 @@
     <div class="sidebar" id="profileSidebar">
         <div class="sidebar-header">
             <div class="sidebar-profile-btn" id="sidebarProfileBtn">
-                <span id="sidebarInitials">Г</span>
+                <span id="sidebarInitials">Р</span>
             </div>
-            <div class="sidebar-logo">Генеалогия</div>
+            <div class="sidebar-logo">РодКод</div>
         </div>
         <div class="sidebar-menu">
             <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог</span></div>
@@ -398,14 +398,14 @@
             <div class="sidebar-item" data-page="orderHistory"><i class="fas fa-history"></i><span>История заказов</span></div>
             <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Профиль</span></div>
         </div>
-        <div class="sidebar-footer"><div>© 2026 Генеалогия • Эксклюзивные издания</div></div>
+        <div class="sidebar-footer"><div>© 2026 РодКод • Родословные книги</div></div>
     </div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <main class="container page" id="catalogPage">
         <div class="catalog-header">
             <h1 class="catalog-title">Родословные Книги</h1>
-            <p class="catalog-subtitle">Эксклюзивные издания для изучения вашей семейной истории с XVIII века до наших дней</p>
+            <p class="catalog-subtitle">РодКод — книги о семье, памяти и наследии</p>
         </div>
         <div class="catalog-filters">
             <div class="filter-group">

@@ -368,23 +368,23 @@
 
         /* === FAQ Section Styles === */
         .faq-container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .faq-subtitle { text-align: center; color: var(--text-light); font-size: 18px; margin-bottom: 35px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .faq-subtitle { text-align: center; color: var(--secondary-brown); font-size: 20px; margin-bottom: 35px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; }
         .faq-accordion { display: flex; flex-direction: column; gap: 12px; }
         .faq-item { background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid rgba(212, 175, 55, 0.15); transition: var(--transition); }
         .faq-item:hover { box-shadow: var(--shadow-md); border-color: rgba(212, 175, 55, 0.3); }
-        .faq-question { padding: 20px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 17px; color: var(--primary-brown); transition: var(--transition); }
+        .faq-question { padding: 20px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 18px; color: var(--primary-brown); transition: var(--transition); }
         .faq-question:hover { color: var(--gold-accent); }
-        .faq-question i { font-size: 14px; transition: transform 0.3s ease; color: var(--gold-accent); flex-shrink: 0; margin-left: 12px; }
+        .faq-question i { font-size: 14px; transition: transform 0.3s ease; color: var(--gold-accent); flex-shrink: 0; margin-left: 16px; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 24px; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.7; color: var(--text-light); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 24px; font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; color: #5a4a3a; }
         .faq-item.active .faq-answer { max-height: 500px; padding: 0 24px 20px; }
         .faq-contact { background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(109, 82, 61, 0.05)); border-radius: var(--border-radius); padding: 30px; margin-top: 40px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); }
         .faq-contact-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-brown); margin-bottom: 10px; }
-        .faq-contact-text { font-family: 'Montserrat', sans-serif; font-size: 16px; color: var(--text-light); margin-bottom: 25px; }
+        .faq-contact-text { font-family: 'Montserrat', sans-serif; font-size: 16px; color: #5a4a3a; margin-bottom: 25px; }
         .faq-contact-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         .faq-btn { padding: 14px 28px; border-radius: var(--border-radius); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; transition: var(--transition); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-        .faq-btn-vk { background: #4680C2; color: white; }
-        .faq-btn-vk:hover { background: #3a6da8; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .faq-btn-vk { background: white; color: var(--primary-brown); border: 2px solid var(--primary-brown); }
+        .faq-btn-vk:hover { background: rgba(212, 175, 55, 0.15); transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .faq-btn-catalog { background: var(--gradient-gold); color: white; }
         .faq-btn-catalog:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
@@ -628,35 +628,35 @@
             
             <div class="faq-accordion">
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Что такое родословная книга?</div>
+                    <div class="faq-question">Что такое родословная книга?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Родословная книга — это семейная книга о людях, событиях, фотографиях, памятных датах и историях, которые важно сохранить. Её создают не на один день, а как вещь, к которой возвращаются и которую передают дальше.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Чем она отличается от фотоальбома?</div>
+                    <div class="faq-question">Чем она отличается от фотоальбома?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Фотоальбом хранит снимки. Родословная книга собирает их в цельную семейную историю: с подписями, датами, рассказами, оформлением и смыслом. Это не просто набор фотографий, а книга о семье.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Что можно разместить внутри книги?</div>
+                    <div class="faq-question">Что можно разместить внутри книги?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">В книгу можно добавить семейные фотографии, важные даты, истории близких, памятные события, родовые линии, пожелания, документы, подписи и любые материалы, которые хочется сохранить в красивом виде.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Кому обычно дарят такую книгу?</div>
+                    <div class="faq-question">Кому обычно дарят такую книгу?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Чаще всего родословную книгу дарят родителям, бабушкам и дедушкам, семье на юбилей, годовщину или важный праздник. Это подарок, который выглядит личным, тёплым и значимым.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Подойдёт ли книга для детей и внуков?</div>
+                    <div class="faq-question">Подойдёт ли книга для детей и внуков?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Да. В этом и есть одна из главных ценностей родословной книги: она помогает сохранить память о семье для будущих поколений. Дети и внуки смогут открыть её и увидеть историю своего рода в одном месте.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Можно ли подарить книгу руководителю или партнёру?</div>
+                    <div class="faq-question">Можно ли подарить книгу руководителю или партнёру?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Да, если нужен статусный и небанальный подарок. Родословная книга выглядит личнее и значимее обычных деловых подарков, потому что связана с семьёй, историей и наследием.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Как выбрать подходящий вариант?</div>
+                    <div class="faq-question">Как выбрать подходящий вариант?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Можно ориентироваться на внешний вид, формат, цену и повод. Для тёплого семейного подарка подойдут более мягкие варианты, для статусного подарка — более солидные и выразительные издания.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-down"></i>Как оформить заказ?</div>
+                    <div class="faq-question">Как оформить заказ?<i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">Выберите подходящую книгу в каталоге и добавьте её в корзину. Если перед заказом остались вопросы, можно написать нам в VK — подскажем, какой вариант лучше подойдёт под ваш повод.</div>
                 </div>
             </div>

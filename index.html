@@ -456,15 +456,14 @@
         </div>
         <div class="catalog-filters">
             <div class="filter-group">
-                <label class="filter-label">Найти по цене:</label>
+                <label class="filter-label">Подобрать по бюджету:</label>
                 <div class="filter-input-wrapper">
-                    <input type="number" class="filter-input" id="priceInput" placeholder="Введите цену" min="0">
-                    <span class="filter-input-suffix">000</span>
+                    <input type="number" class="filter-input" id="priceInput" placeholder="Введите сумму в ₽" min="0">
                 </div>
             </div>
             <div class="filter-actions">
                 <button class="filter-btn" id="clearPriceFilterBtn" style="background: #6d523d;">Сбросить</button>
-                <button class="filter-btn" id="priceFilterBtn">Найти</button>
+                <button class="filter-btn" id="priceFilterBtn">Показать варианты</button>
             </div>
         </div>
         <div class="books-grid" id="booksGrid"></div>
@@ -1500,14 +1499,13 @@
         }
 
         function filterBooksByPrice(targetPrice) {
-            if (!targetPrice || targetPrice <= 0) { showGlobalSuccessMessage('Введите корректную цену'); return; }
-            let actualPrice = targetPrice * 1000;
+            if (!targetPrice || targetPrice <= 0) { showGlobalSuccessMessage('Введите корректную сумму'); return; }
             const allPrices = books.filter(b => b.price > 0).map(b => b.price);
             const uniquePrices = [...new Set(allPrices)].sort((a, b) => a - b);
             let lowerPrice = null;
-            for (let i = uniquePrices.length - 1; i >= 0; i--) { if (uniquePrices[i] <= actualPrice) { lowerPrice = uniquePrices[i]; break; } }
+            for (let i = uniquePrices.length - 1; i >= 0; i--) { if (uniquePrices[i] <= targetPrice) { lowerPrice = uniquePrices[i]; break; } }
             let upperPrice = null;
-            for (let i = 0; i < uniquePrices.length; i++) { if (uniquePrices[i] > actualPrice) { upperPrice = uniquePrices[i]; break; } }
+            for (let i = 0; i < uniquePrices.length; i++) { if (uniquePrices[i] > targetPrice) { upperPrice = uniquePrices[i]; break; } }
             let result = [];
             if (lowerPrice !== null) result = result.concat(books.filter(b => b.price === lowerPrice));
             if (upperPrice !== null && upperPrice !== lowerPrice) result = result.concat(books.filter(b => b.price === upperPrice));
@@ -1515,7 +1513,7 @@
             filteredBooks = result;
             isPriceFiltered = true;
             renderBooks(filteredBooks);
-            showGlobalSuccessMessage(`Найдено ${result.length} книг по цене около ${formatPrice(actualPrice)}`);
+            showGlobalSuccessMessage(`Найдено ${result.length} книг по цене около ${formatPrice(targetPrice)}`);
         }
 
         function clearPriceFilter() {
@@ -1847,8 +1845,31 @@
             });
 
             clearPriceFilterBtn.addEventListener('click', clearPriceFilter);
-            priceFilterBtn.addEventListener('click', ()=>{ const p=parseInt(priceInput.value); if(p&&p>0){ filterBooksByPrice(p); priceInput.blur(); } else showGlobalSuccessMessage('Введите корректную цену'); });
-            priceInput.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); const p=parseInt(priceInput.value); if(p&&p>0){ filterBooksByPrice(p); priceInput.blur(); } } });
+            priceFilterBtn.addEventListener('click', ()=>{
+                const rawValue = priceInput.value.trim();
+                if (!rawValue) { showGlobalSuccessMessage('Введите сумму'); return; }
+                
+                const cleaned = rawValue.replace(/[^\d]/g, '');
+                if (!cleaned) { showGlobalSuccessMessage('Введите сумму'); return; }
+                
+                let number = parseInt(cleaned, 10);
+                if (cleaned.length <= 2) { number = number * 1000; }
+                
+                if (number > 0) { filterBooksByPrice(number); priceInput.blur(); }
+                else { showGlobalSuccessMessage('Введите корректную сумму'); }
+            });
+            priceInput.addEventListener('keydown', e=>{
+                if(e.key==='Enter'){
+                    e.preventDefault();
+                    const rawValue = priceInput.value.trim();
+                    if (!rawValue) { showGlobalSuccessMessage('Введите сумму'); return; }
+                    const cleaned = rawValue.replace(/[^\d]/g, '');
+                    if (!cleaned) { showGlobalSuccessMessage('Введите сумму'); return; }
+                    let number = parseInt(cleaned, 10);
+                    if (cleaned.length <= 2) { number = number * 1000; }
+                    if (number > 0) { filterBooksByPrice(number); priceInput.blur(); }
+                }
+            });
             modalClose.addEventListener('click', ()=>quantityModal.classList.remove('active'));
             modalMinus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q>1){ modalQuantity.value=q-1; updateModalTotalPrice(); } });
             modalPlus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<99){ modalQuantity.value=q+1; updateModalTotalPrice(); } });

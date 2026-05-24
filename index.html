@@ -105,8 +105,9 @@
         .gallery-slider { width: 100%; aspect-ratio: 4/3; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-lg); position: relative; background: linear-gradient(135deg, var(--secondary-brown), var(--primary-brown)); border: 3px solid rgba(212, 175, 55, 0.4); cursor: grab; transition: var(--transition); max-height: 600px; touch-action: pan-y; }
         .gallery-slider:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.3); transform: scale(1.01); }
         .gallery-slider:active { cursor: grabbing; }
-        .gallery-track { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .main-image { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity 0.15s ease; }
+        .gallery-track { width: 100%; height: 100%; display: flex; overflow: hidden; }
+        .gallery-slide { flex: 0 0 100%; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .gallery-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .image-navigation { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; pointer-events: none; }
         .nav-zone { flex: 1; height: 100%; cursor: pointer; pointer-events: auto; }
         .nav-text { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 32px; font-weight: bold; text-shadow: 0 3px 12px rgba(0,0,0,0.7); opacity: 0; transition: var(--transition); }
@@ -487,9 +488,7 @@
         <div class="gallery-container">
             <div class="gallery-main">
                 <div class="gallery-slider" id="gallerySlider">
-                    <div class="gallery-track" id="galleryTrack">
-                        <img class="main-image" id="mainImage" src="" alt="Обложка книги">
-                    </div>
+                    <div class="gallery-track" id="galleryTrack"></div>
                     <div class="image-navigation">
                         <div class="nav-zone left" id="prevZone"><div class="nav-text prev-text">‹</div></div>
                         <div class="nav-zone right" id="nextZone"><div class="nav-text next-text">›</div></div>
@@ -834,7 +833,7 @@
         const profileName = document.getElementById('profileName');
         const cartBadge = document.getElementById('cartBadge');
         const favoritesBadge = document.getElementById('favoritesBadge');
-        const mainImage = document.getElementById('mainImage');
+        const galleryTrack = document.getElementById('galleryTrack');
         const galleryThumbnails = document.getElementById('galleryThumbnails');
         const navIndicator = document.getElementById('navIndicator');
         const prevZone = document.getElementById('prevZone');
@@ -1111,14 +1110,9 @@
             const book = books.find(b=>b.id===currentBookId);
             if(!book) return;
             currentImageIndex = index;
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = `${book.images[index]}`;
-                mainImage.style.opacity = '1';
-            }, 150);
+            galleryTrack.style.transform = `translateX(-${index * 100}%)`;
             document.querySelectorAll('.thumbnail').forEach((thumb,i)=>thumb.classList.toggle('active',i===index));
             document.querySelectorAll('.nav-dot').forEach((dot,i)=>dot.classList.toggle('active',i===index));
-            // Scroll thumbnail into view
             const activeThumb = document.querySelector('.thumbnail.active');
             if (activeThumb) {
                 activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -1151,8 +1145,13 @@
             detailTitle.textContent = book.title;
             detailPrice.textContent = formatPrice(book.price);
             detailDescription.textContent = book.description;
-            mainImage.src = `${book.images[0]}`;
-            mainImage.alt = book.title;
+            
+            // Build gallery slides
+            galleryTrack.innerHTML = book.images.map((img, i) => 
+                `<div class="gallery-slide"><img src="${img}" alt="${book.title}"></div>`
+            ).join('');
+            galleryTrack.style.transform = 'translateX(0)';
+            
             const isLiked = favorites.some(fav => fav.id === bookId);
             detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
             detailLikeBtn.classList.toggle('liked', isLiked);

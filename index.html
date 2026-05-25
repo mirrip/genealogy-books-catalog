@@ -691,7 +691,7 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Кому обычно дарят такую книгу?<i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Чаще всего родословную книгу дарят родителям, бабушкам и дедушкам, семье на юбилей, годовщину или важный праздник. Это подарок, который выглядит личным, тёплым и значимым.</div>
+                    <div class="faq-answer">Чаще всего родословную книгу дарят родителям, бабушкам и дедушкам, семье на юбилей, годовщину или важный праздник. Это подарок, который выглядит личным, тёплым и значимым.<br><br>Тем, кто хочет начать свою родословную, но не знает, с чего начать. Благодаря подарочному сертификату в книге мы начнём оформлять родословную вашей семьи вместе с вами — бережно, понятно и по шагам.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Подойдёт ли книга для детей и внуков?<i class="fas fa-chevron-down"></i></div>
@@ -932,11 +932,7 @@
                 const question = item.querySelector('.faq-question');
                 if (question) {
                     question.addEventListener('click', () => {
-                        const isActive = item.classList.contains('active');
-                        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                        if (!isActive) {
-                            item.classList.add('active');
-                        }
+                        item.classList.toggle('active');
                     });
                 }
             });

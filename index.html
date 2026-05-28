@@ -437,14 +437,17 @@
         .social-row-icon i { font-size: 18px; color: var(--gold-accent); }
         .social-row-content { flex-grow: 1; }
         .social-row-name { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary-brown); margin-bottom: 4px; }
-        .social-row-desc { font-family: 'Montserrat', sans-serif; font-size: 13px; color: #6b5a4e; }
+        .social-row-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #6b5a4e; }
         .social-row-arrow { color: var(--gold-accent); font-size: 14px; margin-left: 16px; transition: transform 0.2s ease; }
         .social-row:hover .social-row-arrow { transform: translateX(4px); }
         .social-row-internal { background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.04)); border-color: rgba(212, 175, 55, 0.25); }
         .social-row-internal:hover { background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.06)); border-color: rgba(212, 175, 55, 0.4); }
         .social-footer-text { text-align: center; color: #6b5a4e; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-top: 30px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .new-badge { display: inline-block; font-size: 10px; font-weight: 600; color: #b8944d; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 4px; padding: 2px 6px; margin-right: 12px; vertical-align: middle; letter-spacing: 0.3px; text-transform: lowercase; }
-        .social-row-badges { display: flex; align-items: center; justify-content: center; }
+        .new-badge { display: none; }
+        .social-row-badges { display: none; }
+        .social-section-divider { display: flex; align-items: center; justify-content: center; margin: 24px 0; }
+        .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent); }
+        .divider-text { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 500; color: #b8944d; padding: 0 20px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
         @media (max-width: 600px) {
             .social-page-title { font-size: 24px; }
             .social-page-title br { display: block; }
@@ -742,27 +745,28 @@
                     </div>
                     <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
+                
+                <div class="social-section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">Новые</span>
+                    <span class="divider-line"></span>
+                </div>
+                
                 <a href="https://vk.com/rodkod" target="_blank" rel="noopener noreferrer" class="social-row">
                     <div class="social-row-icon"><i class="fas fa-comments"></i></div>
                     <div class="social-row-content">
                         <div class="social-row-name">VK</div>
                         <div class="social-row-desc">Официальное сообщество</div>
                     </div>
-                    <div class="social-row-badges">
-                        <span class="new-badge">новое</span>
-                        <i class="fas fa-chevron-right social-row-arrow"></i>
-                    </div>
+                    <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
                 <a href="https://www.youtube.com/@rodkod_ru" target="_blank" rel="noopener noreferrer" class="social-row">
                     <div class="social-row-icon"><i class="fas fa-video"></i></div>
                     <div class="social-row-content">
                         <div class="social-row-name">YouTube</div>
-                        <div class="social-row-desc">О родословных книгах</div>
+                        <div class="social-row-desc">Видео</div>
                     </div>
-                    <div class="social-row-badges">
-                        <span class="new-badge">новое</span>
-                        <i class="fas fa-chevron-right social-row-arrow"></i>
-                    </div>
+                    <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
                 <a href="https://dzen.ru/rodkod" target="_blank" rel="noopener noreferrer" class="social-row">
                     <div class="social-row-icon"><i class="fas fa-book"></i></div>
@@ -770,10 +774,7 @@
                         <div class="social-row-name">Дзен</div>
                         <div class="social-row-desc">Статьи о семье и наследии</div>
                     </div>
-                    <div class="social-row-badges">
-                        <span class="new-badge">новое</span>
-                        <i class="fas fa-chevron-right social-row-arrow"></i>
-                    </div>
+                    <div class="social-row-arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
                 <a href="#" id="catalogLinkBtn" class="social-row social-row-internal">
                     <div class="social-row-icon"><i class="fas fa-book-open"></i></div>

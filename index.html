@@ -13,9 +13,13 @@
     <meta property="og:description" content="РодКод создаёт родословные книги о семье, памяти и наследии. Подарочные семейные книги для родителей, бабушек, дедушек и будущих поколений.">
     <meta property="og:url" content="https://rodkod.ru/">
     <meta property="og:locale" content="ru_RU">
+    <meta property="og:image" content="https://rodkod.ru/элитная%2029/elitnaya_01_under_3mb.jpg">
+    <meta name="theme-color" content="#4a3520">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="РодКод — родословные книги о семье, памяти и наследии">
     <meta name="twitter:description" content="РодКод создаёт родословные книги о семье, памяти и наследии. Подарочные семейные книги для родителей, бабушкам, дедушкам и будущим поколениям.">
+    <meta name="twitter:image" content="https://rodkod.ru/элитная%2029/elitnaya_01_under_3mb.jpg">
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -89,6 +93,12 @@
         .catalog-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--primary-brown); margin-bottom: 10px; letter-spacing: -1.2px; background: linear-gradient(to right, var(--primary-brown), var(--gold-accent), var(--secondary-brown)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; display: inline-block; }
         .catalog-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--gold-accent); border-radius: 2px; }
         .catalog-subtitle { color: var(--text-light); font-size: 18px; max-width: 800px; margin: 12px auto 0; line-height: 1.6; font-weight: 400; font-family: 'Cormorant Garamond', serif; opacity: 0.85; font-style: italic; }
+        .seo-intro { max-width: 980px; margin: 0 auto 28px; padding: 24px; background: rgba(255,255,255,0.82); border: var(--card-border); border-radius: var(--border-radius); box-shadow: var(--shadow-sm); color: #4a3f35; }
+        .seo-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--primary-brown); margin-bottom: 10px; line-height: 1.25; }
+        .seo-intro p { margin-bottom: 14px; font-size: 16px; }
+        .trust-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+        .trust-point { padding: 16px; background: #fff; border: 1px solid rgba(212, 175, 55, 0.22); border-radius: 12px; }
+        .trust-point strong { display: block; color: var(--primary-brown); margin-bottom: 6px; }
         @keyframes typewriter { from { width: 0; } to { width: 100%; } }
         @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--gold-accent); } }
         .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 25px 0 50px; padding: 0 8px; }
@@ -373,6 +383,7 @@
             .time-options { grid-template-columns: 1fr; }
             .order-history-books { grid-template-columns: 1fr; }
             .order-history-actions { flex-direction: column; }
+            .trust-points { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .books-grid { grid-template-columns: 1fr; gap: 15px; padding: 0 2px; margin: 15px 0 30px; }
@@ -490,6 +501,20 @@
         "inLanguage": "ru-RU"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Каталог родословных книг РодКод",
+        "url": "https://rodkod.ru/",
+        "numberOfItems": 20,
+        "itemListElement": [
+            {"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Элитная родословная книга","image":"https://rodkod.ru/элитная%2029/elitnaya_01_under_3mb.jpg","description":"Статусная родословная книга для сохранения истории семьи и памяти поколений.","offers":{"@type":"Offer","price":"29000","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://rodkod.ru/"}}},
+            {"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Изысканная родословная книга","image":"https://rodkod.ru/изысканная%209/izyskannaya_album_01_optimized.jpg","description":"Подарочная семейная книга для фотографий, историй и родовой памяти.","offers":{"@type":"Offer","price":"9500","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://rodkod.ru/"}}},
+            {"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Семейный альбом","image":"https://rodkod.ru/альбом/album_01_optimized.jpg","description":"Семейный альбом для важных фотографий, воспоминаний и подарка близким.","offers":{"@type":"Offer","price":"5000","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://rodkod.ru/"}}}
+        ]
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -533,6 +558,16 @@
             <h1 class="catalog-title">Родословные Книги</h1>
             <p class="catalog-subtitle">РодКод — книги о семье, памяти и наследии</p>
         </div>
+        <section class="seo-intro" aria-label="О родословных книгах РодКод">
+            <h2>Родословная книга в подарок семье</h2>
+            <p>РодКод помогает сохранить семейную историю в красивой книге: фотографии, имена, воспоминания, важные даты и рассказы о поколениях. Такой подарок подходит родителям, бабушкам, дедушкам, молодожёнам и всем, кто хочет передать память о семье дальше.</p>
+            <p>В каталоге можно выбрать оформление под бюджет и характер подарка: от лаконичного семейного альбома до статусной родословной книги с тиснением, гербом или древом.</p>
+            <div class="trust-points">
+                <div class="trust-point"><strong>Подарок со смыслом</strong><span>Книга сохраняет историю семьи, а не просто украшает полку.</span></div>
+                <div class="trust-point"><strong>Разные бюджеты</strong><span>Есть варианты от семейного альбома до элитного исполнения.</span></div>
+                <div class="trust-point"><strong>Быстрая заявка</strong><span>Добавьте книгу в корзину, оставьте телефон, и мы свяжемся для согласования.</span></div>
+            </div>
+        </section>
         <div class="catalog-filters">
             <div class="filter-group">
                 <label class="filter-label">Подобрать по бюджету:</label>

@@ -99,6 +99,11 @@
         .trust-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
         .trust-point { padding: 16px; background: #fff; border: 1px solid rgba(212, 175, 55, 0.22); border-radius: 12px; }
         .trust-point strong { display: block; color: var(--primary-brown); margin-bottom: 6px; }
+        .product-seo-links { max-width: 980px; margin: 20px auto 42px; padding: 22px; background: rgba(255,255,255,0.7); border: var(--card-border); border-radius: var(--border-radius); }
+        .product-seo-links h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--primary-brown); margin-bottom: 14px; }
+        .product-seo-links-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 18px; }
+        .product-seo-links a { color: var(--secondary-brown); text-decoration: none; font-size: 14px; line-height: 1.35; }
+        .product-seo-links a:hover { color: var(--gold-accent); text-decoration: underline; }
         @keyframes typewriter { from { width: 0; } to { width: 100%; } }
         @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--gold-accent); } }
         .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 25px 0 50px; padding: 0 8px; }
@@ -384,6 +389,7 @@
             .order-history-books { grid-template-columns: 1fr; }
             .order-history-actions { flex-direction: column; }
             .trust-points { grid-template-columns: 1fr; }
+            .product-seo-links-list { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .books-grid { grid-template-columns: 1fr; gap: 15px; padding: 0 2px; margin: 15px 0 30px; }
@@ -584,6 +590,31 @@
         <div class="catalog-footer-phone">
             <a href="tel:+79013168726" class="catalog-phone-link">Для звонка: +7 901 316-87-26</a>
         </div>
+        <section class="product-seo-links" aria-label="Страницы родословных книг">
+            <h2>Все родословные книги РодКод</h2>
+            <div class="product-seo-links-list">
+                <a href="/books/elitnaya-rodoslovnaya-kniga.html">Элитная родословная книга</a>
+                <a href="/books/elitnaya-s-tisneniem.html">Элитная с тиснением</a>
+                <a href="/books/izyskannaya-v-opletke-s-zolotym-drevom.html">Изысканная в оплётке с золочёным древом</a>
+                <a href="/books/izyskannaya-v-opletke.html">Изысканная в оплётке</a>
+                <a href="/books/izyskannaya.html">Изысканная</a>
+                <a href="/books/izyskannaya-troyka.html">Изысканная «Тройка»</a>
+                <a href="/books/izyskannaya-letopisets.html">Изысканная «Летописец»</a>
+                <a href="/books/izyskannaya-blagoslovenie.html">Изысканная «Благословение»</a>
+                <a href="/books/semejnyj-albom.html">Семейный альбом</a>
+                <a href="/books/hudozhestvennaya-bordovaya-s-gerbom.html">Художественная бордовая с гербом</a>
+                <a href="/books/hudozhestvennaya-bordovaya-s-drevom.html">Художественная бордовая с древом</a>
+                <a href="/books/hudozhestvennaya-chernaya-s-gerbom.html">Художественная чёрная с гербом</a>
+                <a href="/books/hudozhestvennaya-sinyaya-s-gerbom.html">Художественная синяя с гербом</a>
+                <a href="/books/hudozhestvennaya-svadebnaya-s-drevom.html">Художественная свадебная с древом</a>
+                <a href="/books/hudozhestvennaya-zelenaya-s-mechetyu.html">Художественная зелёная с мечетью</a>
+                <a href="/books/hudozhestvennaya-musulmanskaya.html">Художественная мусульманская</a>
+                <a href="/books/hudozhestvennaya-na-anglijskom.html">Художественная на английском</a>
+                <a href="/books/izyskannaya-na-anglijskom.html">Изысканная на английском</a>
+                <a href="/books/izyskannaya-eko-kozha.html">Изысканная эко-кожа</a>
+                <a href="/books/podarochnyj-paket.html">Подарочный пакет</a>
+            </div>
+        </section>
     </main>
 
     <main class="container page hidden" id="bookDetailPage">

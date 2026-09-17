@@ -1033,14 +1033,17 @@ body::before {
 
   .detail-mobile-actions {
     display: flex;
+    position: relative;
+    z-index: 6;
     margin: 0 3px 11px;
     align-items: center;
     justify-content: space-between;
   }
 
   .detail-mobile-actions .btn-back,
-  .detail-mobile-actions .detail-like-btn {
+  #bookDetailPage .detail-mobile-actions .detail-like-btn {
     position: static;
+    inset: auto;
     margin: 0;
   }
 

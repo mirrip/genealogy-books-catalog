@@ -552,6 +552,7 @@
             <div class="sidebar-logo">РодКод</div>
         </div>
         <div class="sidebar-menu">
+            <a class="sidebar-item sidebar-home-item" href="./index.html"><i class="fas fa-house"></i><span>Главная</span></a>
             <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог</span></div>
             <div class="sidebar-item" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
             <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
@@ -624,8 +625,11 @@
 
     <main class="container page hidden" id="bookDetailPage">
         <div class="back-button-container" id="detailBackContainer">
-            <button class="btn-back" id="backToCatalog"><i class="fas fa-arrow-left"></i></button>
-            <div class="detail-like-btn" id="detailLikeBtn"><i class="far fa-heart"></i></div>
+            <button class="btn-back" id="backToCatalog"><i class="fas fa-arrow-left"></i><span>Каталог</span></button>
+            <div class="detail-top-actions">
+                <a class="detail-home-link" href="./index.html"><i class="fas fa-house"></i><span>На главную</span></a>
+                <button class="detail-like-btn" id="detailLikeBtn" type="button" aria-label="Добавить книгу в избранное"><i class="far fa-heart"></i></button>
+            </div>
         </div>
         <div class="gallery-container">
             <div class="gallery-main">

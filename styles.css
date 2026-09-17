@@ -104,6 +104,7 @@ svg {
 .hero {
   --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 910 130 845 225S805 470 755 595S535 825 360 900S110 995 0 1000Z'/%3E%3C/svg%3E");
   position: relative;
+  z-index: 1;
   min-height: clamp(570px, 47vw, 690px);
   overflow: hidden;
   isolation: isolate;
@@ -640,11 +641,24 @@ svg {
 
 /* Dark heritage section restored below the hero. */
 .lower-night {
+  position: relative;
+  z-index: 0;
   color: #ead1a2;
   background:
     radial-gradient(circle at 76% 24%, rgba(133, 67, 28, .17), transparent 34%),
     radial-gradient(circle at 14% 80%, rgba(111, 39, 22, .16), transparent 37%),
     linear-gradient(137deg, #1d0b07, #080302 56%, #160704);
+}
+
+.lower-night::before {
+  position: absolute;
+  top: -72px;
+  right: 0;
+  left: 0;
+  height: 72px;
+  content: "";
+  pointer-events: none;
+  background: #1a0906;
 }
 
 .lower-night .memory {

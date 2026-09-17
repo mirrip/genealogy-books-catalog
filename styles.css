@@ -2169,102 +2169,24 @@ body.home-menu-open {
 @media (prefers-reduced-motion: no-preference) {
   .hero__dark-surface,
   .hero__transition {
-    -webkit-mask-image: none;
-    mask-image: none;
-    clip-path: url("#hero-wave-desktop-motion");
-  }
-
-  .hero__texture {
-    animation: hero-texture-drift 38s ease-in-out infinite alternate;
-    will-change: transform, opacity;
-  }
-
-  .hero__ember--one {
-    animation: hero-canvas-light-one 20s ease-in-out -6s infinite alternate;
-    will-change: transform, opacity;
-  }
-
-  .hero__ember--two {
-    animation: hero-canvas-light-two 26s ease-in-out -13s infinite alternate-reverse;
-    will-change: transform, opacity;
-  }
-
-  .hero h1 {
-    animation:
-      hero-title-intro 1.18s cubic-bezier(.2, .74, .26, 1) .12s both,
-      hero-gold-glint 22s ease-in-out 2.5s infinite,
-      hero-title-sway 18s ease-in-out 1.4s infinite alternate;
-    transform-origin: 14% 58%;
-  }
-
-  .hero__actions .button::after {
-    animation: hero-button-glint 18s ease-in-out 6s infinite;
-  }
-
-  .hero__lead {
-    animation: hero-copy-drift 11s ease-in-out -3s infinite;
-  }
-
-  .hero__actions {
-    animation: hero-actions-float 8s ease-in-out -2s infinite;
-    will-change: translate;
-  }
-
-  .hero__trust {
-    animation: hero-trust-breathe 10s ease-in-out -5s infinite;
-  }
-
-  .brand {
-    animation: hero-brand-glow 17s ease-in-out -4s infinite;
-  }
-
-  .menu-button {
-    animation: hero-icon-drift 9s ease-in-out -2s infinite alternate;
-  }
-
-  .header__actions .icon-button:nth-child(1) {
-    animation: hero-icon-drift 8s ease-in-out -5s infinite alternate-reverse;
-  }
-
-  .header__actions .icon-button:nth-child(2) {
-    animation: hero-icon-drift 10s ease-in-out -7s infinite alternate;
-  }
-
-  .hero__progress i.is-active {
-    animation: hero-progress-pulse 3.2s ease-in-out infinite;
-  }
-
-  .memory.is-visible .memory-card {
-    animation: memory-card-idle 9s ease-in-out infinite alternate;
-    will-change: translate;
-  }
-
-  .memory.is-visible .memory-card:nth-child(2) {
-    animation-delay: -6.5s;
-    animation-duration: 10.5s;
-  }
-
-  .memory.is-visible .memory-card:nth-child(3) {
-    animation-delay: -3.5s;
-    animation-duration: 8.5s;
-  }
-
-  .memory.is-visible .memory-card:nth-child(4) {
-    animation-delay: -8s;
-    animation-duration: 11s;
+    -webkit-mask-image: var(--hero-wave-mask);
+    mask-image: var(--hero-wave-mask);
+    clip-path: none;
   }
 }
 
 @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
   .hero__dark-surface,
   .hero__transition {
-    clip-path: url("#hero-wave-mobile-motion");
+    -webkit-mask-image: var(--hero-wave-mask);
+    mask-image: var(--hero-wave-mask);
+    clip-path: none;
   }
 
   .hero::after {
-    -webkit-mask-image: none;
-    mask-image: none;
-    clip-path: url("#hero-bottom-wave-mobile-motion");
+    -webkit-mask-image: var(--hero-bottom-wave-mask);
+    mask-image: var(--hero-bottom-wave-mask);
+    clip-path: none;
   }
 
   .hero__ember {
@@ -2288,108 +2210,31 @@ body.home-menu-open {
   }
 }
 
-@keyframes hero-title-sway {
-  0% { translate: -1px .5px; rotate: -.18deg; }
-  48% { translate: 4px -2px; rotate: .24deg; }
-  100% { translate: -2px 1.5px; rotate: -.16deg; }
-}
-
-@keyframes hero-texture-drift {
-  from { opacity: .205; transform: translate3d(-.18%, .12%, 0) scale(1.004); }
-  to { opacity: .225; transform: translate3d(.32%, -.2%, 0) scale(1.008); }
-}
-
-@keyframes hero-canvas-light-one {
-  0% { opacity: .58; transform: translate3d(-8%, 5%, 0) scale(.9); }
-  52% { opacity: .92; transform: translate3d(9%, -7%, 0) scale(1.13); }
-  100% { opacity: .7; transform: translate3d(18%, 4%, 0) scale(.98); }
-}
-
-@keyframes hero-canvas-light-two {
-  0% { opacity: .52; transform: translate3d(-6%, -4%, 0) scale(1.08); }
-  48% { opacity: .86; transform: translate3d(12%, 8%, 0) scale(.92); }
-  100% { opacity: .65; transform: translate3d(22%, -6%, 0) scale(1.15); }
-}
-
-@keyframes hero-copy-drift {
-  0%, 100% { opacity: .76; translate: 0 0; }
-  48% { opacity: .91; translate: 2px 0; }
-  72% { opacity: .84; translate: -1px 0; }
-}
-
-@keyframes hero-actions-float {
-  0%, 100% { translate: 0 0; }
-  44% { translate: 0 -4px; }
-  72% { translate: 1px -1px; }
-}
-
-@keyframes hero-trust-breathe {
-  0%, 100% { opacity: .68; translate: 0 0; }
-  50% { opacity: .92; translate: 1px -1px; }
-}
-
-@keyframes hero-brand-glow {
-  0%, 100% { filter: brightness(1); }
-  48% { filter: brightness(1.13); }
-  56% { filter: brightness(1.04); }
-}
-
-@keyframes hero-icon-drift {
-  0% { translate: 0 1px; rotate: -.8deg; }
-  48% { translate: 1px -2px; rotate: .9deg; }
-  100% { translate: -1px 0; rotate: -.25deg; }
-}
-
-@keyframes hero-progress-pulse {
-  0%, 100% { opacity: .82; transform: scaleX(1.02); }
-  50% { opacity: 1; transform: scaleX(1.12); }
-}
-
-@keyframes memory-card-idle {
-  0% { translate: 0 0; }
-  52% { translate: 0 -3px; }
-  100% { translate: 1px -1px; }
-}
-
-@keyframes hero-title-intro {
-  0% {
-    opacity: 0;
-    clip-path: polygon(0 0, 5% 0, 0 100%, 0 100%);
-    transform: translate3d(-14px, 10px, 0);
-  }
-  58% { opacity: .86; }
-  100% {
-    opacity: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    transform: translate3d(0, 0, 0);
+/* Static landing composition: only the photographic carousel remains animated. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__texture,
+  .hero__ember,
+  .hero h1,
+  .hero__actions .button::after,
+  .hero__lead,
+  .hero__actions,
+  .hero__trust,
+  .brand,
+  .menu-button,
+  .header__actions .icon-button,
+  .hero__progress i,
+  .memory.is-visible .memory-card,
+  .hero__scroll-cue > i::after {
+    animation: none !important;
+    will-change: auto !important;
   }
 }
 
-@keyframes hero-gold-glint {
-  0%, 5%, 100% {
-    text-shadow:
-      0 1px 1px rgba(0, 0, 0, .42),
-      0 3px 7px rgba(0, 0, 0, .2);
-  }
-  2.2% {
-    text-shadow:
-      0 1px 1px rgba(0, 0, 0, .42),
-      0 3px 7px rgba(0, 0, 0, .2),
-      0 0 5px rgba(244, 202, 139, .2);
-  }
-}
-
-@keyframes hero-button-glint {
-  0%, 4.2%, 100% {
-    opacity: 0;
-    transform: translate3d(-260%, 0, 0) skewX(-18deg);
-  }
-  1.1% { opacity: 0; }
-  2.7% { opacity: .42; }
-  4.1% {
-    opacity: 0;
-    transform: translate3d(820%, 0, 0) skewX(-18deg);
-  }
+.reveal,
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 @keyframes hero-photo-zoom {
@@ -2594,7 +2439,8 @@ body.home-menu-open {
     content: "";
     background: #f0c781;
     box-shadow: 0 0 7px rgba(235, 180, 94, .55);
-    animation: scroll-cue-drop 2.6s cubic-bezier(.45, 0, .25, 1) infinite;
+    opacity: .7;
+    transform: translateY(72%);
   }
 
   .hero__scroll-cue:hover,
@@ -2608,20 +2454,6 @@ body.home-menu-open {
 
   .memory::before {
     display: none;
-  }
-}
-
-@keyframes scroll-cue-drop {
-  0%, 14% {
-    opacity: 0;
-    transform: translateY(-110%);
-  }
-  36% {
-    opacity: 1;
-  }
-  72%, 100% {
-    opacity: 0;
-    transform: translateY(245%);
   }
 }
 

@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://rodkod.ru/catalog.html">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:image" content="https://rodkod.ru/элитная%2029/elitnaya_01_under_3mb.jpg">
-    <meta name="theme-color" content="#4a3520">
+    <meta name="theme-color" content="#080302">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="РодКод — родословные книги о семье, памяти и наследии">
     <meta name="twitter:description" content="РодКод создаёт родословные книги о семье, памяти и наследии. Подарочные семейные книги для родителей, бабушкам, дедушкам и будущим поколениям.">
@@ -489,6 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260917-1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -523,27 +524,31 @@
     </script>
 </head>
 <body>
-    <header>
+    <header class="catalog-site-header">
         <div class="container header-container">
             <div class="logo-container">
-                <div class="logo" id="logoBtn">
-                    <i class="fas fa-bars"></i>
-                    Родкод
-                </div>
+                <button class="catalog-menu-toggle" id="logoBtn" type="button" aria-label="Открыть меню">
+                    <span></span><span></span><span></span>
+                </button>
+                <a class="catalog-brand" href="./index.html" aria-label="РодКод — главная">РодКод</a>
             </div>
             <div class="nav-buttons">
-                <div class="btn-cart-icon" id="cartIconBtn">
+                <button class="catalog-header-icon" id="favoritesIconBtn" type="button" aria-label="Открыть избранное">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="btn-cart-icon catalog-header-icon" id="cartIconBtn" type="button" aria-label="Открыть корзину">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge-icon" id="cartIconBadge">0</span>
-                </div>
+                </button>
+                <a class="catalog-home-link" href="./index.html">На главную</a>
             </div>
         </div>
     </header>
     <div class="sidebar" id="profileSidebar">
         <div class="sidebar-header">
-            <div class="sidebar-profile-btn" id="sidebarProfileBtn">
-                <span id="sidebarInitials">Р</span>
-            </div>
+            <button class="sidebar-profile-btn sidebar-close-btn" id="sidebarProfileBtn" type="button" aria-label="Закрыть меню">
+                <span aria-hidden="true">×</span><span id="sidebarInitials" hidden>Р</span>
+            </button>
             <div class="sidebar-logo">РодКод</div>
         </div>
         <div class="sidebar-menu">
@@ -938,6 +943,7 @@
         const sidebarProfileBtn = document.getElementById('sidebarProfileBtn');
         const sidebarInitials = document.getElementById('sidebarInitials');
         const cartIconBtn = document.getElementById('cartIconBtn');
+        const favoritesIconBtn = document.getElementById('favoritesIconBtn');
         const cartIconBadge = document.getElementById('cartIconBadge');
         const profileSidebar = document.getElementById('profileSidebar');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -1731,8 +1737,9 @@
 
         function setupEventListeners() {
             logoBtn.addEventListener('click', ()=>{ profileSidebar.classList.add('open'); sidebarOverlay.classList.add('active'); });
-            sidebarProfileBtn.addEventListener('click', ()=>{ profileSidebar.classList.add('open'); sidebarOverlay.classList.add('active'); });
+            sidebarProfileBtn.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
             cartIconBtn.addEventListener('click', ()=>showPage('cart'));
+            favoritesIconBtn.addEventListener('click', ()=>showPage('favorites'));
             sidebarOverlay.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
             document.querySelectorAll('.sidebar-item').forEach(item=>{ if(item.dataset.page) item.addEventListener('click', ()=>{ showPage(item.dataset.page); profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }); });
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-card')&&!e.target.closest('.book-like-mobile')){ const id=parseInt(e.target.closest('.book-card').dataset.id); showBookDetail(id,'catalog'); } });

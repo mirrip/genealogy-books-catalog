@@ -109,7 +109,7 @@ svg {
   overflow: hidden;
   isolation: isolate;
   color: var(--gold-light);
-  border-radius: 0 0 clamp(38px, 4vw, 64px) clamp(30px, 3.2vw, 50px);
+  border-radius: 0;
   background: #120605;
   box-shadow:
     0 16px 40px rgba(60, 29, 12, .18),
@@ -1353,7 +1353,7 @@ svg {
     --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V820C908 808 836 830 770 882C700 936 657 982 562 991C393 1008 178 984 0 932Z'/%3E%3C/svg%3E");
     --hero-bottom-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 190C130 70 285 35 430 130C560 220 650 185 770 80C870 5 950 22 1000 65V1000H0Z'/%3E%3C/svg%3E");
     min-height: clamp(600px, 158vw, 720px);
-    border-radius: 0 0 34px 34px;
+    border-radius: 0;
     background: #2b1009;
   }
 
@@ -2297,7 +2297,7 @@ svg {
     min-height: 100vh;
     min-height: 100svh;
     color: #ecc486;
-    border-radius: 22px 22px 57.6px 46.08px;
+    border-radius: 22px 22px 0 0;
     background: #090201;
   }
 

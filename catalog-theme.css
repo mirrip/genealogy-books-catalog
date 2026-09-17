@@ -531,6 +531,7 @@ body::before {
 #bookDetailPage {
   width: min(100% - 44px, 1540px);
   max-width: 1540px;
+  padding-top: 14px;
 }
 
 #bookDetailPage .btn-back {

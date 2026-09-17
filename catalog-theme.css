@@ -533,15 +533,7 @@ body::before {
   max-width: 1540px;
 }
 
-#bookDetailPage .back-button-container {
-  margin-bottom: 18px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-#bookDetailPage .btn-back,
-.detail-home-link {
+#bookDetailPage .btn-back {
   display: inline-flex;
   width: auto;
   min-height: 44px;
@@ -559,21 +551,18 @@ body::before {
   text-decoration: none;
 }
 
-#bookDetailPage .btn-back:hover,
-.detail-home-link:hover {
+#bookDetailPage .btn-back:hover {
   color: #ffe5b2;
   border-color: rgba(224, 166, 76, .68);
   background: rgba(104, 44, 17, .58);
   transform: translateY(-2px);
 }
 
-.detail-top-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 #bookDetailPage .detail-like-btn {
+  position: absolute;
+  z-index: 5;
+  top: clamp(18px, 2vw, 28px);
+  right: clamp(18px, 2vw, 28px);
   width: 44px;
   height: 44px;
   color: #edca91;
@@ -603,17 +592,28 @@ body::before {
 }
 
 #bookDetailPage .gallery-main {
+  position: relative;
   min-width: 0;
   padding: 0;
 }
 
 #bookDetailPage .main-image-container {
+  position: relative;
   aspect-ratio: 1.35 / 1;
   max-height: none;
   border: 1px solid rgba(223, 166, 79, .42);
   border-radius: clamp(20px, 2.2vw, 31px);
   background: #140604;
   box-shadow: 0 25px 58px rgba(0, 0, 0, .42);
+}
+
+#bookDetailPage .detail-catalog-btn {
+  position: absolute;
+  z-index: 5;
+  top: clamp(16px, 1.8vw, 24px);
+  left: clamp(16px, 1.8vw, 24px);
+  margin: 0;
+  backdrop-filter: blur(8px);
 }
 
 #bookDetailPage .main-image-container:hover {
@@ -650,8 +650,9 @@ body::before {
 }
 
 #bookDetailPage .book-details {
+  position: relative;
   min-width: 0;
-  padding: clamp(28px, 4vw, 58px);
+  padding: clamp(58px, 5vw, 76px) clamp(28px, 4vw, 58px) clamp(28px, 4vw, 58px);
   justify-content: center;
   border: 1px solid rgba(213, 151, 64, .22);
   border-radius: clamp(22px, 2.5vw, 34px);
@@ -983,8 +984,7 @@ body::before {
     gap: 8px;
   }
 
-  #bookDetailPage .btn-back,
-  .detail-home-link {
+  #bookDetailPage .btn-back {
     min-height: 40px;
     padding: 8px 12px;
     font-size: 11px;
@@ -1016,8 +1016,18 @@ body::before {
   }
 
   #bookDetailPage .book-details {
-    padding: 25px 21px 23px;
+    padding: 58px 21px 23px;
     border-radius: 20px;
+  }
+
+  #bookDetailPage .detail-catalog-btn {
+    top: 13px;
+    left: 13px;
+  }
+
+  #bookDetailPage .detail-like-btn {
+    top: 14px;
+    right: 14px;
   }
 
   #bookDetailPage .book-detail-title {

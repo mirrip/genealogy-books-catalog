@@ -489,7 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260917-3">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260917-4">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -624,16 +624,10 @@
     </main>
 
     <main class="container page hidden" id="bookDetailPage">
-        <div class="back-button-container" id="detailBackContainer">
-            <button class="btn-back" id="backToCatalog"><i class="fas fa-arrow-left"></i><span>Каталог</span></button>
-            <div class="detail-top-actions">
-                <a class="detail-home-link" href="./index.html"><i class="fas fa-house"></i><span>На главную</span></a>
-                <button class="detail-like-btn" id="detailLikeBtn" type="button" aria-label="Добавить книгу в избранное"><i class="far fa-heart"></i></button>
-            </div>
-        </div>
         <div class="gallery-container">
             <div class="gallery-main">
                 <div class="main-image-container" id="mainImageContainer">
+                    <button class="btn-back detail-catalog-btn" id="backToCatalog"><i class="fas fa-arrow-left"></i><span>Каталог</span></button>
                     <img class="main-image" id="mainImage" src="" alt="Обложка книги">
                     <div class="image-navigation">
                         <div class="nav-zone left" id="prevZone"><div class="nav-text prev-text">‹</div></div>
@@ -644,6 +638,7 @@
                 <div class="gallery-thumbnails" id="galleryThumbnails"></div>
             </div>
             <div class="book-details">
+                <button class="detail-like-btn" id="detailLikeBtn" type="button" aria-label="Добавить книгу в избранное"><i class="far fa-heart"></i></button>
                 <h2 class="book-detail-title" id="detailTitle">Родословная книга семьи</h2>
                 <div class="book-detail-price" id="detailPrice">38 500 ₽</div>
                 <div class="book-detail-description" id="detailDescription">Персональная книга о семье, воспоминаниях, фотографиях и родовых историях. Подходит как подарок родителям, бабушкам, дедушкам и близким.</div>

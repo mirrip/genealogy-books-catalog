@@ -638,6 +638,149 @@ svg {
   display: none;
 }
 
+/* Dark heritage section restored below the hero. */
+.lower-night {
+  color: #ead1a2;
+  background:
+    radial-gradient(circle at 76% 24%, rgba(133, 67, 28, .17), transparent 34%),
+    radial-gradient(circle at 14% 80%, rgba(111, 39, 22, .16), transparent 37%),
+    linear-gradient(137deg, #1d0b07, #080302 56%, #160704);
+}
+
+.lower-night .memory {
+  background:
+    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
+    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
+    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+  box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
+}
+
+.lower-night .memory::before {
+  display: block;
+  opacity: .1;
+  background: repeating-radial-gradient(circle at 22% 40%, #e0a450 0 1px, transparent 1px 8px);
+  mix-blend-mode: screen;
+}
+
+.lower-night .section-kicker {
+  color: #d29a43;
+}
+
+.lower-night .section-heading h2 {
+  color: #f0d39d;
+  text-shadow: 0 2px 18px rgba(198, 121, 38, .08);
+}
+
+.lower-night .section-heading span {
+  background: linear-gradient(90deg, transparent, rgba(218, 160, 73, .62));
+}
+
+.lower-night .section-heading span:last-child {
+  background: linear-gradient(90deg, rgba(218, 160, 73, .62), transparent);
+}
+
+.lower-night .section-heading span::after {
+  border-color: rgba(225, 171, 87, .62);
+}
+
+.lower-night .memory-card {
+  border-color: rgba(207, 145, 58, .38);
+  background:
+    radial-gradient(circle at 86% 115%, rgba(112, 39, 20, .3), transparent 47%),
+    linear-gradient(145deg, rgba(42, 17, 10, .96), rgba(12, 5, 3, .98));
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, .3),
+    0 1px 0 rgba(255, 224, 171, .09) inset;
+}
+
+.lower-night .memory-card:hover,
+.lower-night .memory-card:focus-visible {
+  border-color: rgba(226, 168, 77, .72);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, .48),
+    0 0 30px rgba(205, 133, 45, .12),
+    0 1px 0 rgba(255, 229, 181, .1) inset;
+}
+
+.lower-night .memory-card__body {
+  border-top: 1px solid rgba(218, 157, 69, .2);
+}
+
+.lower-night .memory-card strong {
+  color: #f1d29a;
+}
+
+.lower-night .memory-card small {
+  color: rgba(244, 226, 196, .66);
+}
+
+.lower-night .memory-card__arrow {
+  color: #dda64c;
+  border-color: rgba(220, 157, 69, .44);
+  background: rgba(225, 164, 75, .04);
+}
+
+.lower-night .memory-card:hover .memory-card__arrow,
+.lower-night .memory-card:focus-visible .memory-card__arrow {
+  color: #211007;
+  background: linear-gradient(180deg, #efc872, #c8872f);
+}
+
+.lower-night .start {
+  border-color: rgba(218, 159, 72, .52);
+  background:
+    radial-gradient(circle at 87% 13%, rgba(135, 49, 25, .42), transparent 25%),
+    radial-gradient(circle at 35% 120%, rgba(110, 36, 17, .45), transparent 37%),
+    linear-gradient(110deg, #250e08, #080302 62%, #210b06);
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, .34),
+    0 1px 0 rgba(255, 221, 160, .08) inset;
+}
+
+.lower-night .start__eyebrow,
+.lower-night .step strong {
+  color: #e4ad50;
+}
+
+.lower-night .footer {
+  border-color: rgba(211, 151, 64, .4);
+  background:
+    radial-gradient(circle at 18% 0, rgba(110, 43, 21, .2), transparent 44%),
+    linear-gradient(180deg, rgba(45, 18, 10, .88), rgba(12, 5, 3, .96));
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, .28),
+    0 1px 0 rgba(255, 224, 171, .07) inset;
+}
+
+.lower-night .footer a {
+  color: rgba(240, 211, 164, .72);
+}
+
+.lower-night .footer a:hover,
+.lower-night .footer a:focus-visible {
+  color: #ffe1a9;
+  background: rgba(207, 137, 50, .12);
+}
+
+.lower-night .footer span {
+  color: #e4b465;
+  border-color: rgba(220, 158, 70, .5);
+  background: rgba(218, 151, 61, .04);
+}
+
+@media (max-width: 760px) {
+  .lower-night .memory-card {
+    border-color: rgba(207, 145, 58, .44);
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, .38),
+      0 1px rgba(255, 224, 171, .08) inset;
+  }
+
+  .lower-night .footer a:nth-child(-n+2) {
+    border-bottom-color: rgba(207, 145, 58, .22);
+  }
+}
+
 /* Memory cards */
 .memory {
   position: relative;

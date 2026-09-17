@@ -489,7 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260917-5">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -624,10 +624,14 @@
     </main>
 
     <main class="container page hidden" id="bookDetailPage">
+        <div class="detail-mobile-actions" aria-label="Управление карточкой книги">
+            <button class="btn-back" id="backToCatalogMobile"><i class="fas fa-arrow-left"></i><span>В каталог</span></button>
+            <button class="detail-like-btn" id="detailLikeBtnMobile" type="button" aria-label="Добавить книгу в избранное"><i class="far fa-heart"></i></button>
+        </div>
         <div class="gallery-container">
             <div class="gallery-main">
                 <div class="main-image-container" id="mainImageContainer">
-                    <button class="btn-back detail-catalog-btn" id="backToCatalog"><i class="fas fa-arrow-left"></i><span>Каталог</span></button>
+                    <button class="btn-back detail-catalog-btn" id="backToCatalog"><i class="fas fa-arrow-left"></i><span>В каталог</span></button>
                     <img class="main-image" id="mainImage" src="" alt="Обложка книги">
                     <div class="image-navigation">
                         <div class="nav-zone left" id="prevZone"><div class="nav-text prev-text">‹</div></div>
@@ -957,6 +961,7 @@
         const profilePage = document.getElementById('profilePage');
         const paymentPage = document.getElementById('paymentPage');
         const backToCatalog = document.getElementById('backToCatalog');
+        const backToCatalogMobile = document.getElementById('backToCatalogMobile');
         const backToCatalogFromCart = document.getElementById('backToCatalogFromCart');
         const backToCatalogFromFavorites = document.getElementById('backToCatalogFromFavorites');
         const backToCatalogFromHistory = document.getElementById('backToCatalogFromHistory');
@@ -966,7 +971,7 @@
         const detailPrice = document.getElementById('detailPrice');
         const detailDescription = document.getElementById('detailDescription');
         const addToCartBtn = document.getElementById('addToCartBtn');
-        const detailLikeBtn = document.getElementById('detailLikeBtn');
+        const detailLikeButtons = [...document.querySelectorAll('.detail-like-btn')];
         const mobileFixedCartBtn = document.getElementById('mobileFixedCartBtn');
         const cartItems = document.getElementById('cartItems');
         const cartEmpty = document.getElementById('cartEmpty');
@@ -1298,8 +1303,10 @@
             mainImage.alt = book.title;
             
             const isLiked = favorites.some(fav => fav.id === bookId);
-            detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
-            detailLikeBtn.classList.toggle('liked', isLiked);
+            detailLikeButtons.forEach(button => {
+                button.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
+                button.classList.toggle('liked', isLiked);
+            });
             
             if (book.callbackOnly) {
                 addToCartBtn.disabled = false;
@@ -1459,8 +1466,10 @@
             checkFavoritesEmpty();
             if(currentPage==='bookDetail' && currentBookId===bookId){
                 const isLiked = favorites.some(fav=>fav.id===bookId);
-                detailLikeBtn.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
-                detailLikeBtn.classList.toggle('liked',isLiked);
+                detailLikeButtons.forEach(button => {
+                    button.innerHTML = `<i class="${isLiked?'fas':'far'} fa-heart"></i>`;
+                    button.classList.toggle('liked',isLiked);
+                });
             }
             showGlobalSuccessMessage(index===-1?'Книга добавлена в избранное!':'Книга удалена из избранного');
         }
@@ -1747,6 +1756,7 @@
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-card')&&!e.target.closest('.book-like-mobile')){ const id=parseInt(e.target.closest('.book-card').dataset.id); showBookDetail(id,'catalog'); } });
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); } });
             backToCatalog.addEventListener('click', goBack);
+            backToCatalogMobile.addEventListener('click', goBack);
             backToCatalogFromCart.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromFavorites.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromHistory.addEventListener('click', ()=>showPage('catalog'));
@@ -1770,7 +1780,7 @@
                 }
             });
             mobileFixedCartBtn.addEventListener('click', ()=>{ if(currentBookId) addToCart(currentBookId); });
-            detailLikeBtn.addEventListener('click', ()=>{ if(currentBookId) toggleFavorite(currentBookId); });
+            detailLikeButtons.forEach(button => button.addEventListener('click', ()=>{ if(currentBookId) toggleFavorite(currentBookId); }));
             quantityMinus.addEventListener('click', ()=>{ if(quantity>1){ quantity--; updateQuantityDisplay(); } });
             quantityPlus.addEventListener('click', ()=>{ if(quantity<99){ quantity++; updateQuantityDisplay(); } });
             quantityInput.addEventListener('change', ()=>{ quantity=parseInt(quantityInput.value)||1; if(quantity<1)quantity=1; if(quantity>99)quantity=99; updateQuantityDisplay(); });

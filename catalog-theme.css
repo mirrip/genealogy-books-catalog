@@ -559,6 +559,10 @@ body::before {
   transform: translateY(-2px);
 }
 
+.detail-mobile-actions {
+  display: none;
+}
+
 #bookDetailPage .detail-like-btn {
   position: absolute;
   z-index: 5;
@@ -611,9 +615,15 @@ body::before {
 #bookDetailPage .detail-catalog-btn {
   position: absolute;
   z-index: 5;
-  top: clamp(16px, 1.8vw, 24px);
-  left: clamp(16px, 1.8vw, 24px);
+  top: 8px;
+  left: 8px;
   margin: 0;
+  color: #f6d498;
+  border-color: rgba(229, 170, 76, .78);
+  background:
+    linear-gradient(120deg, rgba(238, 184, 92, .14), transparent 46%),
+    rgba(35, 11, 6, .9);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .38), 0 1px rgba(255, 229, 178, .1) inset;
   backdrop-filter: blur(8px);
 }
 
@@ -1017,18 +1027,26 @@ body::before {
   }
 
   #bookDetailPage .book-details {
-    padding: 58px 21px 23px;
+    padding: 25px 21px 23px;
     border-radius: 20px;
   }
 
-  #bookDetailPage .detail-catalog-btn {
-    top: 13px;
-    left: 13px;
+  .detail-mobile-actions {
+    display: flex;
+    margin: 0 3px 11px;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  #bookDetailPage .detail-like-btn {
-    top: 14px;
-    right: 14px;
+  .detail-mobile-actions .btn-back,
+  .detail-mobile-actions .detail-like-btn {
+    position: static;
+    margin: 0;
+  }
+
+  #bookDetailPage .detail-catalog-btn,
+  #bookDetailPage .book-details > #detailLikeBtn {
+    display: none;
   }
 
   #bookDetailPage .book-detail-title {

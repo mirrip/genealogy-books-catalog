@@ -2093,19 +2093,58 @@ body.home-menu-open {
 }
 
 @media (max-width: 420px) {
+  .hero {
+    min-height: clamp(720px, 188vw, 780px);
+  }
+
+  .hero__dark-surface,
+  .hero__transition {
+    height: 50%;
+    clip-path: polygon(0 0, 100% 0, 100% 83%, 91% 84%, 83% 87%, 76% 92%, 69% 97%, 61% 100%, 44% 100%, 24% 98%, 0 92%);
+  }
+
+  .hero__transition {
+    height: 51.5%;
+  }
+
+  .hero__photo-slot {
+    inset: 41% 0 22%;
+  }
+
+  .hero::after {
+    height: 28%;
+  }
+
   .hero__content {
-    top: 18.2%;
+    top: 18%;
+    left: 7%;
+    max-width: 89%;
   }
 
   .hero h1 {
-    font-size: 30px;
-    line-height: .94;
+    font-size: clamp(27px, 7.55vw, 30px);
+    line-height: 1.01;
   }
 
   .hero__lead {
-    margin-top: 4px;
-    font-size: 9px;
-    line-height: 1.2;
+    max-width: 73%;
+    margin-top: 7px;
+    font-size: clamp(8.5px, 2.35vw, 9.5px);
+    line-height: 1.24;
+  }
+
+  .hero__actions {
+    right: 6%;
+    bottom: 11.8%;
+    left: 6%;
+  }
+
+  .hero__trust {
+    bottom: 6.3%;
+  }
+
+  .hero__progress {
+    bottom: 2.7%;
   }
 
   .section-heading {

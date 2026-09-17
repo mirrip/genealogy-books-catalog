@@ -8,6 +8,8 @@
   --catalog-paper-light: #fffaf1;
   --catalog-line: rgba(218, 159, 72, .38);
   --catalog-muted: rgba(244, 226, 196, .7);
+  --catalog-copy: rgba(238, 202, 148, .88);
+  --catalog-copy-muted: rgba(224, 183, 122, .76);
 }
 
 html {
@@ -774,6 +776,37 @@ body::before {
   color: rgba(245, 226, 195, .78);
   border-color: rgba(211, 149, 62, .26);
   background: rgba(76, 29, 13, .2);
+}
+
+/* Warm, readable copy in the FAQ, social and profile sections. */
+.faq-answer,
+.faq-contact-text,
+.social-row-desc,
+.social-footer-text,
+.profile-empty-message,
+.terms-label,
+.profile-intro {
+  color: var(--catalog-copy) !important;
+}
+
+.faq-subtitle,
+.profile-container .form-label {
+  color: var(--catalog-copy-muted) !important;
+}
+
+.faq-question,
+.social-row-name,
+.profile-container .section-title {
+  color: #e0ad55 !important;
+}
+
+.faq-answer {
+  text-shadow: 0 1px 12px rgba(255, 222, 169, .035);
+}
+
+.faq-contact,
+.social-row {
+  box-shadow: 0 1px rgba(255, 226, 177, .045) inset;
 }
 
 .modal-overlay,

@@ -389,6 +389,7 @@ svg {
   box-shadow:
     0 10px 24px rgba(0, 0, 0, .28),
     0 0 0 1px rgba(255, 219, 157, .06) inset;
+  cursor: pointer;
 }
 
 .menu-button::before {
@@ -417,6 +418,152 @@ svg {
 .menu-button span:nth-child(2) { top: 25px; width: 14px; }
 .menu-button span:nth-child(3) { top: 33px; }
 .menu-button:hover span:nth-child(2) { width: 18px; }
+
+body.home-menu-open {
+  overflow: hidden;
+}
+
+.home-menu-drawer {
+  position: fixed;
+  z-index: 3100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: min(390px, 90vw);
+  overflow: hidden;
+  flex-direction: column;
+  color: #f1d29b;
+  border-right: 1px solid rgba(220, 160, 72, .54);
+  background:
+    radial-gradient(circle at 17% 8%, rgba(145, 66, 25, .34), transparent 30%),
+    repeating-radial-gradient(circle at 7% 64%, rgba(218, 158, 72, .09) 0 1px, transparent 1px 12px),
+    linear-gradient(155deg, #2d1009, #080302 63%, #1b0906);
+  box-shadow: 30px 0 90px rgba(0, 0, 0, .64);
+  transform: translate3d(-105%, 0, 0);
+  transition: transform .38s cubic-bezier(.22, .8, .22, 1);
+}
+
+.home-menu-drawer.is-open {
+  transform: translate3d(0, 0, 0);
+}
+
+.home-menu-drawer__header {
+  display: flex;
+  min-height: 116px;
+  padding: 28px;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid rgba(214, 153, 66, .28);
+  background: rgba(0, 0, 0, .12);
+}
+
+.home-menu-close {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  padding: 0;
+  place-items: center;
+  color: #f1cd8d;
+  border: 1px solid rgba(222, 160, 69, .72);
+  border-radius: 50%;
+  background: rgba(214, 146, 54, .08);
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.home-menu-close:hover,
+.home-menu-close:focus-visible {
+  color: #ffe8bd;
+  background: rgba(164, 85, 27, .22);
+  outline: none;
+  transform: rotate(6deg);
+}
+
+.home-menu-brand {
+  color: #edc886;
+  font-family: var(--display);
+  font-size: 38px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.home-menu-nav {
+  display: flex;
+  padding: 20px 14px;
+  overflow-y: auto;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.home-menu-nav a {
+  display: flex;
+  min-height: 57px;
+  padding: 13px 18px;
+  align-items: center;
+  gap: 16px;
+  color: rgba(249, 231, 202, .78);
+  border: 1px solid transparent;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.home-menu-nav a:hover,
+.home-menu-nav a:focus-visible,
+.home-menu-nav a.is-current {
+  color: #ffe8bd;
+  border-color: rgba(220, 160, 72, .3);
+  background: linear-gradient(90deg, rgba(186, 112, 34, .2), rgba(95, 38, 15, .08));
+  outline: none;
+  transform: translateX(3px);
+}
+
+.home-menu-icon {
+  display: grid;
+  width: 26px;
+  flex: 0 0 26px;
+  place-items: center;
+  color: #dda84f;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.home-menu-drawer__footer {
+  padding: 20px 22px;
+  color: rgba(244, 224, 193, .56);
+  border-top: 1px solid rgba(214, 153, 66, .22);
+  font-size: 12px;
+  text-align: center;
+}
+
+.home-menu-overlay {
+  position: fixed;
+  z-index: 3090;
+  inset: 0;
+  padding: 0;
+  visibility: hidden;
+  border: 0;
+  background: rgba(3, 1, 0, .76);
+  opacity: 0;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: opacity .32s ease, visibility .32s ease;
+}
+
+.home-menu-overlay.is-open {
+  visibility: visible;
+  opacity: 1;
+}
 
 .cart-count {
   position: absolute;
@@ -1823,9 +1970,16 @@ svg {
     place-items: center;
     gap: 2px;
     color: #dcb984;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
     border-right: 1px solid rgba(207, 144, 68, .17);
+    background: transparent;
+    font-family: inherit;
     font-size: 8px;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .mobile-dock__item svg {

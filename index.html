@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://rodkod.ru/">
   <link rel="preload" href="./assets/hero/desktop/hero-elite.webp" as="image" type="image/webp" media="(min-width: 761px)">
   <link rel="preload" href="./assets/hero/mobile/hero-elite.webp" as="image" type="image/webp" media="(max-width: 760px)">
-  <link rel="stylesheet" href="./styles.css?v=20260917-2">
+  <link rel="stylesheet" href="./styles.css?v=20260917-3">
 </head>
 <body>
   <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden">
@@ -81,23 +81,42 @@
       <div class="hero__curve" aria-hidden="true"></div>
 
       <header class="header">
-        <a class="icon-button menu-button" href="./page.html?title=Меню" aria-label="Меню">
+        <button class="icon-button menu-button" id="homeMenuButton" type="button" aria-label="Открыть меню" aria-controls="homeMenuDrawer" aria-expanded="false">
           <span></span><span></span><span></span>
-        </a>
+        </button>
 
         <a class="brand" href="./index.html" aria-label="РодКод — главная">РодКод</a>
 
         <nav class="header__actions" aria-label="Основная навигация">
-          <a class="icon-button" href="./page.html?title=Избранное" aria-label="Избранное">
+          <a class="icon-button" href="./catalog.html?page=favorites" aria-label="Избранное">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg>
           </a>
-          <a class="icon-button cart-button" href="./page.html?title=Корзина" aria-label="Корзина">
+          <a class="icon-button cart-button" href="./catalog.html?page=cart" aria-label="Корзина">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg>
             <span class="cart-count">2</span>
           </a>
           <a class="button button--light header__about" href="./page.html?title=Подробнее о нас">Подробнее о нас</a>
         </nav>
       </header>
+
+      <aside class="home-menu-drawer" id="homeMenuDrawer" aria-hidden="true">
+        <div class="home-menu-drawer__header">
+          <button class="home-menu-close" id="homeMenuClose" type="button" aria-label="Закрыть меню">×</button>
+          <a class="home-menu-brand" href="./index.html">РодКод</a>
+        </div>
+        <nav class="home-menu-nav" aria-label="Меню сайта">
+          <a class="is-current" href="#content" data-home-menu-close><span class="home-menu-icon">⌂</span><span>Главная</span></a>
+          <a href="./catalog.html"><span class="home-menu-icon">▤</span><span>Каталог книг</span></a>
+          <a href="./catalog.html?page=favorites"><span class="home-menu-icon">♥</span><span>Избранное</span></a>
+          <a href="./catalog.html?page=cart"><span class="home-menu-icon">▰</span><span>Корзина</span></a>
+          <a href="./catalog.html?page=orderHistory"><span class="home-menu-icon">↶</span><span>История заказов</span></a>
+          <a href="./catalog.html?page=profile"><span class="home-menu-icon">●</span><span>Профиль</span></a>
+          <a href="./catalog.html?page=faq"><span class="home-menu-icon">?</span><span>Вопросы</span></a>
+          <a href="./catalog.html?page=social"><span class="home-menu-icon">⌯</span><span>Мы в соцсетях</span></a>
+        </nav>
+        <div class="home-menu-drawer__footer">© 2026 РодКод · Семейное наследие</div>
+      </aside>
+      <button class="home-menu-overlay" id="homeMenuOverlay" type="button" aria-label="Закрыть меню" tabindex="-1"></button>
 
       <div class="mobile-kicker">Личная консультация</div>
 
@@ -233,10 +252,10 @@
   </main>
 
   <nav class="mobile-dock is-hidden" aria-label="Быстрые действия" aria-hidden="true" inert>
-    <a class="mobile-dock__item" href="./page.html?title=Меню" aria-label="Открыть меню">
+    <button class="mobile-dock__item" id="mobileMenuButton" type="button" aria-label="Открыть меню">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>
       <span>Меню</span>
-    </a>
+    </button>
     <a class="mobile-dock__item" href="#memory" aria-label="Перейти к формам семейной памяти">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22Z"/><path d="M4 5.5V22M8 6h8M8 10h7"/></svg>
       <span>Проекты</span>
@@ -247,6 +266,6 @@
     </a>
   </nav>
 
-  <script src="./app.js?v=20260801-1"></script>
+  <script src="./app.js?v=20260917-1"></script>
 </body>
 </html>

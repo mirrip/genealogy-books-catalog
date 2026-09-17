@@ -8,8 +8,39 @@ const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
 const mobileDock = document.querySelector(".mobile-dock");
+const homeMenuButton = document.querySelector("#homeMenuButton");
+const mobileMenuButton = document.querySelector("#mobileMenuButton");
+const homeMenuDrawer = document.querySelector("#homeMenuDrawer");
+const homeMenuClose = document.querySelector("#homeMenuClose");
+const homeMenuOverlay = document.querySelector("#homeMenuOverlay");
 const HERO_SLIDE_INTERVAL = 9000;
 const HERO_TRANSITION_DURATION = 760;
+
+function setHomeMenu(open) {
+  if (!homeMenuDrawer || !homeMenuOverlay) return;
+
+  homeMenuDrawer.classList.toggle("is-open", open);
+  homeMenuOverlay.classList.toggle("is-open", open);
+  homeMenuDrawer.setAttribute("aria-hidden", String(!open));
+  homeMenuButton?.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("home-menu-open", open);
+
+  if (open) homeMenuClose?.focus();
+  else homeMenuButton?.focus({ preventScroll: true });
+}
+
+homeMenuButton?.addEventListener("click", () => setHomeMenu(true));
+mobileMenuButton?.addEventListener("click", () => setHomeMenu(true));
+homeMenuClose?.addEventListener("click", () => setHomeMenu(false));
+homeMenuOverlay?.addEventListener("click", () => setHomeMenu(false));
+document.querySelectorAll("[data-home-menu-close]").forEach((link) => {
+  link.addEventListener("click", () => setHomeMenu(false));
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && homeMenuDrawer?.classList.contains("is-open")) {
+    setHomeMenu(false);
+  }
+});
 
 function addFrameLimitedPointerEffect(element, update) {
   let frame = 0;

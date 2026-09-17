@@ -1048,6 +1048,9 @@
             updateSidebarInitials();
             updateTermsCheckboxState();
             renderOrderHistory();
+            const requestedPage = new URLSearchParams(window.location.search).get('page');
+            const allowedPages = ['catalog', 'favorites', 'cart', 'orderHistory', 'profile', 'faq', 'social'];
+            if (requestedPage && allowedPages.includes(requestedPage)) showPage(requestedPage);
         }
 
         function setupFaqAccordion() {

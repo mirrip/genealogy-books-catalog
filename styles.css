@@ -344,6 +344,54 @@ svg {
   color: #ecd5b2;
 }
 
+.desktop-primary-nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 34px);
+}
+
+.desktop-primary-nav a {
+  position: relative;
+  padding: 12px 0;
+  color: rgba(247, 225, 191, .76);
+  font-size: clamp(11px, .92vw, 14px);
+  font-weight: 600;
+  letter-spacing: .015em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .24s ease, transform .24s ease;
+}
+
+.desktop-primary-nav a::after {
+  position: absolute;
+  right: 50%;
+  bottom: 5px;
+  left: 50%;
+  height: 1px;
+  content: "";
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, #dfaa58, transparent);
+  opacity: 0;
+  transition: right .24s ease, left .24s ease, opacity .24s ease;
+}
+
+.desktop-primary-nav a:hover,
+.desktop-primary-nav a:focus-visible,
+.desktop-primary-nav a.is-current {
+  color: #f3cf96;
+  outline: none;
+}
+
+.desktop-primary-nav a:hover::after,
+.desktop-primary-nav a:focus-visible::after,
+.desktop-primary-nav a.is-current::after {
+  right: 0;
+  left: 0;
+  opacity: .78;
+}
+
 .icon-button {
   position: relative;
   display: grid;
@@ -1586,10 +1634,11 @@ body.home-menu-open {
   }
 
   .hero__curve {
-    top: 0;
-    left: -10%;
-    width: 95%;
-    height: 11%;
+    display: none;
+  }
+
+  .desktop-primary-nav {
+    display: none;
   }
 
   .header {
@@ -2361,9 +2410,15 @@ body.home-menu-open {
   }
 
   .header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: clamp(18px, 3vw, 52px);
     background:
       radial-gradient(circle at 72% -80%, rgba(101, 31, 17, .12), transparent 54%),
       linear-gradient(90deg, rgba(14, 3, 2, .92), rgba(24, 5, 3, .76) 58%, rgba(10, 2, 1, .7));
+  }
+
+  .menu-button {
+    display: none;
   }
 
   .brand,

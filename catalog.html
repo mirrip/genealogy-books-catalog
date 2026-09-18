@@ -489,7 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-5">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-6">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -532,6 +532,13 @@
                 </button>
                 <a class="catalog-brand" href="./index.html" aria-label="РодКод — главная">РодКод</a>
             </div>
+            <nav class="catalog-primary-nav" aria-label="Разделы сайта">
+                <a href="./index.html">Главная</a>
+                <a class="is-current" href="./catalog.html" data-header-page="catalog">Каталог книг</a>
+                <a href="./catalog.html?page=faq" data-header-page="faq">Вопросы</a>
+                <a href="./catalog.html?page=profile" data-header-page="profile">Профиль</a>
+                <a href="./catalog.html?page=social" data-header-page="social">Мы в соцсетях</a>
+            </nav>
             <div class="nav-buttons">
                 <button class="catalog-header-icon" id="favoritesIconBtn" type="button" aria-label="Открыть избранное">
                     <i class="far fa-heart"></i>
@@ -540,7 +547,6 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge-icon" id="cartIconBadge">0</span>
                 </button>
-                <a class="catalog-home-link" href="./index.html">На главную</a>
             </div>
         </div>
     </header>
@@ -1101,6 +1107,9 @@
             document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
             const activeItem = document.querySelector(`.sidebar-item[data-page="${currentPage}"]`);
             if (activeItem) activeItem.classList.add('active');
+            document.querySelectorAll('.catalog-primary-nav [data-header-page]').forEach(item => item.classList.remove('is-current'));
+            const activeHeaderItem = document.querySelector(`.catalog-primary-nav [data-header-page="${currentPage === 'bookDetail' ? 'catalog' : currentPage}"]`);
+            if (activeHeaderItem) activeHeaderItem.classList.add('is-current');
         }
 
         function formatPrice(p) {
@@ -1752,6 +1761,7 @@
             cartIconBtn.addEventListener('click', ()=>showPage('cart'));
             favoritesIconBtn.addEventListener('click', ()=>showPage('favorites'));
             sidebarOverlay.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
+            document.querySelectorAll('.catalog-primary-nav [data-header-page]').forEach(item => item.addEventListener('click', event=>{ event.preventDefault(); showPage(item.dataset.headerPage); }));
             document.querySelectorAll('.sidebar-item').forEach(item=>{ if(item.dataset.page) item.addEventListener('click', ()=>{ showPage(item.dataset.page); profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }); });
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-card')&&!e.target.closest('.book-like-mobile')){ const id=parseInt(e.target.closest('.book-card').dataset.id); showBookDetail(id,'catalog'); } });
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); } });

@@ -1656,8 +1656,8 @@ body.home-menu-open {
     color: #efd09a;
     border-bottom: 1px solid rgba(216, 155, 67, .38);
     background:
-      radial-gradient(circle at 52% -45%, rgba(135, 42, 45, .2), transparent 58%),
-      linear-gradient(90deg, rgba(55, 14, 17, .99), rgba(30, 7, 9, .98) 58%, rgba(64, 17, 20, .99));
+      radial-gradient(circle at 52% -45%, rgba(126, 63, 29, .16), transparent 58%),
+      linear-gradient(90deg, rgba(46, 15, 8, .99), rgba(24, 7, 4, .98) 58%, rgba(53, 19, 9, .99));
     box-shadow: 0 18px 46px rgba(0, 0, 0, .3);
     backdrop-filter: blur(18px) saturate(1.15);
   }
@@ -1688,7 +1688,7 @@ body.home-menu-open {
     width: 40px;
     height: 40px;
     border: 1px solid rgba(220, 162, 77, .3);
-    background: rgba(62, 18, 20, .78);
+    background: rgba(54, 20, 10, .78);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
   }
 
@@ -1702,8 +1702,8 @@ body.home-menu-open {
     height: 44px;
     flex: 0 0 44px;
     background:
-      radial-gradient(circle at 38% 20%, rgba(137, 57, 60, .48), transparent 48%),
-      linear-gradient(145deg, #45171a, #1d0709 72%);
+      radial-gradient(circle at 38% 20%, rgba(126, 67, 34, .48), transparent 48%),
+      linear-gradient(145deg, #3c1b10, #180704 72%);
   }
 
   .menu-button span:nth-child(1) { top: 15px; }

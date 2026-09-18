@@ -840,9 +840,9 @@ body.home-menu-open {
   z-index: 0;
   color: #ead1a2;
   background:
-    radial-gradient(circle at 76% 24%, rgba(133, 67, 28, .17), transparent 34%),
-    radial-gradient(circle at 14% 80%, rgba(111, 39, 22, .16), transparent 37%),
-    linear-gradient(137deg, #1d0b07, #080302 56%, #160704);
+    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
+    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
+    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
 }
 
 .lower-night::before {
@@ -856,20 +856,9 @@ body.home-menu-open {
   background: #1a0906;
 }
 
-.future-content-space {
-  position: relative;
-  min-height: 350vh;
-  min-height: 350svh;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
-    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
-    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
-  box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
-}
-
-.future-content-space::before {
+.lower-night::after {
   position: absolute;
+  z-index: 0;
   inset: 0;
   content: "";
   pointer-events: none;
@@ -878,19 +867,31 @@ body.home-menu-open {
   mix-blend-mode: screen;
 }
 
+.lower-night > * {
+  position: relative;
+  z-index: 1;
+}
+
+.future-content-space {
+  position: relative;
+  min-height: 350vh;
+  min-height: 350svh;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
+}
+
+.future-content-space::before {
+  display: none;
+}
+
 .lower-night .memory {
-  background:
-    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
-    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
-    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+  background: transparent;
   box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
 }
 
 .lower-night .memory::before {
-  display: block;
-  opacity: .1;
-  background: repeating-radial-gradient(circle at 22% 40%, #e0a450 0 1px, transparent 1px 8px);
-  mix-blend-mode: screen;
+  display: none;
 }
 
 .lower-night .section-kicker {

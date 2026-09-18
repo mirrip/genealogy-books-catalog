@@ -1643,7 +1643,7 @@ body.home-menu-open {
   }
 
   .header {
-    position: fixed;
+    position: absolute;
     z-index: 1000;
     top: 0;
     right: 0;
@@ -1721,7 +1721,7 @@ body.home-menu-open {
   .mobile-kicker {
     position: absolute;
     z-index: 5;
-    top: 77px;
+    top: 72px;
     left: 18%;
     display: block;
     width: 64%;
@@ -1738,7 +1738,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 18%;
+    top: 15%;
     left: 8.5%;
     max-width: 84%;
   }
@@ -2119,7 +2119,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 17.2%;
+    top: 14.3%;
     left: 7.5%;
     max-width: 72%;
   }
@@ -2180,7 +2180,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 18%;
+    top: 15%;
     left: 7%;
     max-width: 89%;
   }
@@ -2222,7 +2222,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 19.1%;
+    top: 15.5%;
   }
 
   .mobile-dock {

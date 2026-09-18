@@ -956,6 +956,10 @@ body::before {
 }
 
 @media (max-width: 600px) {
+  .catalog-site-header {
+    position: absolute;
+  }
+
   body {
     padding-top: 70px;
   }

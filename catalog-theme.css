@@ -178,6 +178,10 @@ body::before {
 }
 
 @media (min-width: 921px) {
+  .catalog-site-header {
+    position: absolute;
+  }
+
   .catalog-site-header .header-container {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;

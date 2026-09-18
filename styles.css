@@ -862,7 +862,7 @@ body.home-menu-open {
   inset: 0;
   content: "";
   pointer-events: none;
-  background: repeating-radial-gradient(circle at 22% 40%, #e0a450 0 1px, transparent 1px 8px);
+  background: repeating-radial-gradient(circle at -12% 46%, #e0a450 0 1px, transparent 1px 8px);
   opacity: .1;
   mix-blend-mode: screen;
 }

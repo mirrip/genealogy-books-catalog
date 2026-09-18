@@ -575,6 +575,13 @@ body.home-menu-open {
   transform: translateX(3px);
 }
 
+.home-menu-nav .home-menu-utility-start {
+  margin-top: 12px;
+  padding-top: 18px;
+  border-top-color: rgba(220, 160, 72, .2);
+  border-radius: 0 0 16px 16px;
+}
+
 .home-menu-icon {
   display: grid;
   width: 26px;
@@ -1001,6 +1008,10 @@ body.home-menu-open {
 }
 
 @media (max-width: 760px) {
+  .desktop-account-link {
+    display: none;
+  }
+
   .lower-night {
     --lower-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 72' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 62C150 61 285 57 390 43C465 32 535 32 610 43C715 57 850 61 1000 62V72H0Z'/%3E%3C/svg%3E");
     z-index: 2;

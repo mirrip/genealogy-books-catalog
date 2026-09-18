@@ -208,10 +208,22 @@ body::before {
   color: #efd09a;
   border: 1px solid rgba(220, 162, 77, .3);
   border-radius: 50%;
+  text-decoration: none;
   background: rgba(38, 14, 8, .68);
   box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
   cursor: pointer;
   transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.sidebar-utility-start {
+  margin-top: 14px;
+  border-top: 1px solid rgba(216, 155, 67, .2);
+}
+
+@media (max-width: 920px) {
+  .catalog-account-link {
+    display: none;
+  }
 }
 
 .catalog-header-icon i,

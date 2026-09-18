@@ -489,7 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-8">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-9">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -535,14 +535,18 @@
             <nav class="catalog-primary-nav" aria-label="Разделы сайта">
                 <a href="./index.html">Главная</a>
                 <a class="is-current" href="./catalog.html" data-header-page="catalog">Каталог книг</a>
-                <a href="./catalog.html?page=faq" data-header-page="faq">Вопросы</a>
-                <a href="./catalog.html?page=profile" data-header-page="profile">Профиль</a>
-                <a href="./catalog.html?page=social" data-header-page="social">Мы в соцсетях</a>
+                <a href="./gifts.html">Подарки</a>
+                <a href="./family-history.html">История семьи</a>
+                <a href="./works.html">Наши работы</a>
+                <a href="./about.html">О РодКод</a>
             </nav>
             <div class="nav-buttons">
                 <button class="catalog-header-icon" id="favoritesIconBtn" type="button" aria-label="Открыть избранное">
                     <i class="far fa-heart"></i>
                 </button>
+                <a class="catalog-header-icon catalog-account-link" href="./catalog.html?page=profile" aria-label="Личный кабинет">
+                    <i class="far fa-user"></i>
+                </a>
                 <button class="btn-cart-icon catalog-header-icon" id="cartIconBtn" type="button" aria-label="Открыть корзину">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge-icon" id="cartIconBadge">0</span>
@@ -560,12 +564,14 @@
         <div class="sidebar-menu">
             <a class="sidebar-item sidebar-home-item" href="./index.html"><i class="fas fa-house"></i><span>Главная</span></a>
             <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог</span></div>
-            <div class="sidebar-item" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
+            <a class="sidebar-item" href="./gifts.html"><i class="fas fa-gift"></i><span>Подарки</span></a>
+            <a class="sidebar-item" href="./family-history.html"><i class="fas fa-tree"></i><span>История семьи</span></a>
+            <a class="sidebar-item" href="./works.html"><i class="fas fa-images"></i><span>Наши работы</span></a>
+            <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О РодКод</span></a>
+            <div class="sidebar-item sidebar-utility-start" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
             <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
             <div class="sidebar-item" data-page="orderHistory"><i class="fas fa-history"></i><span>История заказов</span></div>
-            <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Профиль</span></div>
-            <div class="sidebar-item" data-page="faq"><i class="fas fa-question-circle"></i><span>Вопросы</span></div>
-            <div class="sidebar-item" data-page="social"><i class="fas fa-share-alt"></i><span>Мы в соцсетях</span></div>
+            <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Личный кабинет</span></div>
         </div>
         <div class="sidebar-footer"><div>© 2026 РодКод • Родословные книги</div></div>
     </div>

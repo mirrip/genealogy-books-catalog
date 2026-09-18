@@ -836,24 +836,28 @@ body.home-menu-open {
 
 /* Dark heritage section restored below the hero. */
 .lower-night {
+  --lower-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 72' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 55C160 50 310 62 470 56C650 48 760 60 850 51C915 43 950 26 1000 31V72H0Z'/%3E%3C/svg%3E");
   position: relative;
-  z-index: 0;
+  z-index: 2;
+  margin-top: -72px;
+  padding-top: 72px;
   color: #ead1a2;
   background:
     radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
     radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
     linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+  -webkit-mask-image: var(--lower-wave-mask), linear-gradient(#000 0 0);
+  -webkit-mask-position: top, bottom;
+  -webkit-mask-size: 100% 72px, 100% calc(100% - 71px);
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--lower-wave-mask), linear-gradient(#000 0 0);
+  mask-position: top, bottom;
+  mask-size: 100% 72px, 100% calc(100% - 71px);
+  mask-repeat: no-repeat;
 }
 
 .lower-night::before {
-  position: absolute;
-  top: -72px;
-  right: 0;
-  left: 0;
-  height: 72px;
-  content: "";
-  pointer-events: none;
-  background: #1a0906;
+  display: none;
 }
 
 .lower-night::after {
@@ -1001,6 +1005,14 @@ body.home-menu-open {
 }
 
 @media (max-width: 760px) {
+  .lower-night {
+    --lower-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 72' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 62C150 61 285 57 390 43C465 32 535 32 610 43C715 57 850 61 1000 62V72H0Z'/%3E%3C/svg%3E");
+    margin-top: -38px;
+    padding-top: 38px;
+    -webkit-mask-size: 100% 38px, 100% calc(100% - 37px);
+    mask-size: 100% 38px, 100% calc(100% - 37px);
+  }
+
   .lower-night .memory-card {
     border-color: rgba(207, 145, 58, .44);
     box-shadow:

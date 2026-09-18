@@ -856,6 +856,28 @@ body.home-menu-open {
   background: #1a0906;
 }
 
+.future-content-space {
+  position: relative;
+  min-height: 350vh;
+  min-height: 350svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
+    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
+    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+  box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
+}
+
+.future-content-space::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: repeating-radial-gradient(circle at 22% 40%, #e0a450 0 1px, transparent 1px 8px);
+  opacity: .1;
+  mix-blend-mode: screen;
+}
+
 .lower-night .memory {
   background:
     radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),

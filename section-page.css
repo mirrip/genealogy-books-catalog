@@ -39,6 +39,29 @@ body::before {
 
 a { color: inherit; }
 
+/* Catalog header foundations are repeated here so every standalone section
+   keeps precisely the same alignment before the desktop grid rules apply. */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container,
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container { gap: 20px; }
+.nav-buttons { gap: 12px; }
+.catalog-primary-nav a { line-height: 1.6; }
+
 .section-header {
   position: relative;
   z-index: 20;

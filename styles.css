@@ -840,9 +840,9 @@ body.home-menu-open {
   z-index: 0;
   color: #ead1a2;
   background:
-    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
-    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
-    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+    radial-gradient(circle at 87% 13%, rgba(135, 49, 25, .42), transparent 25%),
+    radial-gradient(circle at 35% 120%, rgba(110, 36, 17, .45), transparent 37%),
+    linear-gradient(110deg, #250e08, #080302 62%, #210b06);
 }
 
 .lower-night::before {
@@ -854,7 +854,7 @@ body.home-menu-open {
   height: 72px;
   content: "";
   pointer-events: none;
-  background: #1a0906;
+  background: #250e08;
 }
 
 .lower-night::after {
@@ -863,9 +863,9 @@ body.home-menu-open {
   inset: 0;
   content: "";
   pointer-events: none;
-  background-image: url("./assets/heritage-rings.svg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-image: repeating-radial-gradient(circle at 32% 50%, #e0a450 0 1px, transparent 1px 9px);
+  background-repeat: repeat-y;
+  background-size: 100vw 70vh;
   opacity: .1;
   mix-blend-mode: screen;
 }

@@ -484,12 +484,12 @@ body.home-menu-open {
   color: #f1d29b;
   border-right: 1px solid rgba(220, 160, 72, .54);
   background:
-    radial-gradient(circle at 17% 8%, rgba(145, 66, 25, .34), transparent 30%),
-    repeating-radial-gradient(circle at 7% 64%, rgba(218, 158, 72, .09) 0 1px, transparent 1px 12px),
+    radial-gradient(circle at 20% 8%, rgba(142, 65, 25, .3), transparent 30%),
+    repeating-radial-gradient(circle at 8% 63%, rgba(218, 158, 72, .09) 0 1px, transparent 1px 12px),
     linear-gradient(155deg, #2d1009, #080302 63%, #1b0906);
   box-shadow: 30px 0 90px rgba(0, 0, 0, .64);
   transform: translate3d(-105%, 0, 0);
-  transition: transform .38s cubic-bezier(.22, .8, .22, 1);
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
 }
 
 .home-menu-drawer.is-open {
@@ -514,7 +514,7 @@ body.home-menu-open {
   padding: 0;
   place-items: center;
   color: #f1cd8d;
-  border: 1px solid rgba(222, 160, 69, .72);
+  border: 2px solid rgba(222, 160, 69, .72);
   border-radius: 50%;
   background: rgba(214, 146, 54, .08);
   font-family: Georgia, serif;
@@ -536,14 +536,15 @@ body.home-menu-open {
 .home-menu-brand {
   color: #edc886;
   font-family: var(--display);
-  font-size: 38px;
+  font-size: 36px;
   line-height: 1;
+  margin-left: 8px;
   text-decoration: none;
 }
 
 .home-menu-nav {
   display: flex;
-  padding: 20px 14px;
+  padding: 20px 0;
   overflow-y: auto;
   flex: 1;
   flex-direction: column;
@@ -552,8 +553,9 @@ body.home-menu-open {
 
 .home-menu-nav a {
   display: flex;
-  min-height: 57px;
-  padding: 13px 18px;
+  min-height: 56px;
+  margin: 3px 14px;
+  padding: 16px 18px;
   align-items: center;
   gap: 16px;
   color: rgba(249, 231, 202, .78);
@@ -584,20 +586,20 @@ body.home-menu-open {
 
 .home-menu-icon {
   display: grid;
-  width: 26px;
-  flex: 0 0 26px;
+  width: 36px;
+  flex: 0 0 36px;
   place-items: center;
   color: #dda84f;
-  font-family: Georgia, serif;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
+  text-align: center;
 }
 
 .home-menu-drawer__footer {
-  padding: 20px 22px;
+  padding: 20px 28px;
   color: rgba(244, 224, 193, .56);
   border-top: 1px solid rgba(214, 153, 66, .22);
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
 }
 

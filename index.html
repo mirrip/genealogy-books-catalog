@@ -11,10 +11,32 @@
   <link rel="preload" href="./assets/hero/desktop/hero-elite.webp" as="image" type="image/webp" media="(min-width: 761px)">
   <link rel="preload" href="./assets/hero/mobile/hero-elite.webp" as="image" type="image/webp" media="(max-width: 760px)">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20260918-19">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./styles.css?v=20260919-20">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+  <aside class="home-menu-drawer" id="homeMenuDrawer" aria-hidden="true">
+    <div class="home-menu-drawer__header">
+      <button class="home-menu-close" id="homeMenuClose" type="button" aria-label="Закрыть меню">×</button>
+      <a class="home-menu-brand" href="./index.html">РодКод</a>
+    </div>
+    <nav class="home-menu-nav" aria-label="Меню сайта">
+      <a class="is-current" href="#content" data-home-menu-close><i class="fas fa-house home-menu-icon" aria-hidden="true"></i><span>Главная</span></a>
+      <a href="./catalog.html"><i class="fas fa-book-open home-menu-icon" aria-hidden="true"></i><span>Каталог книг</span></a>
+      <a href="./gifts.html"><i class="fas fa-gift home-menu-icon" aria-hidden="true"></i><span>Подобрать подарок</span></a>
+      <a href="./family-history.html"><i class="fas fa-tree home-menu-icon" aria-hidden="true"></i><span>История семьи</span></a>
+      <a href="./works.html"><i class="fas fa-images home-menu-icon" aria-hidden="true"></i><span>Наши работы</span></a>
+      <a href="./about.html"><i class="fas fa-circle-info home-menu-icon" aria-hidden="true"></i><span>О РодКод</span></a>
+      <a class="home-menu-utility-start" href="./catalog.html?page=favorites"><i class="fas fa-heart home-menu-icon" aria-hidden="true"></i><span>Избранное</span></a>
+      <a href="./catalog.html?page=cart"><i class="fas fa-shopping-cart home-menu-icon" aria-hidden="true"></i><span>Корзина</span></a>
+      <a href="./catalog.html?page=orderHistory"><i class="fas fa-history home-menu-icon" aria-hidden="true"></i><span>История заказов</span></a>
+      <a href="./catalog.html?page=profile"><i class="fas fa-user home-menu-icon" aria-hidden="true"></i><span>Личный кабинет</span></a>
+    </nav>
+    <div class="home-menu-drawer__footer">© 2026 РодКод • Родословные книги</div>
+  </aside>
+  <button class="home-menu-overlay" id="homeMenuOverlay" type="button" aria-label="Закрыть меню" tabindex="-1"></button>
 
   <main class="site-shell" id="content">
     <section class="hero" aria-labelledby="hero-title">
@@ -90,27 +112,6 @@
           </a>
         </nav>
       </header>
-
-      <aside class="home-menu-drawer" id="homeMenuDrawer" aria-hidden="true">
-        <div class="home-menu-drawer__header">
-          <button class="home-menu-close" id="homeMenuClose" type="button" aria-label="Закрыть меню">×</button>
-          <a class="home-menu-brand" href="./index.html">РодКод</a>
-        </div>
-        <nav class="home-menu-nav" aria-label="Меню сайта">
-          <a class="is-current" href="#content" data-home-menu-close><span class="home-menu-icon">⌂</span><span>Главная</span></a>
-          <a href="./catalog.html"><span class="home-menu-icon">▤</span><span>Каталог книг</span></a>
-          <a href="./gifts.html"><span class="home-menu-icon">◇</span><span>Подобрать подарок</span></a>
-          <a href="./family-history.html"><span class="home-menu-icon">⌁</span><span>История семьи</span></a>
-          <a href="./works.html"><span class="home-menu-icon">▣</span><span>Наши работы</span></a>
-          <a href="./about.html"><span class="home-menu-icon">○</span><span>О РодКод</span></a>
-          <a class="home-menu-utility-start" href="./catalog.html?page=favorites"><span class="home-menu-icon">♥</span><span>Избранное</span></a>
-          <a href="./catalog.html?page=cart"><span class="home-menu-icon">▰</span><span>Корзина</span></a>
-          <a href="./catalog.html?page=orderHistory"><span class="home-menu-icon">↶</span><span>История заказов</span></a>
-          <a href="./catalog.html?page=profile"><span class="home-menu-icon">●</span><span>Личный кабинет</span></a>
-        </nav>
-        <div class="home-menu-drawer__footer">© 2026 РодКод · Семейное наследие</div>
-      </aside>
-      <button class="home-menu-overlay" id="homeMenuOverlay" type="button" aria-label="Закрыть меню" tabindex="-1"></button>
 
       <div class="mobile-kicker">Личная консультация</div>
 

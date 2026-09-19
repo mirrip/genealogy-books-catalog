@@ -489,7 +489,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260918-9">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260919-10">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -543,7 +543,7 @@
                 <button class="catalog-header-icon" id="favoritesIconBtn" type="button" aria-label="Открыть избранное">
                     <i class="far fa-heart"></i>
                 </button>
-                <a class="catalog-header-icon catalog-account-link" href="./catalog.html?page=profile" aria-label="Личный кабинет">
+                <a class="catalog-header-icon catalog-account-link" href="./profile.html" aria-label="Личный кабинет">
                     <i class="far fa-user"></i>
                 </a>
                 <button class="btn-cart-icon catalog-header-icon" id="cartIconBtn" type="button" aria-label="Открыть корзину">
@@ -568,8 +568,7 @@
             <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О РодКод</span></a>
             <div class="sidebar-item sidebar-utility-start" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
             <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
-            <div class="sidebar-item" data-page="orderHistory"><i class="fas fa-history"></i><span>История заказов</span></div>
-            <div class="sidebar-item" data-page="profile"><i class="fas fa-user"></i><span>Личный кабинет</span></div>
+            <a class="sidebar-item" href="./profile.html"><i class="fas fa-user"></i><span>Личный кабинет</span></a>
         </div>
         <div class="sidebar-footer"><div>© 2026 РодКод • Родословные книги</div></div>
     </div>
@@ -1046,6 +1045,15 @@
         }
 
         function init() {
+            const requestedPage = new URLSearchParams(window.location.search).get('page');
+            if (requestedPage === 'profile') {
+                window.location.replace('./profile.html');
+                return;
+            }
+            if (requestedPage === 'orderHistory') {
+                window.location.replace('./profile.html#orders');
+                return;
+            }
             updateCartBadge();
             updateFavoritesBadge();
             renderBooks(filteredBooks);
@@ -1058,7 +1066,6 @@
             updateSidebarInitials();
             updateTermsCheckboxState();
             renderOrderHistory();
-            const requestedPage = new URLSearchParams(window.location.search).get('page');
             const allowedPages = ['catalog', 'favorites', 'cart', 'orderHistory', 'profile', 'faq', 'social'];
             if (requestedPage && allowedPages.includes(requestedPage)) showPage(requestedPage);
         }

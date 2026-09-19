@@ -1011,7 +1011,7 @@ body.home-menu-open {
 
 @media (max-width: 760px) {
   .desktop-account-link {
-    display: none;
+    display: grid;
   }
 
   .lower-night {

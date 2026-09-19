@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Личный кабинет — РодКод</title>
+  <meta name="description" content="Личный кабинет РодКод: данные профиля, избранные книги, корзина, история заказов и ответы на частые вопросы.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#160704">
+  <link rel="canonical" href="https://rodkod.ru/profile.html">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./catalog-theme.css?v=20260919-10">
+  <link rel="stylesheet" href="./section-page.css?v=20260919-2">
+  <link rel="stylesheet" href="./profile-page.css?v=20260919-1">
+</head>
+<body class="profile-page">
+  <header class="catalog-site-header">
+    <div class="container header-container">
+      <div class="logo-container">
+        <button class="catalog-menu-toggle" id="sectionMenuButton" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a class="catalog-brand" href="./index.html" aria-label="РодКод — главная">РодКод</a>
+      </div>
+      <nav class="catalog-primary-nav" aria-label="Разделы сайта">
+        <a href="./index.html">Главная</a><a href="./catalog.html">Каталог книг</a><a href="./gifts.html">Подобрать подарок</a><a href="./works.html">Что мы создаём</a><a href="./about.html">О РодКод</a>
+      </nav>
+      <div class="nav-buttons">
+        <a class="catalog-header-icon" href="./catalog.html?page=favorites" aria-label="Избранное"><i class="far fa-heart"></i><span class="profile-header-badge" id="headerFavoritesCount" hidden>0</span></a>
+        <a class="catalog-header-icon catalog-account-link is-profile-current" href="./profile.html" aria-label="Личный кабинет" aria-current="page"><i class="far fa-user"></i></a>
+        <a class="btn-cart-icon catalog-header-icon" href="./catalog.html?page=cart" aria-label="Корзина"><i class="fas fa-shopping-cart"></i><span class="profile-header-badge" id="headerCartCount" hidden>0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <aside class="section-drawer" id="sectionDrawer" aria-label="Мобильное меню">
+    <a href="./index.html">Главная</a><a href="./catalog.html">Каталог книг</a><a href="./gifts.html">Подобрать подарок</a><a href="./works.html">Что мы создаём</a><a href="./about.html">О РодКод</a>
+    <a class="drawer-utility is-current" href="./profile.html">Личный кабинет</a><a href="./catalog.html?page=favorites">Избранное</a><a href="./catalog.html?page=cart">Корзина</a>
+  </aside>
+  <button class="section-drawer-overlay" id="sectionDrawerOverlay" type="button" aria-label="Закрыть меню"></button>
+
+  <main class="profile-main">
+    <div class="profile-layout">
+      <aside class="identity-card" aria-labelledby="profileTitle">
+        <div class="identity-card__halo" aria-hidden="true"></div>
+        <div class="identity-avatar" id="profileAvatar">Г</div>
+        <p class="profile-kicker">Личный кабинет</p>
+        <h1 id="profileTitle">Ваш профиль</h1>
+        <p class="identity-note">Данные используются для связи по заказу и сохраняются только на этом устройстве.</p>
+
+        <form class="identity-form" id="profileForm" novalidate>
+          <label class="profile-field" for="profileInitials"><span>Инициалы</span><input id="profileInitials" name="initials" type="text" placeholder="Например, Анна П." autocomplete="name" maxlength="80" required></label>
+          <label class="profile-field" for="profilePhone"><span>Связь</span><input id="profilePhone" name="phone" type="tel" placeholder="Номер телефона: +7 (___) ___-__-__" autocomplete="tel" inputmode="tel"></label>
+          <label class="profile-field" for="profileUsername"><span>Username <small>· необязательно</small></span><input id="profileUsername" name="username" type="text" placeholder="@username" autocomplete="username" maxlength="80"></label>
+          <p class="profile-form-error" id="profileFormError" role="alert" hidden></p>
+          <button class="profile-save" type="submit">Сохранить изменения</button>
+        </form>
+      </aside>
+
+      <div class="account-content">
+        <section class="account-intro" aria-labelledby="accountHeading">
+          <p class="profile-kicker">Всё важное в одном месте</p>
+          <h2 id="accountHeading">Личный кабинет</h2>
+          <p>Сохранённые книги, текущий заказ и история обращений — без лишних переходов между разделами.</p>
+        </section>
+
+        <nav class="account-actions" aria-label="Разделы личного кабинета">
+          <a class="account-action" href="./catalog.html?page=favorites"><span class="account-action__icon"><i class="fas fa-heart"></i></span><span><strong>Избранное</strong><small>Сохранённые книги</small></span><b id="favoritesCount">0</b></a>
+          <a class="account-action" href="./catalog.html?page=cart"><span class="account-action__icon"><i class="fas fa-shopping-bag"></i></span><span><strong>Корзина</strong><small id="cartSummary">Пока пусто</small></span><b id="cartCount">0</b></a>
+          <a class="account-action" href="#orders"><span class="account-action__icon"><i class="fas fa-clock-rotate-left"></i></span><span><strong>История заказов</strong><small>Предыдущие заявки</small></span><b id="ordersCount">0</b></a>
+          <a class="account-action" href="#faq"><span class="account-action__icon"><i class="fas fa-circle-question"></i></span><span><strong>Частые вопросы</strong><small>Ответы о книгах и заказе</small></span><i class="fas fa-chevron-down account-action__arrow"></i></a>
+        </nav>
+
+        <section class="profile-panel orders-panel" id="orders" aria-labelledby="ordersTitle">
+          <div class="profile-panel__heading"><div><p class="profile-kicker">Ваши обращения</p><h2 id="ordersTitle">История заказов</h2></div><span class="panel-count" id="ordersPanelCount">0</span></div>
+          <div class="orders-list" id="ordersList"></div>
+          <div class="profile-empty" id="ordersEmpty"><i class="fas fa-clock-rotate-left"></i><h3>История пока пуста</h3><p>Здесь появятся заказы, оформленные через каталог РодКод.</p><a href="./catalog.html">Перейти в каталог</a></div>
+        </section>
+
+        <section class="profile-panel faq-panel" id="faq" aria-labelledby="faqTitle">
+          <div class="profile-panel__heading"><div><p class="profile-kicker">Коротко о главном</p><h2 id="faqTitle">Часто задаваемые вопросы</h2></div></div>
+          <div class="profile-faq">
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Что такое родословная книга?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Это семейная книга о людях, событиях, фотографиях и памятных датах, которую создают для сохранения истории рода.</p></div></article>
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Чем она отличается от фотоальбома?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Фотоальбом хранит снимки, а родословная книга объединяет их с датами, историями, подписями и родовыми связями.</p></div></article>
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Что можно разместить внутри?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Фотографии, документы, важные даты, рассказы близких, родовые линии, пожелания и другие семейные материалы.</p></div></article>
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Кому обычно дарят такую книгу?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Родителям, бабушкам и дедушкам, семье на юбилей, годовщину, свадьбу или другой значимый праздник.</p></div></article>
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Как выбрать подходящий вариант?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Ориентируйтесь на повод, оформление, формат и бюджет. В каталоге представлены варианты для тёплого семейного и статусного подарка.</p></div></article>
+            <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Как оформить заказ?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Добавьте книгу в корзину и оставьте заявку. Перед оплатой мы лично свяжемся с вами и согласуем детали.</p></div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="profile-toast" id="profileToast" role="status" aria-live="polite"></div>
+  <footer class="section-footer">© 2026 РодКод · Семейное наследие</footer>
+  <script src="./section-page.js?v=20260918-1"></script>
+  <script src="./profile-page.js?v=20260919-1"></script>
+</body>
+</html>

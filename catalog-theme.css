@@ -222,14 +222,19 @@ body::before {
 
 @media (max-width: 920px) {
   .catalog-account-link {
-    display: none;
+    display: grid;
   }
 }
 
-.catalog-header-icon i,
-.catalog-site-header .btn-cart-icon i {
-  color: currentColor;
-  font-size: 18px;
+.catalog-header-icon svg,
+.catalog-site-header .btn-cart-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
 }
 
 .catalog-header-icon:hover,
@@ -1001,6 +1006,12 @@ body::before {
   .catalog-site-header .btn-cart-icon {
     width: 40px;
     height: 40px;
+  }
+
+  .catalog-header-icon svg,
+  .catalog-site-header .btn-cart-icon svg {
+    width: 20px;
+    height: 20px;
   }
 
   .page {

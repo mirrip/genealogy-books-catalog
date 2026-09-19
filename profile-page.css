@@ -471,6 +471,7 @@
 .profile-toast.is-visible { visibility: visible; opacity: 1; transform: none; }
 
 @media (max-width: 920px) {
+  .profile-page .catalog-account-link { display: none; }
   .profile-main { min-height: calc(100vh - 70px); }
   .profile-layout { grid-template-columns: 1fr; }
   .identity-card { max-width: none; margin-top: 0; margin-left: 0; }

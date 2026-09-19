@@ -222,7 +222,7 @@ body::before {
 
 @media (max-width: 920px) {
   .catalog-account-link {
-    display: grid;
+    display: none;
   }
 }
 

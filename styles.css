@@ -338,7 +338,9 @@ svg {
 }
 
 .brand {
+  display: flex;
   width: max-content;
+  align-items: center;
   color: #e7bd82;
   font-family: var(--display);
   font-size: clamp(30px, 2.45vw, 43px);
@@ -347,6 +349,15 @@ svg {
   text-shadow:
     0 1px 0 rgba(255, 235, 199, .1),
     0 7px 24px rgba(204, 121, 42, .2);
+}
+
+.brand__mark,
+.brand__desktop-name {
+  display: none;
+}
+
+.brand__mobile-name {
+  display: inline;
 }
 
 .header__actions {
@@ -2636,11 +2647,30 @@ body.home-menu-open {
   }
 
   .brand {
+    gap: clamp(9px, .8vw, 13px);
+    font-size: clamp(30px, 2.2vw, 41px);
+    font-weight: 600;
     color: #e8c188;
     font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: clamp(29px, 2.4vw, 39px);
-    font-weight: 500;
     text-shadow: 0 2px 16px rgba(210, 139, 48, .12);
+    transform: translateX(max(-52px, calc(12px - max(22px, (100vw - 1380px) / 2))));
+  }
+
+  .brand__mark {
+    display: block;
+    width: clamp(42px, 3.2vw, 51px);
+    height: clamp(42px, 3.2vw, 51px);
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .brand__desktop-name {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  .brand__mobile-name {
+    display: none;
   }
 
   .desktop-primary-nav {

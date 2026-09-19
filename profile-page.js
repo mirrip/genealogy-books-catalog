@@ -146,6 +146,40 @@ document.querySelectorAll(".profile-faq__item button").forEach((button) => {
   });
 });
 
+const profilePanels = {
+  orders: document.querySelector("#orders"),
+  faq: document.querySelector("#faq"),
+};
+
+const panelLinks = [...document.querySelectorAll("[data-profile-panel]")];
+
+const openProfilePanel = (panelName, scroll = true) => {
+  if (!profilePanels[panelName]) return;
+  Object.entries(profilePanels).forEach(([name, panel]) => {
+    panel.hidden = name !== panelName;
+  });
+  panelLinks.forEach((link) => link.classList.toggle("is-active", link.dataset.profilePanel === panelName));
+  if (window.location.hash !== `#${panelName}`) history.replaceState(null, "", `#${panelName}`);
+  if (scroll) {
+    requestAnimationFrame(() => profilePanels[panelName].scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
+};
+
+panelLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    openProfilePanel(link.dataset.profilePanel);
+  });
+});
+
+window.addEventListener("hashchange", () => {
+  const panelName = window.location.hash.slice(1);
+  if (profilePanels[panelName]) openProfilePanel(panelName);
+});
+
 fillProfile();
 updateSummary();
 renderOrders();
+
+const initialPanel = window.location.hash.slice(1);
+if (profilePanels[initialPanel]) openProfilePanel(initialPanel, false);

@@ -74,7 +74,8 @@
 
 .identity-card {
   position: relative;
-  margin-top: -12px;
+  margin-top: -30px;
+  margin-left: -18px;
   padding: clamp(28px, 3vw, 42px);
   overflow: hidden;
   border-radius: 34px;
@@ -338,6 +339,16 @@
   border-radius: 30px;
 }
 
+.profile-panel[hidden] {
+  display: none;
+}
+
+.account-action.is-active {
+  border-color: rgba(230, 172, 82, .7);
+  background: linear-gradient(145deg, rgba(70, 27, 14, .98), rgba(16, 6, 4, .98));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .3), 0 0 24px rgba(205, 137, 44, .06);
+}
+
 .profile-panel__heading {
   display: flex;
   margin-bottom: 24px;
@@ -462,7 +473,7 @@
 @media (max-width: 920px) {
   .profile-main { min-height: calc(100vh - 70px); }
   .profile-layout { grid-template-columns: 1fr; }
-  .identity-card { max-width: none; margin-top: 0; }
+  .identity-card { max-width: none; margin-top: 0; margin-left: 0; }
 }
 
 @media (max-width: 600px) {

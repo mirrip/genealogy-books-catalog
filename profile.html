@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./catalog-theme.css?v=20260919-10">
   <link rel="stylesheet" href="./section-page.css?v=20260919-2">
-  <link rel="stylesheet" href="./profile-page.css?v=20260919-1">
+  <link rel="stylesheet" href="./profile-page.css?v=20260919-2">
 </head>
 <body class="profile-page">
   <header class="catalog-site-header">
@@ -66,17 +66,17 @@
         <nav class="account-actions" aria-label="Разделы личного кабинета">
           <a class="account-action" href="./catalog.html?page=favorites"><span class="account-action__icon"><i class="fas fa-heart"></i></span><span><strong>Избранное</strong><small>Сохранённые книги</small></span><b id="favoritesCount">0</b></a>
           <a class="account-action" href="./catalog.html?page=cart"><span class="account-action__icon"><i class="fas fa-shopping-bag"></i></span><span><strong>Корзина</strong><small id="cartSummary">Пока пусто</small></span><b id="cartCount">0</b></a>
-          <a class="account-action" href="#orders"><span class="account-action__icon"><i class="fas fa-clock-rotate-left"></i></span><span><strong>История заказов</strong><small>Предыдущие заявки</small></span><b id="ordersCount">0</b></a>
-          <a class="account-action" href="#faq"><span class="account-action__icon"><i class="fas fa-circle-question"></i></span><span><strong>Частые вопросы</strong><small>Ответы о книгах и заказе</small></span><i class="fas fa-chevron-down account-action__arrow"></i></a>
+          <a class="account-action" href="#orders" data-profile-panel="orders"><span class="account-action__icon"><i class="fas fa-clock-rotate-left"></i></span><span><strong>История заказов</strong><small>Предыдущие заявки</small></span><b id="ordersCount">0</b></a>
+          <a class="account-action" href="#faq" data-profile-panel="faq"><span class="account-action__icon"><i class="fas fa-circle-question"></i></span><span><strong>Частые вопросы</strong><small>Ответы о книгах и заказе</small></span><i class="fas fa-chevron-down account-action__arrow"></i></a>
         </nav>
 
-        <section class="profile-panel orders-panel" id="orders" aria-labelledby="ordersTitle">
+        <section class="profile-panel orders-panel" id="orders" aria-labelledby="ordersTitle" hidden>
           <div class="profile-panel__heading"><div><p class="profile-kicker">Ваши обращения</p><h2 id="ordersTitle">История заказов</h2></div><span class="panel-count" id="ordersPanelCount">0</span></div>
           <div class="orders-list" id="ordersList"></div>
           <div class="profile-empty" id="ordersEmpty"><i class="fas fa-clock-rotate-left"></i><h3>История пока пуста</h3><p>Здесь появятся заказы, оформленные через каталог РодКод.</p><a href="./catalog.html">Перейти в каталог</a></div>
         </section>
 
-        <section class="profile-panel faq-panel" id="faq" aria-labelledby="faqTitle">
+        <section class="profile-panel faq-panel" id="faq" aria-labelledby="faqTitle" hidden>
           <div class="profile-panel__heading"><div><p class="profile-kicker">Коротко о главном</p><h2 id="faqTitle">Часто задаваемые вопросы</h2></div></div>
           <div class="profile-faq">
             <article class="profile-faq__item"><button type="button" aria-expanded="false"><span>Что такое родословная книга?</span><i class="fas fa-chevron-down"></i></button><div class="profile-faq__answer"><p>Это семейная книга о людях, событиях, фотографиях и памятных датах, которую создают для сохранения истории рода.</p></div></article>
@@ -94,6 +94,6 @@
   <div class="profile-toast" id="profileToast" role="status" aria-live="polite"></div>
   <footer class="section-footer">© 2026 РодКод · Семейное наследие</footer>
   <script src="./section-page.js?v=20260918-1"></script>
-  <script src="./profile-page.js?v=20260919-1"></script>
+  <script src="./profile-page.js?v=20260919-2"></script>
 </body>
 </html>

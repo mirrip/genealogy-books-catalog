@@ -1664,16 +1664,17 @@ body.home-menu-open {
   .hero {
     --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V820C908 808 836 830 770 882C700 936 657 982 562 991C393 1008 178 984 0 932Z'/%3E%3C/svg%3E");
     --hero-bottom-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 190C130 70 285 35 430 130C560 220 650 185 770 80C870 5 950 22 1000 65V1000H0Z'/%3E%3C/svg%3E");
-    min-height: clamp(590px, 140vw, 650px);
+    min-height: clamp(620px, 150vw, 700px);
     border-radius: 0;
     background: #2b1009;
+    box-shadow: none;
   }
 
   .hero__dark-surface,
   .hero__transition {
     inset: 0 0 auto;
     width: 107%;
-    height: clamp(300px, 70vw, 350px);
+    height: clamp(320px, 72vw, 360px);
     clip-path: polygon(0 0, 100% 0, 100% 83%, 90% 84%, 82% 87%, 76% 91%, 70% 96%, 62% 100%, 45% 100%, 25% 99%, 0 94%);
   }
 
@@ -1686,7 +1687,7 @@ body.home-menu-open {
 
   .hero__transition {
     width: 110%;
-    height: clamp(310px, 72vw, 360px);
+    height: clamp(330px, 74vw, 370px);
     opacity: .54;
     filter: blur(10px);
     transform: translate3d(-1.2%, .8%, 0);
@@ -1712,7 +1713,7 @@ body.home-menu-open {
   }
 
   .hero__photo-slot {
-    inset: 34% 0 21%;
+    inset: 39.5% 0 22%;
     background:
       radial-gradient(circle at 68% 52%, rgba(118, 53, 29, .32), transparent 42%),
       #2b1009;
@@ -1890,7 +1891,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: clamp(100px, 23.5vw, 108px);
+    top: clamp(105px, 24.5vw, 114px);
     left: 8%;
     right: auto;
     width: auto;
@@ -1919,7 +1920,7 @@ body.home-menu-open {
   }
 
   .hero__features {
-    margin: clamp(24px, 6.3vw, 30px) 0 0 !important;
+    margin: clamp(28px, 7vw, 34px) 0 0 !important;
     width: auto;
     max-width: 88%;
     gap: clamp(13px, 3.2vw, 16px);
@@ -1987,6 +1988,21 @@ body.home-menu-open {
   .hero__progress i {
     width: 19%;
     height: 3px;
+  }
+
+  .future-content-space {
+    box-shadow: none;
+  }
+
+  .lower-night::before {
+    top: -1px;
+    height: 72px;
+    background: linear-gradient(180deg, #2b1009 0, rgba(43, 16, 9, .78) 34%, transparent 100%);
+  }
+
+  .lower-night::after {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 56px, #000 100%);
   }
 
   .memory {
@@ -2296,7 +2312,7 @@ body.home-menu-open {
   }
 
   .hero {
-    min-height: 625px;
+    min-height: 690px;
   }
 
   .header {
@@ -2305,7 +2321,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 100px;
+    top: 112px;
     left: 7.5%;
     max-width: 72%;
   }
@@ -2344,21 +2360,21 @@ body.home-menu-open {
 
 @media (max-width: 420px) {
   .hero {
-    min-height: clamp(600px, 158vw, 660px);
+    min-height: clamp(690px, 178vw, 750px);
   }
 
   .hero__dark-surface,
   .hero__transition {
-    height: 48%;
+    height: 49%;
     clip-path: polygon(0 0, 100% 0, 100% 83%, 91% 84%, 83% 87%, 76% 92%, 69% 97%, 61% 100%, 44% 100%, 24% 98%, 0 92%);
   }
 
   .hero__transition {
-    height: 49.5%;
+    height: 50.5%;
   }
 
   .hero__photo-slot {
-    inset: 34% 0 21%;
+    inset: 39.5% 0 22%;
   }
 
   .hero::after {
@@ -2366,11 +2382,11 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: clamp(104px, 27vw, 113px);
-    left: 7%;
-    right: auto;
+    top: clamp(110px, 28vw, 118px);
+    left: 6%;
+    right: 6%;
     width: auto;
-    max-width: 89%;
+    max-width: none;
     padding: 0;
     text-align: left;
     display: block;
@@ -2391,9 +2407,10 @@ body.home-menu-open {
   }
 
   .hero__features {
-    max-width: 92%;
-    margin-top: 18px;
-    gap: 8px;
+    width: 96%;
+    max-width: none;
+    margin: 26px auto 0 !important;
+    gap: 11px;
     align-items: flex-start;
     text-align: left;
   }
@@ -2439,7 +2456,7 @@ body.home-menu-open {
   }
 
   .hero__content {
-    top: 104px;
+    top: 110px;
   }
 
   .mobile-dock {

@@ -1979,7 +1979,7 @@ body.home-menu-open {
 
   .hero__progress {
     right: 20%;
-    bottom: 3%;
+    bottom: calc(3% + 8px);
     left: 20%;
     justify-content: center;
     gap: 5px;
@@ -2442,7 +2442,7 @@ body.home-menu-open {
   }
 
   .hero__progress {
-    bottom: 2.7%;
+    bottom: calc(2.7% + 8px);
   }
 
   .section-heading {

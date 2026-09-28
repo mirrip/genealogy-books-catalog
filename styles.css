@@ -990,12 +990,10 @@ body.home-menu-open {
 }
 
 .trust-foundation__icon {
-  position: absolute;
-  top: clamp(28px, 2.4vw, 36px);
-  right: clamp(24px, 2.2vw, 34px);
   display: grid;
   width: 48px;
   height: 48px;
+  margin-bottom: 21px;
   place-items: center;
   color: #dca44d;
   border: 1px solid rgba(218, 157, 69, .26);
@@ -1016,7 +1014,6 @@ body.home-menu-open {
 
 .trust-foundation h2 {
   margin: 0 0 20px;
-  padding-right: 66px;
   color: #f0cf96;
   font-family: var(--display);
   font-size: clamp(27px, 2vw, 34px);
@@ -2084,10 +2081,9 @@ body.home-menu-open {
   }
 
   .trust-foundation__icon {
-    top: 24px;
-    right: 22px;
     width: 44px;
     height: 44px;
+    margin-bottom: 17px;
     border-radius: 14px;
   }
 
@@ -2104,7 +2100,6 @@ body.home-menu-open {
 
   .trust-foundation h2 {
     margin-bottom: 13px;
-    padding-right: 60px;
     font-size: clamp(26px, 7.8vw, 32px);
   }
 

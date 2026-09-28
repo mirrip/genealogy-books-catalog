@@ -955,6 +955,70 @@ body.home-menu-open {
   display: none;
 }
 
+.trust-foundations {
+  display: grid;
+  width: min(calc(100% - 96px), 1440px);
+  margin: 0 auto;
+  padding-top: clamp(120px, 17vh, 190px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 54px);
+}
+
+.trust-foundation {
+  position: relative;
+  min-height: 310px;
+  padding: clamp(30px, 3vw, 44px) clamp(26px, 2.5vw, 38px) 38px;
+  overflow: hidden;
+  border: 1px solid rgba(207, 145, 58, .32);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(154, 75, 28, .18), transparent 33%),
+    linear-gradient(145deg, rgba(53, 18, 10, .72), rgba(11, 4, 3, .78));
+  box-shadow:
+    0 24px 58px rgba(0, 0, 0, .22),
+    0 1px rgba(255, 227, 179, .07) inset;
+}
+
+.trust-foundation::after {
+  position: absolute;
+  right: 32px;
+  bottom: 27px;
+  left: 32px;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, #d59a43, rgba(213, 154, 67, .08));
+}
+
+.trust-foundation__index {
+  display: inline-grid;
+  width: 38px;
+  height: 25px;
+  margin-bottom: 26px;
+  place-items: center;
+  color: #e3ad58;
+  border: 1px solid rgba(216, 155, 67, .38);
+  border-radius: 999px;
+  background: rgba(71, 27, 12, .44);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.trust-foundation h2 {
+  margin: 0 0 24px;
+  color: #f0cf94;
+  font-family: var(--display);
+  font-size: clamp(28px, 2.35vw, 38px);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.trust-foundation p {
+  margin: 0;
+  color: rgba(238, 214, 177, .74);
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.65;
+}
+
 .lower-night .memory {
   background: transparent;
   box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
@@ -1992,6 +2056,39 @@ body.home-menu-open {
 
   .future-content-space {
     box-shadow: none;
+  }
+
+  .trust-foundations {
+    width: min(calc(100% - 34px), 430px);
+    padding-top: 92px;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .trust-foundation {
+    min-height: 0;
+    padding: 26px 23px 34px;
+    border-radius: 25px;
+  }
+
+  .trust-foundation::after {
+    right: 23px;
+    bottom: 22px;
+    left: 23px;
+  }
+
+  .trust-foundation__index {
+    margin-bottom: 18px;
+  }
+
+  .trust-foundation h2 {
+    margin-bottom: 14px;
+    font-size: clamp(26px, 8.2vw, 34px);
+  }
+
+  .trust-foundation p {
+    font-size: 12px;
+    line-height: 1.58;
   }
 
   .lower-night::before {

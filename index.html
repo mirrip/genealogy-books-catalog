@@ -12,7 +12,7 @@
   <link rel="preload" href="./assets/hero/mobile/hero-elite.webp" as="image" type="image/webp" media="(max-width: 760px)">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="./styles.css?v=20260929-58">
+  <link rel="stylesheet" href="./styles.css?v=20260929-59">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -40,22 +40,10 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__photo-slot" role="region" aria-roledescription="карусель" aria-label="Родословные книги и подарочные издания">
         <div class="hero__slides" aria-live="off">
-          <figure class="hero__slide is-active" aria-hidden="false">
+          <figure class="hero__slide is-active" aria-hidden="false" style="--hero-slide-duration: 9000ms; --hero-slide-delay: -5000ms;">
             <picture class="hero__slide-picture">
               <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-elite.webp">
               <img class="hero__slide-image" src="./assets/hero/desktop/hero-elite.webp" width="1672" height="941" alt="Элитная родословная книга в подарочном оформлении" loading="eager" fetchpriority="high" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-gold-tree.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-gold-tree.webp" width="1674" height="940" alt="Родословная книга с золотым фамильным древом" loading="lazy" fetchpriority="low" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-troyka.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-troyka.webp" width="1672" height="941" alt="Подарочная родословная книга Тройка" loading="lazy" fetchpriority="low" decoding="async">
             </picture>
           </figure>
           <figure class="hero__slide" aria-hidden="true">
@@ -68,6 +56,18 @@
             <picture class="hero__slide-picture">
               <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-wedding.webp">
               <img class="hero__slide-image" src="./assets/hero/desktop/hero-wedding.webp" width="1672" height="941" alt="Свадебная родословная книга для истории семьи" loading="lazy" fetchpriority="low" decoding="async">
+            </picture>
+          </figure>
+          <figure class="hero__slide" aria-hidden="true">
+            <picture class="hero__slide-picture">
+              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-gold-tree.webp">
+              <img class="hero__slide-image" src="./assets/hero/desktop/hero-gold-tree.webp" width="1674" height="940" alt="Родословная книга с золотым фамильным древом" loading="lazy" fetchpriority="low" decoding="async">
+            </picture>
+          </figure>
+          <figure class="hero__slide" aria-hidden="true">
+            <picture class="hero__slide-picture">
+              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-troyka.webp">
+              <img class="hero__slide-image" src="./assets/hero/desktop/hero-troyka.webp" width="1672" height="941" alt="Подарочная родословная книга Тройка" loading="lazy" fetchpriority="low" decoding="async">
             </picture>
           </figure>
         </div>
@@ -267,6 +267,6 @@
     </div>
   </main>
 
-  <script src="./app.js?v=20260929-3"></script>
+  <script src="./app.js?v=20260929-4"></script>
 </body>
 </html>

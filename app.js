@@ -8,6 +8,7 @@ const homeMenuDrawer = document.querySelector("#homeMenuDrawer");
 const homeMenuClose = document.querySelector("#homeMenuClose");
 const homeMenuOverlay = document.querySelector("#homeMenuOverlay");
 const HERO_SLIDE_INTERVAL = 9000;
+const HERO_INITIAL_OFFSET = 5000;
 const HERO_TRANSITION_DURATION = 760;
 
 function setHomeMenu(open) {
@@ -42,8 +43,11 @@ if (heroSlides.length > 0) {
   );
   let heroSlideTimer = 0;
   let heroTransitionTimer = 0;
-  const setHeroFrameDuration = (slide, duration) => {
+  let isInitialHeroFrame = true;
+  const initialHeroDeadline = performance.now() + (HERO_SLIDE_INTERVAL - HERO_INITIAL_OFFSET);
+  const setHeroFrameTiming = (slide, duration, delay = 0) => {
     slide.style.setProperty("--hero-slide-duration", `${duration}ms`);
+    slide.style.setProperty("--hero-slide-delay", `${delay}ms`);
   };
 
   const updateHeroProgress = () => {
@@ -68,7 +72,7 @@ if (heroSlides.length > 0) {
       slide.setAttribute("aria-hidden", String(!isFirstSlide));
     }
 
-    setHeroFrameDuration(heroSlides[0], HERO_SLIDE_INTERVAL);
+    setHeroFrameTiming(heroSlides[0], HERO_SLIDE_INTERVAL, -HERO_INITIAL_OFFSET);
     updateHeroProgress();
   };
 
@@ -106,12 +110,20 @@ if (heroSlides.length > 0) {
     stopHeroCarousel();
     if (document.hidden || heroSlides.length < 2) return;
 
-    const frameDuration = HERO_SLIDE_INTERVAL;
-    setHeroFrameDuration(heroSlides[activeHeroSlide], frameDuration);
+    const frameDuration = isInitialHeroFrame
+      ? Math.max(0, initialHeroDeadline - performance.now())
+      : HERO_SLIDE_INTERVAL;
+
+    setHeroFrameTiming(
+      heroSlides[activeHeroSlide],
+      HERO_SLIDE_INTERVAL,
+      isInitialHeroFrame ? -HERO_INITIAL_OFFSET : 0
+    );
 
     heroSlideTimer = window.setTimeout(() => {
+      isInitialHeroFrame = false;
       const nextIndex = (activeHeroSlide + 1) % heroSlides.length;
-      setHeroFrameDuration(heroSlides[nextIndex], HERO_SLIDE_INTERVAL);
+      setHeroFrameTiming(heroSlides[nextIndex], HERO_SLIDE_INTERVAL);
       showHeroSlide(nextIndex);
       scheduleHeroCarousel();
     }, frameDuration);

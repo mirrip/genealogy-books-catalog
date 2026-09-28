@@ -193,6 +193,7 @@ svg {
 
 .hero__slide.is-active .hero__slide-image {
   animation: hero-photo-zoom var(--hero-slide-duration, 9000ms) linear both;
+  animation-delay: var(--hero-slide-delay, 0ms);
   will-change: transform;
 }
 
@@ -2561,6 +2562,7 @@ body.home-menu-open {
     --hero-scale-start: 1.005;
     --hero-scale-end: 1.028;
     animation: hero-photo-zoom var(--hero-slide-duration, 9000ms) linear both !important;
+    animation-delay: var(--hero-slide-delay, 0ms) !important;
   }
 
   .hero__slide.is-leaving .hero__slide-image {

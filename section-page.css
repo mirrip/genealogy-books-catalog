@@ -319,20 +319,120 @@ a { color: inherit; }
     bottom: 0;
     left: 0;
     display: flex;
-    width: min(390px, 88vw);
-    padding: 24px 16px;
+    width: min(390px, 90vw);
+    overflow: hidden;
     flex-direction: column;
-    gap: 5px;
-    background: linear-gradient(145deg, #260d07, #090302 68%);
-    box-shadow: 24px 0 60px rgba(0, 0, 0, .5);
-    transform: translateX(-105%);
-    transition: transform .28s ease;
+    color: #f1d29b;
+    border-right: 1px solid rgba(220, 160, 72, .54);
+    background:
+      radial-gradient(circle at 20% 8%, rgba(142, 65, 25, .3), transparent 30%),
+      repeating-radial-gradient(circle at 8% 63%, rgba(218, 158, 72, .09) 0 1px, transparent 1px 12px),
+      linear-gradient(155deg, #2d1009, #080302 63%, #1b0906);
+    box-shadow: 30px 0 90px rgba(0, 0, 0, .64);
+    transform: translate3d(-105%, 0, 0);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
   }
 
-  .section-drawer.is-open { transform: translateX(0); }
-  .section-drawer a { padding: 14px 16px; color: rgba(249, 231, 202, .82); border-radius: 14px; font-size: 14px; font-weight: 600; text-decoration: none; }
-  .section-drawer a.is-current { color: #ffe8bd; background: rgba(166, 91, 30, .2); }
-  .section-drawer .drawer-utility { margin-top: 12px; border-top: 1px solid rgba(216, 155, 67, .22); border-radius: 0; }
+  .section-drawer.is-open { transform: translate3d(0, 0, 0); }
+
+  .section-drawer__header {
+    display: flex;
+    min-height: 116px;
+    padding: 28px;
+    align-items: center;
+    gap: 18px;
+    border-bottom: 1px solid rgba(214, 153, 66, .28);
+    background: rgba(0, 0, 0, .12);
+  }
+
+  .section-drawer-close {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+    padding: 0;
+    place-items: center;
+    color: #f1cd8d;
+    border: 2px solid rgba(222, 160, 69, .72);
+    border-radius: 50%;
+    background: rgba(214, 146, 54, .08);
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .section-drawer-brand {
+    margin-left: 8px;
+    color: #edc886;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .section-drawer-nav {
+    display: flex;
+    padding: 20px 0;
+    overflow-y: auto;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .section-drawer-nav a {
+    display: flex;
+    min-height: 56px;
+    margin: 3px 14px;
+    padding: 16px 18px;
+    align-items: center;
+    gap: 16px;
+    color: rgba(249, 231, 202, .78);
+    border: 1px solid transparent;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease;
+  }
+
+  .section-drawer-nav a:hover,
+  .section-drawer-nav a:focus-visible,
+  .section-drawer-nav a.is-current {
+    color: #ffe8bd;
+    border-color: rgba(220, 160, 72, .3);
+    background: linear-gradient(90deg, rgba(186, 112, 34, .2), rgba(95, 38, 15, .08));
+    outline: none;
+    transform: translateX(3px);
+  }
+
+  .section-drawer-nav .drawer-utility {
+    margin-top: 12px;
+    padding-top: 18px;
+    border-top-color: rgba(220, 160, 72, .2);
+    border-radius: 0 0 16px 16px;
+  }
+
+  .section-drawer-icon {
+    display: grid;
+    width: 36px;
+    flex: 0 0 36px;
+    place-items: center;
+    color: #dda84f;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .section-drawer__footer {
+    padding: 20px 28px;
+    color: rgba(244, 224, 193, .56);
+    border-top: 1px solid rgba(214, 153, 66, .22);
+    font-size: 15px;
+    text-align: center;
+  }
 
   .section-drawer-overlay {
     position: fixed;
@@ -343,7 +443,9 @@ a { color: inherit; }
     border: 0;
     background: rgba(0, 0, 0, .62);
     opacity: 0;
-    transition: opacity .28s ease, visibility .28s ease;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: opacity .32s ease, visibility .32s ease;
   }
 
   .section-drawer-overlay.is-open { visibility: visible; opacity: 1; }

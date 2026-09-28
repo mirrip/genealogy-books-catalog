@@ -2065,7 +2065,7 @@ body.home-menu-open {
 
   .trust-foundation h2 {
     margin-bottom: 13px;
-    font-size: clamp(26px, 7.8vw, 32px);
+    font-size: clamp(24px, 7vw, 29px);
   }
 
   .trust-foundation p {

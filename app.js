@@ -1,5 +1,9 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const heroSlides = [...document.querySelectorAll(".hero__slide")];
+const mobileHeroLayout = window.matchMedia("(max-width: 760px)");
+const heroSlideElements = [...document.querySelectorAll(".hero__slide")];
+const heroSlides = mobileHeroLayout.matches
+  ? [0, 3, 4, 1, 2].map((index) => heroSlideElements[index])
+  : heroSlideElements;
 const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");

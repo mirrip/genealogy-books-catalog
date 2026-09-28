@@ -989,6 +989,29 @@ body.home-menu-open {
   background: linear-gradient(90deg, rgba(213, 154, 67, .72), rgba(213, 154, 67, .04));
 }
 
+.trust-foundation__icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 21px;
+  place-items: center;
+  color: #dca44d;
+  border: 1px solid rgba(218, 157, 69, .26);
+  border-radius: 15px;
+  background: rgba(76, 28, 13, .38);
+}
+
+.trust-foundation__icon svg {
+  width: 30px;
+  height: 30px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .trust-foundation h2 {
   margin: 0 0 20px;
   color: #f0cf96;
@@ -2055,6 +2078,18 @@ body.home-menu-open {
     min-height: 0;
     padding: 24px 22px 32px;
     border-radius: 20px;
+  }
+
+  .trust-foundation__icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 17px;
+    border-radius: 14px;
+  }
+
+  .trust-foundation__icon svg {
+    width: 27px;
+    height: 27px;
   }
 
   .trust-foundation::after {

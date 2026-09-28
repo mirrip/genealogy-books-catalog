@@ -1,12 +1,9 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const mobileLayout = window.matchMedia("(max-width: 760px)");
 const heroSlides = [...document.querySelectorAll(".hero__slide")];
 const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
-const mobileDock = document.querySelector(".mobile-dock");
 const homeMenuButton = document.querySelector("#homeMenuButton");
-const mobileMenuButton = document.querySelector("#mobileMenuButton");
 const homeMenuDrawer = document.querySelector("#homeMenuDrawer");
 const homeMenuClose = document.querySelector("#homeMenuClose");
 const homeMenuOverlay = document.querySelector("#homeMenuOverlay");
@@ -27,7 +24,6 @@ function setHomeMenu(open) {
 }
 
 homeMenuButton?.addEventListener("click", () => setHomeMenu(true));
-mobileMenuButton?.addEventListener("click", () => setHomeMenu(true));
 homeMenuClose?.addEventListener("click", () => setHomeMenu(false));
 homeMenuOverlay?.addEventListener("click", () => setHomeMenu(false));
 document.querySelectorAll("[data-home-menu-close]").forEach((link) => {
@@ -132,41 +128,3 @@ if (heroSlides.length > 0) {
 }
 
 for (const item of revealItems) item.classList.add("is-visible");
-
-if (mobileDock) {
-  let scrollFrame = 0;
-  let lastScrollY = window.scrollY;
-
-  const setDockHidden = (hidden) => {
-    mobileDock.classList.toggle("is-hidden", hidden);
-    mobileDock.toggleAttribute("inert", hidden);
-    mobileDock.setAttribute("aria-hidden", String(hidden));
-  };
-
-  const updateMobileDock = () => {
-    const currentScrollY = window.scrollY;
-    const movedDown = currentScrollY > lastScrollY + 2;
-    const nearTop = currentScrollY < 180;
-    const shouldHide = !mobileLayout.matches || nearTop || movedDown;
-
-    setDockHidden(shouldHide);
-    lastScrollY = currentScrollY;
-  };
-
-  updateMobileDock();
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (scrollFrame) return;
-
-      scrollFrame = window.requestAnimationFrame(() => {
-        updateMobileDock();
-        scrollFrame = 0;
-      });
-    },
-    { passive: true }
-  );
-
-  mobileLayout.addEventListener("change", updateMobileDock);
-}

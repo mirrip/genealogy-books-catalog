@@ -966,17 +966,27 @@ body.home-menu-open {
 
 .trust-foundation {
   position: relative;
-  min-height: 310px;
-  padding: clamp(30px, 3vw, 44px) clamp(26px, 2.5vw, 38px) 38px;
+  min-height: 290px;
+  padding: clamp(38px, 3.5vw, 52px) clamp(28px, 2.7vw, 42px) 42px;
   overflow: hidden;
-  border: 1px solid rgba(207, 145, 58, .32);
+  border: 1px solid rgba(218, 157, 69, .5);
   border-radius: 32px;
   background:
-    radial-gradient(circle at 92% 8%, rgba(154, 75, 28, .18), transparent 33%),
-    linear-gradient(145deg, rgba(53, 18, 10, .72), rgba(11, 4, 3, .78));
+    radial-gradient(circle at 92% 8%, rgba(170, 82, 29, .25), transparent 35%),
+    linear-gradient(145deg, rgba(61, 22, 12, .93), rgba(13, 4, 3, .94));
   box-shadow:
-    0 24px 58px rgba(0, 0, 0, .22),
-    0 1px rgba(255, 227, 179, .07) inset;
+    0 26px 62px rgba(0, 0, 0, .3),
+    0 1px rgba(255, 227, 179, .11) inset;
+}
+
+.trust-foundation::before {
+  display: block;
+  width: 54px;
+  height: 2px;
+  margin-bottom: 27px;
+  content: "";
+  border-radius: 999px;
+  background: linear-gradient(90deg, #efbd68, rgba(239, 189, 104, .18));
 }
 
 .trust-foundation::after {
@@ -989,34 +999,21 @@ body.home-menu-open {
   background: linear-gradient(90deg, #d59a43, rgba(213, 154, 67, .08));
 }
 
-.trust-foundation__index {
-  display: inline-grid;
-  width: 38px;
-  height: 25px;
-  margin-bottom: 26px;
-  place-items: center;
-  color: #e3ad58;
-  border: 1px solid rgba(216, 155, 67, .38);
-  border-radius: 999px;
-  background: rgba(71, 27, 12, .44);
-  font-size: 10px;
-  letter-spacing: .08em;
-}
-
 .trust-foundation h2 {
-  margin: 0 0 24px;
-  color: #f0cf94;
+  margin: 0 0 22px;
+  color: #f7d8a0;
   font-family: var(--display);
-  font-size: clamp(28px, 2.35vw, 38px);
-  font-weight: 500;
+  font-size: clamp(30px, 2.45vw, 40px);
+  font-weight: 600;
   line-height: 1.05;
+  text-shadow: 0 3px 20px rgba(218, 144, 55, .13);
 }
 
 .trust-foundation p {
   margin: 0;
-  color: rgba(238, 214, 177, .74);
-  font-size: clamp(13px, 1.05vw, 16px);
-  line-height: 1.65;
+  color: rgba(247, 226, 193, .88);
+  font-size: clamp(14px, 1.08vw, 17px);
+  line-height: 1.62;
 }
 
 .lower-night .memory {
@@ -2067,8 +2064,13 @@ body.home-menu-open {
 
   .trust-foundation {
     min-height: 0;
-    padding: 26px 23px 34px;
+    padding: 30px 24px 36px;
     border-radius: 25px;
+  }
+
+  .trust-foundation::before {
+    width: 46px;
+    margin-bottom: 20px;
   }
 
   .trust-foundation::after {
@@ -2077,18 +2079,14 @@ body.home-menu-open {
     left: 23px;
   }
 
-  .trust-foundation__index {
-    margin-bottom: 18px;
-  }
-
   .trust-foundation h2 {
-    margin-bottom: 14px;
-    font-size: clamp(26px, 8.2vw, 34px);
+    margin-bottom: 16px;
+    font-size: clamp(28px, 8.5vw, 35px);
   }
 
   .trust-foundation p {
-    font-size: 12px;
-    line-height: 1.58;
+    font-size: 13px;
+    line-height: 1.62;
   }
 
   .lower-night::before {

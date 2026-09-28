@@ -1795,10 +1795,12 @@ body.home-menu-open {
   }
 
   .brand .brand__mark {
+    position: absolute;
+    right: 0;
     display: block;
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
     object-fit: contain;
   }
 
@@ -1806,7 +1808,11 @@ body.home-menu-open {
     position: absolute;
     left: 50%;
     display: block;
+    color: #f1cd91;
+    font-size: 32px;
+    font-weight: 600;
     white-space: nowrap;
+    text-shadow: 0 2px 18px rgba(221, 151, 64, .24);
     transform: translateX(-50%);
   }
 
@@ -1838,8 +1844,8 @@ body.home-menu-open {
   .menu-button {
     z-index: 2;
     grid-row: 1;
-    grid-column: 3;
-    justify-self: end;
+    grid-column: 1;
+    justify-self: start;
     width: 44px;
     height: 44px;
     flex: 0 0 44px;
@@ -1852,29 +1858,6 @@ body.home-menu-open {
   .menu-button span:nth-child(2) { top: 22px; width: 20px; }
   .menu-button span:nth-child(3) { top: 29px; }
   .menu-button span { width: 20px; }
-
-  .home-menu-drawer {
-    right: 0;
-    left: auto;
-    border-right: 0;
-    border-left: 1px solid rgba(220, 160, 72, .54);
-    background:
-      radial-gradient(circle at 80% 8%, rgba(142, 65, 25, .3), transparent 30%),
-      repeating-radial-gradient(circle at 92% 63%, rgba(218, 158, 72, .09) 0 1px, transparent 1px 12px),
-      linear-gradient(205deg, #2d1009, #080302 63%, #1b0906);
-    box-shadow: -30px 0 90px rgba(0, 0, 0, .64);
-    transform: translate3d(105%, 0, 0);
-  }
-
-  .home-menu-drawer__header {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
-
-  .home-menu-brand {
-    margin-right: 8px;
-    margin-left: 0;
-  }
 
   .cart-count {
     top: -4px;

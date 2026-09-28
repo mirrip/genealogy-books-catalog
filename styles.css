@@ -959,61 +959,50 @@ body.home-menu-open {
   display: grid;
   width: min(calc(100% - 96px), 1440px);
   margin: 0 auto;
-  padding-top: clamp(120px, 17vh, 190px);
+  padding-top: clamp(28px, 4vh, 44px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 54px);
+  gap: clamp(18px, 2vw, 30px);
 }
 
 .trust-foundation {
   position: relative;
-  min-height: 290px;
-  padding: clamp(38px, 3.5vw, 52px) clamp(28px, 2.7vw, 42px) 42px;
+  min-height: 250px;
+  padding: clamp(28px, 2.4vw, 36px) clamp(24px, 2.2vw, 34px) 34px;
   overflow: hidden;
-  border: 1px solid rgba(218, 157, 69, .5);
-  border-radius: 32px;
+  border: 1px solid rgba(210, 149, 63, .28);
+  border-radius: 24px;
   background:
-    radial-gradient(circle at 92% 8%, rgba(170, 82, 29, .25), transparent 35%),
-    linear-gradient(145deg, rgba(61, 22, 12, .93), rgba(13, 4, 3, .94));
+    radial-gradient(circle at 92% 8%, rgba(147, 67, 25, .12), transparent 36%),
+    linear-gradient(145deg, rgba(50, 17, 10, .58), rgba(11, 4, 3, .64));
   box-shadow:
-    0 26px 62px rgba(0, 0, 0, .3),
-    0 1px rgba(255, 227, 179, .11) inset;
-}
-
-.trust-foundation::before {
-  display: block;
-  width: 54px;
-  height: 2px;
-  margin-bottom: 27px;
-  content: "";
-  border-radius: 999px;
-  background: linear-gradient(90deg, #efbd68, rgba(239, 189, 104, .18));
+    0 18px 42px rgba(0, 0, 0, .16),
+    0 1px rgba(255, 227, 179, .06) inset;
 }
 
 .trust-foundation::after {
   position: absolute;
   right: 32px;
-  bottom: 27px;
+  bottom: 25px;
   left: 32px;
   height: 1px;
   content: "";
-  background: linear-gradient(90deg, #d59a43, rgba(213, 154, 67, .08));
+  background: linear-gradient(90deg, rgba(213, 154, 67, .72), rgba(213, 154, 67, .04));
 }
 
 .trust-foundation h2 {
-  margin: 0 0 22px;
-  color: #f7d8a0;
+  margin: 0 0 20px;
+  color: #f0cf96;
   font-family: var(--display);
-  font-size: clamp(30px, 2.45vw, 40px);
-  font-weight: 600;
-  line-height: 1.05;
-  text-shadow: 0 3px 20px rgba(218, 144, 55, .13);
+  font-size: clamp(27px, 2vw, 34px);
+  font-weight: 500;
+  line-height: 1.08;
 }
 
 .trust-foundation p {
   margin: 0;
-  color: rgba(247, 226, 193, .88);
-  font-size: clamp(14px, 1.08vw, 17px);
-  line-height: 1.62;
+  color: rgba(240, 218, 184, .78);
+  font-size: clamp(13px, .98vw, 15px);
+  line-height: 1.6;
 }
 
 .lower-night .memory {
@@ -2057,20 +2046,15 @@ body.home-menu-open {
 
   .trust-foundations {
     width: min(calc(100% - 34px), 430px);
-    padding-top: 92px;
+    padding-top: 26px;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 12px;
   }
 
   .trust-foundation {
     min-height: 0;
-    padding: 30px 24px 36px;
-    border-radius: 25px;
-  }
-
-  .trust-foundation::before {
-    width: 46px;
-    margin-bottom: 20px;
+    padding: 24px 22px 32px;
+    border-radius: 20px;
   }
 
   .trust-foundation::after {
@@ -2080,13 +2064,13 @@ body.home-menu-open {
   }
 
   .trust-foundation h2 {
-    margin-bottom: 16px;
-    font-size: clamp(28px, 8.5vw, 35px);
+    margin-bottom: 13px;
+    font-size: clamp(26px, 7.8vw, 32px);
   }
 
   .trust-foundation p {
-    font-size: 13px;
-    line-height: 1.62;
+    font-size: 12px;
+    line-height: 1.58;
   }
 
   .lower-night::before {

@@ -1,24 +1,132 @@
-<!doctype html>
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(scriptDir, '..');
+const catalogPath = path.join(rootDir, 'catalog.html');
+const booksDir = path.join(rootDir, 'books');
+const catalogSource = fs.readFileSync(catalogPath, 'utf8');
+const booksMatch = catalogSource.match(/const books = (\[[\s\S]*?\n\s*\]);/);
+const styleMatch = catalogSource.match(/<style>([\s\S]*?)<\/style>/);
+
+if (!booksMatch || !styleMatch) throw new Error('Catalog data or base styles were not found.');
+
+const books = vm.runInNewContext(`(${booksMatch[1]})`);
+const slugs = [
+  'elitnaya-rodoslovnaya-kniga',
+  'elitnaya-s-tisneniem',
+  'izyskannaya-v-opletke-s-zolotym-drevom',
+  'izyskannaya-v-opletke',
+  'izyskannaya',
+  'izyskannaya-troyka',
+  'izyskannaya-letopisets',
+  'izyskannaya-blagoslovenie',
+  'semejnyj-albom',
+  'hudozhestvennaya-bordovaya-s-gerbom',
+  'hudozhestvennaya-bordovaya-s-drevom',
+  'hudozhestvennaya-chernaya-s-gerbom',
+  'hudozhestvennaya-sinyaya-s-gerbom',
+  'hudozhestvennaya-svadebnaya-s-drevom',
+  'hudozhestvennaya-zelenaya-s-mechetyu',
+  'hudozhestvennaya-musulmanskaya',
+  'hudozhestvennaya-na-anglijskom',
+  'izyskannaya-na-anglijskom',
+  'izyskannaya-eko-kozha',
+  'podarochnyj-paket'
+];
+
+if (books.length !== slugs.length) throw new Error(`Expected ${slugs.length} books, found ${books.length}.`);
+
+const escapeHtml = (value) => String(value)
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+
+const assetUrl = (value) => `/${String(value).split('/').map(encodeURIComponent).join('/')}`;
+const absoluteUrl = (value) => `https://rodkod.ru${assetUrl(value)}`;
+const formatPrice = (price) => price === 0
+  ? 'По запросу'
+  : `${String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₽`;
+
+const sharedBaseStyles = `${styleMatch[1].trim()}\n\n` + `
+body.book-product-page #bookDetailPage {
+  display: block;
+}
+
+.book-product-page .book-detail-title {
+  margin-top: 0;
+}
+
+.book-product-page .book-back-button {
+  font: inherit;
+}
+
+.book-product-page .nav-dot {
+  padding: 0;
+}
+
+.book-product-page .sidebar-item {
+  text-decoration: none;
+}
+
+.book-product-page .mobile-fixed-cart-btn {
+  display: none !important;
+}
+`;
+fs.writeFileSync(path.join(rootDir, 'book-page-base.css'), sharedBaseStyles, 'utf8');
+fs.mkdirSync(booksDir, { recursive: true });
+
+function productPage(book, slug) {
+  const pageUrl = `https://rodkod.ru/books/${slug}.html`;
+  const primaryImage = absoluteUrl(book.image);
+  const pageBook = {
+    ...book,
+    image: assetUrl(book.image),
+    images: book.images.map(assetUrl),
+    url: pageUrl
+  };
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: book.title,
+    image: book.images.map(absoluteUrl),
+    description: book.description,
+    sku: `status-gift-${book.id}`,
+    brand: { '@type': 'Brand', name: 'Status Gift' },
+    offers: {
+      '@type': 'Offer',
+      url: pageUrl,
+      priceCurrency: 'RUB',
+      price: String(book.price),
+      availability: 'https://schema.org/InStock'
+    }
+  };
+
+  return `<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Элитная с тиснением — родословная книга | Status Gift</title>
-  <meta name="description" content="Элитная с тиснением. Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений. Цена: 26 500 ₽.">
+  <title>${escapeHtml(book.title)} — родословная книга | Status Gift</title>
+  <meta name="description" content="${escapeHtml(`${book.title}. ${book.description} Цена: ${formatPrice(book.price)}.`)}">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://rodkod.ru/books/elitnaya-s-tisneniem.html">
+  <link rel="canonical" href="${pageUrl}">
   <meta property="og:type" content="product">
   <meta property="og:site_name" content="Status Gift">
-  <meta property="og:title" content="Элитная с тиснением — Status Gift">
-  <meta property="og:description" content="Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.">
-  <meta property="og:url" content="https://rodkod.ru/books/elitnaya-s-tisneniem.html">
+  <meta property="og:title" content="${escapeHtml(`${book.title} — Status Gift`)}">
+  <meta property="og:description" content="${escapeHtml(book.description)}">
+  <meta property="og:url" content="${pageUrl}">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:image" content="https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg">
+  <meta property="og:image" content="${primaryImage}">
   <meta name="theme-color" content="#080302">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Элитная с тиснением — Status Gift">
-  <meta name="twitter:description" content="Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.">
-  <meta name="twitter:image" content="https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg">
+  <meta name="twitter:title" content="${escapeHtml(`${book.title} — Status Gift`)}">
+  <meta name="twitter:description" content="${escapeHtml(book.description)}">
+  <meta name="twitter:image" content="${primaryImage}">
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +134,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="../book-page-base.css?v=20260929-1">
   <link rel="stylesheet" href="../catalog-theme.css?v=20260929-19">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Элитная с тиснением","image":["https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_02_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_03_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_04_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_05_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_06_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_07_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_08_under_3mb.jpg","https://rodkod.ru/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_09_under_3mb.jpg"],"description":"Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.","sku":"status-gift-2","brand":{"@type":"Brand","name":"Status Gift"},"offers":{"@type":"Offer","url":"https://rodkod.ru/books/elitnaya-s-tisneniem.html","priceCurrency":"RUB","price":"26500","availability":"https://schema.org/InStock"}}</script>
+  <script type="application/ld+json">${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script>
 </head>
 <body class="book-product-page">
   <header class="catalog-site-header">
@@ -74,7 +182,7 @@
       <div class="gallery-main">
         <div class="main-image-container" id="mainImageContainer">
           <button class="btn-back detail-catalog-btn book-back-button" type="button"><i class="fas fa-arrow-left"></i><span>Назад</span></button>
-          <img class="main-image" id="mainImage" src="/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg" alt="Элитная с тиснением" loading="eager" fetchpriority="high" decoding="async">
+          <img class="main-image" id="mainImage" src="${assetUrl(book.image)}" alt="${escapeHtml(book.title)}" loading="eager" fetchpriority="high" decoding="async">
           <div class="image-navigation"><div class="nav-zone left" id="prevZone"><div class="nav-text prev-text">‹</div></div><div class="nav-zone right" id="nextZone"><div class="nav-text next-text">›</div></div></div>
           <div class="nav-indicator" id="navIndicator"></div>
         </div>
@@ -82,10 +190,10 @@
       </div>
       <article class="book-details">
         <button class="detail-like-btn" id="detailLikeBtn" type="button" aria-label="Добавить книгу в избранное"><i class="far fa-heart"></i></button>
-        <h1 class="book-detail-title" id="detailTitle">Элитная с тиснением</h1>
-        <div class="book-detail-price" id="detailPrice">26 500 ₽</div>
-        <div class="book-detail-description" id="detailDescription">Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.</div>
-        <div class="quantity-selector hidden" id="quantitySelector"><button class="quantity-btn minus" id="quantityMinus" type="button">−</button><input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="99"><button class="quantity-btn plus" id="quantityPlus" type="button">+</button><div class="quantity-price" id="quantityPrice">26 500 ₽</div></div>
+        <h1 class="book-detail-title" id="detailTitle">${escapeHtml(book.title)}</h1>
+        <div class="book-detail-price" id="detailPrice">${escapeHtml(formatPrice(book.price))}</div>
+        <div class="book-detail-description" id="detailDescription">${escapeHtml(book.description)}</div>
+        <div class="quantity-selector hidden" id="quantitySelector"><button class="quantity-btn minus" id="quantityMinus" type="button">−</button><input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="99"><button class="quantity-btn plus" id="quantityPlus" type="button">+</button><div class="quantity-price" id="quantityPrice">${escapeHtml(formatPrice(book.price))}</div></div>
         <button class="btn btn-add-to-cart" id="addToCartBtn" type="button"><i class="fas fa-shopping-cart"></i> Добавить в корзину</button>
       </article>
     </div>
@@ -93,7 +201,16 @@
   </main>
 
   <div class="success-message-global" id="globalSuccessMessage" role="status" aria-live="polite"><i class="fas fa-check-circle"></i><div class="message"></div></div>
-  <script>window.STATUS_GIFT_BOOK = {"id":2,"title":"Элитная с тиснением","description":"Подарите историю семьи в тёплом кожаном облике. Эта книга станет дорогой памятью для будущих поколений.","price":26500,"image":"/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg","images":["/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_01_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_02_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_03_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_04_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_05_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_06_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_07_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_08_under_3mb.jpg","/%D1%8D%D0%BB%D0%B8%D1%82%D0%BD%D0%B0%D1%8F%20%D1%81%20%D1%82%D0%B5%D0%BD%2026/elitnaya_s_ten_09_under_3mb.jpg"],"url":"https://rodkod.ru/books/elitnaya-s-tisneniem.html"};</script>
+  <script>window.STATUS_GIFT_BOOK = ${JSON.stringify(pageBook).replaceAll('<', '\\u003c')};</script>
   <script src="../book-page.js?v=20260929-1" defer></script>
 </body>
 </html>
+`;
+}
+
+books.forEach((book, index) => {
+  const filePath = path.join(booksDir, `${slugs[index]}.html`);
+  fs.writeFileSync(filePath, productPage(book, slugs[index]), 'utf8');
+});
+
+console.log(`Generated ${books.length} product pages and book-page-base.css.`);

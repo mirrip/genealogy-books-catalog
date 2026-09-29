@@ -574,6 +574,10 @@ body::before {
   box-shadow: 0 22px 52px rgba(0, 0, 0, .36), 0 1px rgba(255, 224, 171, .08) inset;
 }
 
+.book-card {
+  text-decoration: none;
+}
+
 .book-card::before {
   background: linear-gradient(135deg, rgba(231, 176, 87, .08), transparent 52%);
 }

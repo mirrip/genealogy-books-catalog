@@ -488,7 +488,7 @@
             .catalog-title { font-size: 32px; }
         }
     </style>
-    <link rel="stylesheet" href="./catalog-theme.css?v=20260929-18">
+    <link rel="stylesheet" href="./catalog-theme.css?v=20260929-19">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -938,6 +938,18 @@
             { id: 20, title: "Подарочный пакет", description: "Дополните подарок красивой упаковкой. Такой пакет сразу превращает книгу в готовый семейный сюрприз.", price: 150, image: "podarochny_paket_under_3mb.jpg", images: ["podarochny_paket_under_3mb.jpg"] }
         ];
 
+        const bookPagePaths = [
+            'elitnaya-rodoslovnaya-kniga', 'elitnaya-s-tisneniem', 'izyskannaya-v-opletke-s-zolotym-drevom',
+            'izyskannaya-v-opletke', 'izyskannaya', 'izyskannaya-troyka', 'izyskannaya-letopisets',
+            'izyskannaya-blagoslovenie', 'semejnyj-albom', 'hudozhestvennaya-bordovaya-s-gerbom',
+            'hudozhestvennaya-bordovaya-s-drevom', 'hudozhestvennaya-chernaya-s-gerbom',
+            'hudozhestvennaya-sinyaya-s-gerbom', 'hudozhestvennaya-svadebnaya-s-drevom',
+            'hudozhestvennaya-zelenaya-s-mechetyu', 'hudozhestvennaya-musulmanskaya',
+            'hudozhestvennaya-na-anglijskom', 'izyskannaya-na-anglijskom', 'izyskannaya-eko-kozha',
+            'podarochnyj-paket'
+        ];
+        const getBookPageUrl = bookId => `./books/${bookPagePaths[bookId - 1]}.html`;
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
@@ -1048,7 +1060,9 @@
         }
 
         function init() {
-            const requestedPage = new URLSearchParams(window.location.search).get('page');
+            const requestedParams = new URLSearchParams(window.location.search);
+            const requestedPage = requestedParams.get('page');
+            const requestedCallback = Number.parseInt(requestedParams.get('callback'), 10);
             if (requestedPage === 'profile') {
                 window.location.replace('./profile.html');
                 return;
@@ -1071,6 +1085,9 @@
             renderOrderHistory();
             const allowedPages = ['catalog', 'favorites', 'cart', 'orderHistory', 'profile', 'faq', 'social'];
             if (requestedPage && allowedPages.includes(requestedPage)) showPage(requestedPage);
+            if (requestedCallback && books.some(book => book.id === requestedCallback && book.callbackOnly)) {
+                handleCallbackRequest(requestedCallback);
+            }
         }
 
         function setupFaqAccordion() {
@@ -1133,15 +1150,17 @@
 
         function renderBooks(booksToShow) {
             booksGrid.innerHTML = '';
-            booksToShow.forEach(book => {
-                const bookCard = document.createElement('div');
+            booksToShow.forEach((book, index) => {
+                const bookCard = document.createElement('a');
                 bookCard.className = 'book-card';
                 bookCard.dataset.id = book.id;
+                bookCard.href = getBookPageUrl(book.id);
+                bookCard.setAttribute('aria-label', `Открыть книгу «${book.title}»`);
                 const isLiked = favorites.some(fav => fav.id === book.id);
                 const priceDisplay = book.price === 0 ? 'По запросу' : formatPrice(book.price);
                 bookCard.innerHTML = `
                     <div class="book-image-container">
-                        <img class="book-image" src="${book.image}" alt="${book.title}">
+                        <img class="book-image" src="${book.image}" alt="${book.title}" loading="${index < 3 ? 'eager' : 'lazy'}" decoding="async">
                         <div class="book-like-mobile ${isLiked ? 'liked' : ''}" data-id="${book.id}">
                             <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
                         </div>
@@ -1607,7 +1626,7 @@
                 case 'faq': faqPage.classList.remove('hidden'); currentPage='faq'; break;
                 case 'social': socialPage.classList.remove('hidden'); currentPage='social'; break;
                 case 'payment':
-                    if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); showPage('cart'); return; }
+                    if(cart.length===0 && !pendingCallbackBookId){ showGlobalSuccessMessage('Ваша корзина пуста'); showPage('cart'); return; }
                     resetPaymentPage();
                     paymentPage.classList.remove('hidden');
                     currentPage='payment';
@@ -1778,8 +1797,7 @@
             sidebarOverlay.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
             document.querySelectorAll('.catalog-primary-nav [data-header-page]').forEach(item => item.addEventListener('click', event=>{ event.preventDefault(); showPage(item.dataset.headerPage); }));
             document.querySelectorAll('.sidebar-item').forEach(item=>{ if(item.dataset.page) item.addEventListener('click', ()=>{ showPage(item.dataset.page); profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }); });
-            booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-card')&&!e.target.closest('.book-like-mobile')){ const id=parseInt(e.target.closest('.book-card').dataset.id); showBookDetail(id,'catalog'); } });
-            booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); } });
+            booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); e.preventDefault(); e.stopPropagation(); toggleFavorite(id); } });
             backToCatalog.addEventListener('click', goBack);
             backToCatalogMobile.addEventListener('click', goBack);
             backToCatalogFromCart.addEventListener('click', ()=>showPage('catalog'));
@@ -1810,12 +1828,12 @@
             quantityPlus.addEventListener('click', ()=>{ if(quantity<99){ quantity++; updateQuantityDisplay(); } });
             quantityInput.addEventListener('change', ()=>{ quantity=parseInt(quantityInput.value)||1; if(quantity<1)quantity=1; if(quantity>99)quantity=99; updateQuantityDisplay(); });
             cartItems.addEventListener('click', e=>{
-                if(e.target.closest('.cart-item')&&!e.target.closest('.cart-remove')&&!e.target.closest('.cart-quantity')){ const id=parseInt(e.target.closest('.cart-item').dataset.id); showBookDetail(id,'cart'); }
+                if(e.target.closest('.cart-item')&&!e.target.closest('.cart-remove')&&!e.target.closest('.cart-quantity')){ const id=parseInt(e.target.closest('.cart-item').dataset.id); window.location.href=getBookPageUrl(id); }
                 if(e.target.closest('.cart-remove')){ const btn=e.target.closest('.cart-remove'); const id=parseInt(btn.dataset.id); const item=cart.find(i=>i.id===id); if(item&&item.quantity&&item.quantity>5) showQuantityModal(id); else removeFromCart(id); e.stopPropagation(); }
                 if(e.target.closest('.cart-quantity')){ const btn=e.target.closest('.cart-quantity'); const id=parseInt(btn.dataset.id); showQuantityModal(id); e.stopPropagation(); }
             });
             favoritesItems.addEventListener('click', e=>{
-                if(e.target.closest('.favorite-item')&&!e.target.closest('.favorite-remove')){ const id=parseInt(e.target.closest('.favorite-item').dataset.id); showBookDetail(id,'favorites'); }
+                if(e.target.closest('.favorite-item')&&!e.target.closest('.favorite-remove')){ const id=parseInt(e.target.closest('.favorite-item').dataset.id); window.location.href=getBookPageUrl(id); }
                 if(e.target.closest('.favorite-remove')){ const btn=e.target.closest('.favorite-remove'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); }
             });
             orderHistoryList.addEventListener('click', e=>{

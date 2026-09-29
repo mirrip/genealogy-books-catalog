@@ -222,7 +222,7 @@
     updateBadges();
     updateQuantity();
     if (book.callbackOnly) {
-      addButton.innerHTML = '<i class="fas fa-phone"></i> Заказать обратный звонок';
+      addButton.textContent = 'Заказать обратный звонок';
       mobileAddButton?.classList.add('hidden');
       quantitySelector?.classList.add('hidden');
     } else if (!book.price) {

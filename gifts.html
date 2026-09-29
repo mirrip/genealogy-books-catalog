@@ -1,66 +1,230 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Подарки со смыслом — РодКод</title>
-  <meta name="description" content="Родословные книги РодКод как памятный семейный подарок для близких и важных событий.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Подобрать подарок — РодКод</title>
+  <meta name="description" content="Интеллектуальный подбор родословной книги в подарок по бюджету, статусу получателя и поводу.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rodkod.ru/gifts.html">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#080302">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="./catalog-theme.css?v=20260928-16">
-  <link rel="stylesheet" href="./section-page.css?v=20260928-6">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="./gifts-catalog-base.css?v=20260929-1">
+  <link rel="stylesheet" href="./gifts-catalog-theme.css?v=20260929-1">
+  <link rel="stylesheet" href="./gifts-wizard.css?v=20260929-13">
 </head>
 <body>
+  <!-- Шапка сайта сохранена полностью без изменений как в каталоге -->
   <header class="catalog-site-header">
     <div class="container header-container">
       <div class="logo-container">
-        <button class="catalog-menu-toggle" id="sectionMenuButton" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
-        <a class="catalog-brand" href="./index.html" aria-label="Status Gift — главная"><img class="brand__mark" src="./assets/brand/status-gift-mark-clean.webp" width="144" height="144" alt="" aria-hidden="true"><span class="brand__desktop-name">Status Gift</span><span class="brand__mobile-name">РодКод</span></a>
+        <button class="catalog-menu-toggle" id="logoBtn" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="catalog-brand" href="./index.html" aria-label="Status Gift — главная">
+          <img class="brand__mark" src="./assets/brand/status-gift-mark.webp" width="144" height="144" alt="" aria-hidden="true">
+          <span class="brand__desktop-name">Status Gift</span>
+          <span class="brand__mobile-name">РодКод</span>
+        </a>
       </div>
       <nav class="catalog-primary-nav" aria-label="Разделы сайта">
-        <a href="./index.html">Главная</a><a href="./catalog.html">Каталог книг</a><a class="is-current" href="./gifts.html">Подобрать подарок</a><a href="./works.html">Что мы создаём</a><a href="./about.html">О Status Gift</a>
+        <a href="./index.html">Главная</a>
+        <a href="./catalog.html">Каталог книг</a>
+        <a class="is-current" href="./gifts.html">Подобрать подарок</a>
+        <a href="./works.html">Что мы создаём</a>
+        <a href="./about.html">О Status Gift</a>
       </nav>
       <div class="nav-buttons">
-        <a class="catalog-header-icon" href="./catalog.html?page=favorites" aria-label="Избранное"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg></a>
-        <a class="catalog-header-icon catalog-account-link" href="./profile.html" aria-label="Личный кабинет"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"/></svg></a>
-        <a class="btn-cart-icon catalog-header-icon" href="./catalog.html?page=cart" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg></a>
+        <a class="catalog-header-icon" href="./catalog.html?page=favorites" aria-label="Избранное">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg>
+        </a>
+        <a class="catalog-header-icon catalog-account-link" href="./profile.html" aria-label="Личный кабинет">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"/></svg>
+        </a>
+        <a class="btn-cart-icon catalog-header-icon" href="./catalog.html?page=cart" aria-label="Корзина">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg>
+        </a>
       </div>
     </div>
   </header>
-  <aside class="section-drawer" id="sectionDrawer" aria-label="Мобильное меню" aria-hidden="true">
-    <div class="section-drawer__header"><button class="section-drawer-close" id="sectionDrawerClose" type="button" aria-label="Закрыть меню">×</button><a class="section-drawer-brand" href="./index.html">Status Gift</a></div>
-    <nav class="section-drawer-nav" aria-label="Меню сайта">
-      <a href="./index.html"><i class="fas fa-house section-drawer-icon" aria-hidden="true"></i><span>Главная</span></a>
-      <a href="./catalog.html"><i class="fas fa-book-open section-drawer-icon" aria-hidden="true"></i><span>Каталог книг</span></a>
-      <a class="is-current" href="./gifts.html"><i class="fas fa-gift section-drawer-icon" aria-hidden="true"></i><span>Подобрать подарок</span></a>
-      <a href="./works.html"><i class="fas fa-shapes section-drawer-icon" aria-hidden="true"></i><span>Что мы создаём</span></a>
-      <a href="./about.html"><i class="fas fa-circle-info section-drawer-icon" aria-hidden="true"></i><span>О Status Gift</span></a>
-      <a class="drawer-utility" href="./catalog.html?page=favorites"><i class="fas fa-heart section-drawer-icon" aria-hidden="true"></i><span>Избранное</span></a>
-      <a href="./catalog.html?page=cart"><i class="fas fa-shopping-cart section-drawer-icon" aria-hidden="true"></i><span>Корзина</span></a>
-      <a href="./profile.html"><i class="fas fa-user section-drawer-icon" aria-hidden="true"></i><span>Личный кабинет</span></a>
-    </nav>
-    <div class="section-drawer__footer">© 2026 Status Gift • Родословные книги</div>
-  </aside>
-  <button class="section-drawer-overlay" id="sectionDrawerOverlay" type="button" aria-label="Закрыть меню"></button>
-  <main class="section-main">
-    <section class="section-hero">
-      <p class="section-kicker">Родословные книги · Семейная память</p>
-      <h1>Подарки со смыслом</h1>
-      <p class="section-lead">Подборка направлений для тех случаев, когда подарок должен сохранить историю семьи и остаться с близкими на долгие годы.</p>
-    </section>
-    <section class="section-grid" aria-label="Подбор подарка">
-      <article class="section-card"><span class="section-card__number">01</span><h2>Родителям</h2><p>Родословная книга как семейный подарок, который можно заполнять вместе.</p><a class="section-card__link" href="./catalog.html">Перейти в каталог →</a></article>
-      <article class="section-card"><span class="section-card__number">02</span><h2>На юбилей</h2><p>Памятное оформление для важной даты и истории нескольких поколений.</p><a class="section-card__link" href="./catalog.html">Выбрать книгу →</a></article>
-      <article class="section-card"><span class="section-card__number">03</span><h2>На свадьбу</h2><p>Начало новой семейной летописи и место для будущих воспоминаний.</p><a class="section-card__link" href="./catalog.html">Смотреть книги →</a></article>
-      <article class="section-card"><span class="section-card__number">04</span><h2>Семейная дата</h2><p>Подарок для события, которое важно сохранить в общей истории семьи.</p><a class="section-card__link" href="./catalog.html">Открыть каталог →</a></article>
-      <article class="section-card"><span class="section-card__number">05</span><h2>Статусный подарок</h2><p>Книги в выразительном исполнении для особого человека и значимого повода.</p><a class="section-card__link" href="./catalog.html">Посмотреть варианты →</a></article>
-      <article class="section-card"><span class="section-card__number">06</span><h2>Выбор семьи</h2><p>Все доступные варианты книг, оформления и цен собраны в основном каталоге.</p><a class="section-card__link" href="./catalog.html">Все книги →</a></article>
-    </section>
-    <section class="section-cta"><h2>Главный подарок — семейная история</h2><p>Выберите подходящую книгу в каталоге или обсудите будущий семейный проект лично.</p><a class="section-button" href="./catalog.html">Выбрать книгу</a></section>
+
+  <div class="sidebar" id="profileSidebar">
+    <div class="sidebar-header">
+      <button class="sidebar-profile-btn sidebar-close-btn" id="sidebarProfileBtn" type="button" aria-label="Закрыть меню">
+        <span aria-hidden="true">×</span><span id="sidebarInitials" hidden>Р</span>
+      </button>
+      <div class="sidebar-logo">РодКод</div>
+    </div>
+    <div class="sidebar-menu">
+      <a class="sidebar-item sidebar-home-item" href="./index.html"><i class="fas fa-house"></i><span>Главная</span></a>
+      <a class="sidebar-item" href="./catalog.html"><i class="fas fa-book-open"></i><span>Каталог</span></a>
+      <a class="sidebar-item active" href="./gifts.html"><i class="fas fa-gift"></i><span>Подобрать подарок</span></a>
+      <a class="sidebar-item" href="./works.html"><i class="fas fa-shapes"></i><span>Что мы создаём</span></a>
+      <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О РодКод</span></a>
+      <a class="sidebar-item sidebar-utility-start" href="./catalog.html?page=favorites"><i class="fas fa-heart"></i><span>Избранное</span></a>
+      <a class="sidebar-item" href="./catalog.html?page=cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span></a>
+      <a class="sidebar-item" href="./profile.html"><i class="fas fa-user"></i><span>Личный кабинет</span></a>
+    </div>
+    <div class="sidebar-footer"><div>© 2026 РодКод • Родословные книги</div></div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="container page page-gifts">
+    <!-- Заголовок страницы строго по центру -->
+    <div class="catalog-header">
+      <h1 class="catalog-title"><span class="title-word title-word-left">Подобрать</span><span class="title-word title-word-right">подарок</span></h1>
+    </div>
+
+    <!-- Основной макет по эскизу -->
+    <div class="gift-layout">
+      <!-- Левая колонка: Бюджет сверху и 2 столбца фильтров -->
+      <aside class="gift-sidebar" aria-label="Фильтры подбора">
+        <!-- 1. Бюджет: растянут на всю ширину двух столбцов фильтров -->
+        <div class="gift-box gift-box-budget">
+          <div class="gift-box-title">Бюджет</div>
+          <div class="gift-price-inputs">
+            <div class="gift-price-field">
+              <span class="field-label">От</span>
+              <input class="gift-price-input" id="giftPriceMin" type="text" value="5 000" inputmode="numeric" aria-label="Минимальная цена">
+              <span class="gift-price-suffix">₽</span>
+            </div>
+            <span class="gift-price-separator">—</span>
+            <div class="gift-price-field">
+              <span class="field-label">До</span>
+              <input class="gift-price-input" id="giftPriceMax" type="text" value="29 000" inputmode="numeric" aria-label="Максимальная цена">
+              <span class="gift-price-suffix">₽</span>
+            </div>
+          </div>
+          <div class="gift-slider-track-wrap">
+            <div class="gift-slider-base-track"></div>
+            <div class="gift-slider-active-track" id="giftSliderActiveTrack"></div>
+            <input class="gift-range-thumb" id="giftRangeMin" type="range" min="5000" max="29000" step="500" value="5000" aria-label="Ползунок от">
+            <input class="gift-range-thumb" id="giftRangeMax" type="range" min="5000" max="29000" step="500" value="29000" aria-label="Ползунок до">
+          </div>
+        </div>
+
+        <!-- 2 столбца фильтров -->
+        <div class="gift-filters-columns">
+          <!-- Левый столбец: Праздник, событие -->
+          <div class="gift-filter-col">
+            <div class="gift-box gift-box-occasion">
+              <div class="gift-box-title">Праздник, событие</div>
+              <div class="gift-options-list">
+                <label class="gift-option-row is-selected">
+                  <input type="radio" name="giftOccasion" value="all" checked>
+                  <span>Все поводы</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftOccasion" value="jubilee">
+                  <span>Юбилей</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftOccasion" value="wedding">
+                  <span>Свадьба, годовщина</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftOccasion" value="birthday">
+                  <span>День рождения</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftOccasion" value="family">
+                  <span>Семейная дата</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftOccasion" value="child">
+                  <span>Рождение ребёнка</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Правый столбец: Кому (вверху) и Статус получателя (внизу) -->
+          <div class="gift-filter-col">
+            <!-- Кому (в правом верхнем углу, поближе к бюджету) -->
+            <div class="gift-box gift-box-gender">
+              <div class="gift-box-title">Кому</div>
+              <div class="gift-options-list">
+                <label class="gift-option-row is-selected">
+                  <input type="radio" name="giftGender" value="all" checked>
+                  <span>Всем / Семье</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftGender" value="male">
+                  <span>Мужчине</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftGender" value="female">
+                  <span>Женщине</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Статус получателя (в нижнем углу) -->
+            <div class="gift-box gift-box-status">
+              <div class="gift-box-title">Статус получателя</div>
+              <div class="gift-options-list">
+                <label class="gift-option-row is-selected">
+                  <input type="radio" name="giftStatus" value="higher" checked>
+                  <span>Выше по статусу</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftStatus" value="equal">
+                  <span>Равный статус</span>
+                </label>
+                <label class="gift-option-row">
+                  <input type="radio" name="giftStatus" value="lower">
+                  <span>Ниже по статусу</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Сбросить фильтры / Запустить подборку -->
+        <div class="gift-box gift-actions-box">
+          <button class="gift-btn-reset" id="giftBtnReset" type="button">Сбросить фильтры</button>
+          <button class="gift-btn-submit" id="giftBtnSubmit" type="button">Запустить подборку</button>
+        </div>
+      </aside>
+
+      <!-- Правая колонка: карточки книг в точности как в каталоге -->
+      <section class="gift-results-column" aria-label="Подобранные книги">
+        <!-- Элитный лоадер подбора книг (2-3 сек) -->
+        <div class="gift-loader-view" id="giftLoaderView" style="display:none;" aria-live="polite">
+          <div class="gift-loader-inner">
+            <div class="gift-loader-gem">
+              <div class="gift-loader-ring"></div>
+              <div class="gift-loader-ring-inner"></div>
+              <div class="gift-loader-core">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eecb84" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="gift-loader-title" id="giftLoaderTitle">Составляем персональную подборку...</div>
+            <div class="gift-loader-sub" id="giftLoaderSub">Анализируем повод, статус получателя и бюджет</div>
+          </div>
+        </div>
+
+        <div class="books-grid" id="giftBooksGrid">
+          <!-- Карточки генерируются скриптом gifts-wizard.js 1:1 по разметке каталога -->
+        </div>
+        <div class="gift-empty-view" id="giftEmptyView" style="display:none;">
+          В выбранном диапазоне цен книги не найдены. Попробуйте расширить диапазон бюджета.
+        </div>
+      </section>
+    </div>
+
+    <!-- Уведомление при копировании ссылки на подборку -->
+    <div class="gift-toast" id="giftToast">Ссылка на подборку скопирована</div>
   </main>
-  <footer class="section-footer">© 2026 РодКод · Семейное наследие</footer>
-  <script src="./section-page.js?v=20260928-2"></script>
+
+  <script src="./gifts-wizard.js?v=20260929-13"></script>
 </body>
 </html>

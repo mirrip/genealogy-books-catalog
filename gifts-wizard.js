@@ -578,16 +578,19 @@
         icon.className = isLiked ? 'fas fa-heart' : 'far fa-heart';
       }
     }
+
+    showToast(index === -1 ? 'Книга добавлена в избранное!' : 'Книга удалена из избранного');
   }
 
   // Показ уведомления
   function showToast(msg) {
     if (!toastElem) return;
     toastElem.textContent = msg;
+    clearTimeout(showToast.hideTimer);
     toastElem.classList.add('is-visible');
-    setTimeout(() => {
+    showToast.hideTimer = setTimeout(() => {
       toastElem.classList.remove('is-visible');
-    }, 2800);
+    }, 1100);
   }
 
   // Синхронизация параметров с адресной строкой

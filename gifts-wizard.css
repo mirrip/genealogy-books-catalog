@@ -491,27 +491,34 @@
 /* Toast */
 .gift-toast {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: linear-gradient(135deg, rgba(48, 18, 10, .96), rgba(13, 5, 3, .98));
-  border: 1px solid rgba(215, 155, 69, .6);
-  color: #ffe2aa;
-  padding: 14px 24px;
-  border-radius: 14px;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, .45);
+  top: 16px;
+  right: auto;
+  left: 50%;
+  width: max-content;
+  max-width: min(520px, calc(100vw - 28px));
+  background: linear-gradient(145deg, rgba(64, 23, 12, .98), rgba(30, 9, 6, .98));
+  border: 1px solid rgba(218, 157, 67, .58);
+  color: #f1d9ae;
+  padding: 13px 20px;
+  border-radius: 15px;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 230, 181, .08);
   font-size: 14px;
-  font-weight: 500;
+  line-height: 1.35;
+  font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  z-index: 3000;
+  z-index: 10000;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  visibility: hidden;
+  transform: translate(-50%, -14px);
+  transition: opacity .24s ease, transform .24s ease, visibility 0s linear .24s;
   pointer-events: none;
 }
 
 .gift-toast.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity .24s ease, transform .24s ease, visibility 0s;
 }
 
 /* ==========================================================================

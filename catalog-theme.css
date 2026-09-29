@@ -622,6 +622,123 @@ body::before {
   color: currentColor;
 }
 
+/* Calm, premium action states shared by catalog, favorites and cart. */
+.book-like-mobile,
+#bookDetailPage .detail-like-btn,
+.favorite-remove,
+.cart-remove {
+  color: #efd09a;
+  border-color: rgba(231, 184, 108, .5);
+  background: rgba(32, 10, 6, .82);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
+  transform: none;
+  transition:
+    transform .2s ease,
+    color .2s ease,
+    background-color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.book-like-mobile i,
+#bookDetailPage .detail-like-btn i,
+.favorite-remove i,
+.cart-remove i {
+  color: currentColor;
+  transform: none;
+  transition: color .2s ease, transform .2s ease, filter .2s ease;
+}
+
+.book-like-mobile.liked,
+#bookDetailPage .detail-like-btn.liked,
+.favorite-remove {
+  color: #fff8eb;
+  border-color: rgba(255, 236, 199, .72);
+  background: rgba(67, 25, 14, .9);
+}
+
+.book-like-mobile.liked i,
+#bookDetailPage .detail-like-btn.liked i,
+.favorite-remove i {
+  color: #fff8eb;
+  transform: none;
+  filter: drop-shadow(0 0 5px rgba(255, 235, 196, .28));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .book-like-mobile:hover,
+  #bookDetailPage .detail-like-btn:hover,
+  .favorite-remove:hover,
+  .cart-remove:hover {
+    color: #fff8eb;
+    border-color: rgba(255, 226, 172, .78);
+    background: rgba(55, 19, 10, .94);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .34);
+    transform: scale(1.07);
+  }
+
+  .book-like-mobile:hover i,
+  #bookDetailPage .detail-like-btn:hover i,
+  .favorite-remove:hover i,
+  .cart-remove:hover i {
+    color: currentColor;
+    transform: none;
+  }
+}
+
+.book-like-mobile:active,
+#bookDetailPage .detail-like-btn:active,
+.favorite-remove:active,
+.cart-remove:active {
+  transform: scale(.97);
+}
+
+/* Keep quantity data and controls in the cart logic, but hide the card badge. */
+.cart-quantity {
+  display: none !important;
+}
+
+/* Short, unobtrusive notification centered above the page. */
+.success-message-global {
+  top: 16px;
+  right: auto;
+  left: 50%;
+  width: max-content;
+  max-width: min(520px, calc(100vw - 28px));
+  padding: 13px 20px;
+  color: #f1d9ae;
+  border: 1px solid rgba(218, 157, 67, .58);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(64, 23, 12, .98), rgba(30, 9, 6, .98));
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 230, 181, .08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -14px);
+  transition: opacity .24s ease, transform .24s ease, visibility 0s linear .24s;
+}
+
+.success-message-global.show {
+  animation: none !important;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity .24s ease, transform .24s ease, visibility 0s;
+}
+
+.success-message-global i,
+.success-message-global .message {
+  color: #f1d9ae;
+}
+
+.success-message-global i {
+  font-size: 20px;
+}
+
+.success-message-global .message {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
 .book-info {
   padding: 23px 23px 25px;
 }

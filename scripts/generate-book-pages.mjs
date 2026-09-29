@@ -202,7 +202,7 @@ function productPage(book, slug) {
 
   <div class="success-message-global" id="globalSuccessMessage" role="status" aria-live="polite"><i class="fas fa-check-circle"></i><div class="message"></div></div>
   <script>window.STATUS_GIFT_BOOK = ${JSON.stringify(pageBook).replaceAll('<', '\\u003c')};</script>
-  <script src="../book-page.js?v=20260929-1" defer></script>
+  <script src="../book-page.js?v=20260929-2" defer></script>
 </body>
 </html>
 `;

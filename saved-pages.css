@@ -444,4 +444,16 @@ body[data-saved-page="cart"] .cart-item {
     filter: none;
     transform: none;
   }
+
+  body[data-saved-page="favorites"] .saved-bottom-action {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  body[data-saved-page="favorites"] .saved-bottom-action .btn-browse {
+    width: 100%;
+    max-width: none;
+    min-height: 52px;
+    border-radius: 11px;
+  }
 }

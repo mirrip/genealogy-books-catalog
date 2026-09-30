@@ -285,6 +285,17 @@ body::before {
     grid-row: 1;
     grid-column: 1;
     justify-self: start;
+    overflow: visible;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .catalog-menu-toggle::after {
+    position: absolute;
+    inset: -10px;
+    content: "";
+    border-radius: 14px;
+    background: transparent;
   }
 
   .catalog-brand {

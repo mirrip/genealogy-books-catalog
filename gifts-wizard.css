@@ -4,12 +4,18 @@
 
 /* Общий макет страницы */
 .page-gifts {
-  opacity: 1 !important;
-  transform: none !important;
   padding-top: 10px;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
   min-height: 0 !important;
+}
+
+/* Keep the approved desktop state untouched; mobile uses the catalog entrance. */
+@media (min-width: 768px) {
+  .page-gifts {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .page-gifts .catalog-header {

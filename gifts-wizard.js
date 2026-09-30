@@ -377,12 +377,20 @@
     syncMobileWizardUI({ scroll: true });
   }
 
+  function clearMobileOccasionSelection() {
+    document.querySelectorAll('input[name="giftOccasion"]').forEach(input => {
+      input.checked = false;
+      input.closest('.gift-option-row')?.classList.remove('is-selected');
+    });
+  }
+
   function resetMobileWizard() {
     mobileWizardStep = 'occasion';
     mobileWizardOccasionTouched = false;
     mobileWizardLaunched = false;
     syncMobileWizardUI();
     resetAll();
+    clearMobileOccasionSelection();
     syncMobileWizardUI({ scroll: true });
   }
 
@@ -1170,6 +1178,11 @@
     initDOMElements();
     loadStateFromUrl();
     syncRadioUI();
+    if (isMobileWizard()) {
+      const hasOccasionInUrl = new URLSearchParams(window.location.search).has('occasion');
+      mobileWizardOccasionTouched = hasOccasionInUrl;
+      if (!hasOccasionInUrl) clearMobileOccasionSelection();
+    }
     updateSliderVisuals();
     attachEvents();
     syncMobileWizardUI();

@@ -696,7 +696,7 @@
     gap: 0;
   }
 
-  .gift-sidebar[data-mobile-step="occasion"] .gift-actions-box,
+  .gift-sidebar[data-mobile-step="occasion"].has-mobile-choice .gift-actions-box,
   .gift-sidebar[data-mobile-step="gender"] .gift-actions-box,
   .gift-sidebar[data-mobile-step="age"] .gift-actions-box,
   .gift-sidebar[data-mobile-step="budget"] .gift-actions-box {

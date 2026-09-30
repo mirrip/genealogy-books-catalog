@@ -1,0 +1,21 @@
+/* Exact entrance used by the catalog content: one short, compositor-only pass. */
+.catalog-page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: catalog-page-enter 0.5s ease forwards !important;
+}
+
+@keyframes catalog-page-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-page-enter {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}

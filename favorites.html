@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="./saved-pages.css?v=20260930-2">
+  <link rel="stylesheet" href="./saved-pages.css?v=20260930-3">
   <link rel="stylesheet" href="./catalog-theme.css?v=20260928-16">
   <link rel="stylesheet" href="./section-page.css?v=20260928-6">
 </head>
@@ -52,11 +52,9 @@
   </aside><button class="section-drawer-overlay" id="sectionDrawerOverlay" type="button" aria-label="Закрыть меню"></button>
 
   <main class="container page">
-    <div class="back-button-container">
-      <a class="btn-back" href="./catalog.html" aria-label="Вернуться в каталог"><i class="fas fa-arrow-left"></i></a>
-      <h1 class="page-title">Избранное</h1>
-    </div>
+    <header class="saved-page-heading"><h1 class="page-title">Избранное</h1></header>
     <div class="favorites-items" id="favoritesItems"></div>
+    <div class="saved-bottom-action hidden" id="favoritesCatalogAction"><a class="btn-browse" href="./catalog.html">Перейти в каталог</a></div>
     <div id="favoritesEmpty" class="empty-state hidden">
       <div class="empty-icon"><i class="fas fa-heart"></i></div>
       <h2 class="empty-title">Избранное пусто</h2>
@@ -67,6 +65,6 @@
 
   <div class="success-message-global" id="globalSuccessMessage" role="status" aria-live="polite"><i class="fas fa-check-circle"></i><div class="message"></div></div>
   <script src="./section-page.js?v=20260928-2"></script>
-  <script src="./saved-pages.js?v=20260930-2" defer></script>
+  <script src="./saved-pages.js?v=20260930-3" defer></script>
 </body>
 </html>

@@ -67,10 +67,12 @@
     favorites = readList('favorites');
     const list = $('#favoritesItems');
     const empty = $('#favoritesEmpty');
+    const catalogAction = $('#favoritesCatalogAction');
     list.innerHTML = '';
     empty.classList.toggle('hidden', favorites.length > 0);
+    catalogAction?.classList.toggle('hidden', favorites.length === 0);
 
-    favorites.forEach(book => {
+    favorites.forEach((book, index) => {
       const card = document.createElement('article');
       card.className = 'favorite-item';
       card.dataset.id = book.id;
@@ -78,7 +80,7 @@
       card.setAttribute('aria-label', `Открыть: ${book.title}`);
       card.innerHTML = `
         <div class="favorite-image-container">
-          <img class="favorite-item-image" src="${escapeHtml(book.image)}" alt="${escapeHtml(book.title)}">
+          <img class="favorite-item-image" src="${escapeHtml(book.image)}" alt="${escapeHtml(book.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''}>
         </div>
         <div class="favorite-item-info">
           <h2 class="favorite-item-title">${escapeHtml(book.title)}</h2>
@@ -104,7 +106,7 @@
 
     let total = 0;
     let count = 0;
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
       const quantity = Math.max(1, Number(item.quantity) || 1);
       total += Number(item.price || 0) * quantity;
       count += quantity;
@@ -115,7 +117,7 @@
       card.setAttribute('aria-label', `Открыть: ${item.title}`);
       card.innerHTML = `
         <div class="cart-image-container">
-          <img class="cart-item-image" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}">
+          <img class="cart-item-image" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''}>
         </div>
         <div class="cart-item-info">
           <h2 class="cart-item-title">${escapeHtml(item.title)}</h2>

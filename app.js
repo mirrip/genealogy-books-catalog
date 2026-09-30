@@ -144,3 +144,27 @@ if (heroSlides.length > 0) {
 }
 
 for (const item of revealItems) item.classList.add("is-visible");
+
+const homeLowerSections = [...document.querySelectorAll(".home-lower-enter")];
+
+if (homeLowerSections.length > 0) {
+  if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+    for (const section of homeLowerSections) section.classList.add("is-entered");
+  } else {
+    for (const section of homeLowerSections) section.classList.add("is-enter-pending");
+
+    const lowerSectionObserver = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.remove("is-enter-pending");
+        entry.target.classList.add("is-entered");
+        observer.unobserve(entry.target);
+      }
+    }, {
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.08
+    });
+
+    for (const section of homeLowerSections) lowerSectionObserver.observe(section);
+  }
+}

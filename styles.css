@@ -2840,3 +2840,32 @@ body.home-menu-open {
     transform: translateY(72%);
   }
 }
+
+/* Lightweight, one-time reveal for the three lower home-page compositions. */
+.home-lower-enter {
+  opacity: 1;
+  transform: none;
+}
+
+.home-lower-enter.is-enter-pending {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.home-lower-enter.is-entered {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.62s ease,
+    transform 0.62s cubic-bezier(.22, .61, .36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-lower-enter,
+  .home-lower-enter.is-enter-pending,
+  .home-lower-enter.is-entered {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

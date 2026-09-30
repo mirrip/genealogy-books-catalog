@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="./gifts-catalog-base.css?v=20260929-1">
   <link rel="stylesheet" href="./gifts-catalog-theme.css?v=20260929-2">
-  <link rel="stylesheet" href="./gifts-wizard.css?v=20260929-14">
+  <link rel="stylesheet" href="./gifts-wizard.css?v=20260930-16">
 </head>
 <body>
   <!-- Шапка сайта сохранена полностью без изменений как в каталоге -->
@@ -29,7 +29,7 @@
         <a class="catalog-brand" href="./index.html" aria-label="Status Gift — главная">
           <img class="brand__mark" src="./assets/brand/status-gift-mark.webp" width="144" height="144" alt="" aria-hidden="true">
           <span class="brand__desktop-name">Status Gift</span>
-          <span class="brand__mobile-name">РодКод</span>
+          <span class="brand__mobile-name">Status Gift</span>
         </a>
       </div>
       <nav class="catalog-primary-nav" aria-label="Разделы сайта">
@@ -83,7 +83,7 @@
     <!-- Основной макет по эскизу -->
     <div class="gift-layout">
       <!-- Левая колонка: Бюджет сверху и 2 столбца фильтров -->
-      <aside class="gift-sidebar" aria-label="Фильтры подбора">
+      <aside class="gift-sidebar" aria-label="Фильтры подбора" data-mobile-step="occasion">
         <!-- 1. Бюджет: растянут на всю ширину двух столбцов фильтров -->
         <div class="gift-box gift-box-budget">
           <div class="gift-box-title">Бюджет</div>
@@ -225,6 +225,6 @@
     <div class="gift-toast" id="giftToast" role="status" aria-live="polite">Книга добавлена в избранное!</div>
   </main>
 
-  <script src="./gifts-wizard.js?v=20260930-15"></script>
+  <script src="./gifts-wizard.js?v=20260930-16"></script>
 </body>
 </html>

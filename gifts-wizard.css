@@ -570,3 +570,166 @@
   }
 }
 
+/* Mobile-only header parity and compact step-by-step gift wizard. */
+@media (max-width: 920px) {
+  .catalog-site-header .header-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    min-height: 70px;
+    align-items: center;
+    gap: 0;
+  }
+
+  .catalog-site-header .logo-container {
+    display: contents;
+  }
+
+  .catalog-menu-toggle {
+    z-index: 2;
+    grid-row: 1;
+    grid-column: 1;
+    width: 44px;
+    height: 44px;
+    justify-self: start;
+  }
+
+  .catalog-brand {
+    position: relative;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 600;
+    transform: none;
+  }
+
+  .catalog-brand .brand__mark {
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    object-fit: contain;
+    content: url("./assets/brand/status-gift-mark-clean.webp");
+  }
+
+  .catalog-brand .brand__desktop-name {
+    position: absolute;
+    left: 50%;
+    display: block;
+    color: #f1cd91;
+    font-size: 32px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-shadow: 0 2px 18px rgba(221, 151, 64, .24);
+    transform: translateX(-50%);
+  }
+
+  .catalog-brand .brand__mobile-name,
+  .catalog-site-header .nav-buttons {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-gifts {
+    padding-top: 5px;
+  }
+
+  .page-gifts .catalog-header {
+    margin: 12px auto 20px !important;
+  }
+
+  .page-gifts .catalog-title {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: center !important;
+    font-size: clamp(28px, 8.4vw, 34px) !important;
+    line-height: 1 !important;
+    white-space: nowrap;
+  }
+
+  .page-gifts .title-word-left,
+  .page-gifts .title-word-right {
+    min-width: 0;
+    padding: 0 3px;
+  }
+
+  .gift-layout {
+    gap: 18px;
+  }
+
+  .gift-sidebar {
+    gap: 12px;
+    scroll-margin-top: 86px;
+  }
+
+  .gift-sidebar .gift-box-budget,
+  .gift-sidebar .gift-box-occasion,
+  .gift-sidebar .gift-box-gender,
+  .gift-sidebar .gift-box-status,
+  .gift-sidebar .gift-actions-box {
+    display: none;
+  }
+
+  .gift-sidebar[data-mobile-step="occasion"] .gift-box-occasion,
+  .gift-sidebar[data-mobile-step="gender"] .gift-box-gender,
+  .gift-sidebar[data-mobile-step="age"] .gift-box-status {
+    display: block;
+  }
+
+  .gift-sidebar[data-mobile-step="budget"] .gift-box-budget {
+    display: block;
+  }
+
+  .gift-sidebar[data-mobile-step="budget"] .gift-filters-columns {
+    display: none;
+  }
+
+  .gift-filters-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .gift-sidebar[data-mobile-step="occasion"].has-mobile-choice .gift-actions-box,
+  .gift-sidebar[data-mobile-step="gender"] .gift-actions-box,
+  .gift-sidebar[data-mobile-step="age"] .gift-actions-box,
+  .gift-sidebar[data-mobile-step="budget"] .gift-actions-box {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .gift-actions-box .gift-btn-reset,
+  .gift-actions-box .gift-btn-submit {
+    width: auto !important;
+    min-height: 43px;
+    padding: 10px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  .gift-actions-box .gift-btn-reset {
+    flex: 0 0 34%;
+  }
+
+  .gift-actions-box .gift-btn-submit {
+    flex: 1 1 auto;
+  }
+
+  .page-gifts:not(.has-mobile-results) .gift-results-column {
+    display: none;
+  }
+
+  .page-gifts.has-mobile-results .gift-results-column {
+    display: block;
+  }
+}
+

@@ -306,6 +306,14 @@
   let priceMinInput, priceMaxInput, rangeMin, rangeMax, activeTrack;
   let booksGrid, emptyView, toastElem;
   let loaderView, loaderTitle, loaderSub, btnSubmit;
+  let wizardSidebar, wizardPage;
+
+  const MOBILE_WIZARD_QUERY = '(max-width: 767px)';
+  const mobileWizardMedia = window.matchMedia(MOBILE_WIZARD_QUERY);
+  const mobileWizardSteps = ['occasion', 'gender', 'age', 'budget'];
+  let mobileWizardStep = 'occasion';
+  let mobileWizardOccasionTouched = false;
+  let mobileWizardLaunched = false;
 
   function initDOMElements() {
     priceMinInput = document.getElementById('giftPriceMin');
@@ -320,6 +328,96 @@
     loaderTitle = document.getElementById('giftLoaderTitle');
     loaderSub = document.getElementById('giftLoaderSub');
     btnSubmit = document.getElementById('giftBtnSubmit');
+    wizardSidebar = document.querySelector('.gift-sidebar');
+    wizardPage = document.querySelector('.page-gifts');
+  }
+
+  function isMobileWizard() {
+    return mobileWizardMedia.matches;
+  }
+
+  function syncMobileWizardUI({ scroll = false } = {}) {
+    const btnReset = document.getElementById('giftBtnReset');
+    if (!wizardSidebar || !wizardPage || !btnSubmit || !btnReset) return;
+
+    if (!isMobileWizard()) {
+      wizardSidebar.dataset.mobileStep = 'occasion';
+      wizardSidebar.classList.remove('has-mobile-choice');
+      wizardPage.classList.remove('has-mobile-results');
+      btnReset.textContent = 'Сбросить фильтры';
+      btnSubmit.textContent = 'Запустить подборку';
+      return;
+    }
+
+    wizardSidebar.dataset.mobileStep = mobileWizardStep;
+    wizardSidebar.classList.toggle('has-mobile-choice', mobileWizardOccasionTouched);
+    wizardPage.classList.toggle('has-mobile-results', mobileWizardLaunched);
+
+    if (mobileWizardStep === 'occasion') {
+      btnReset.textContent = 'Сбросить';
+      btnSubmit.textContent = 'Далее';
+    } else if (mobileWizardStep === 'gender' || mobileWizardStep === 'age') {
+      btnReset.textContent = 'Назад';
+      btnSubmit.textContent = 'Далее';
+    } else {
+      btnReset.textContent = 'Сбросить';
+      btnSubmit.textContent = 'Запустить подборку';
+    }
+
+    if (scroll) {
+      window.requestAnimationFrame(() => {
+        wizardSidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function setMobileWizardStep(step) {
+    if (!mobileWizardSteps.includes(step)) return;
+    mobileWizardStep = step;
+    syncMobileWizardUI({ scroll: true });
+  }
+
+  function resetMobileWizard() {
+    mobileWizardStep = 'occasion';
+    mobileWizardOccasionTouched = false;
+    mobileWizardLaunched = false;
+    syncMobileWizardUI();
+    resetAll();
+    syncMobileWizardUI({ scroll: true });
+  }
+
+  function handleWizardPrimaryAction() {
+    if (!isMobileWizard()) {
+      startSelection();
+      return;
+    }
+
+    if (mobileWizardStep === 'occasion') {
+      setMobileWizardStep('gender');
+    } else if (mobileWizardStep === 'gender') {
+      setMobileWizardStep('age');
+    } else if (mobileWizardStep === 'age') {
+      setMobileWizardStep('budget');
+    } else {
+      mobileWizardLaunched = true;
+      syncMobileWizardUI();
+      startSelection();
+    }
+  }
+
+  function handleWizardSecondaryAction() {
+    if (!isMobileWizard()) {
+      resetAll();
+      return;
+    }
+
+    if (mobileWizardStep === 'gender') {
+      setMobileWizardStep('occasion');
+    } else if (mobileWizardStep === 'age') {
+      setMobileWizardStep('gender');
+    } else {
+      resetMobileWizard();
+    }
   }
 
   function updateSliderVisuals() {
@@ -892,6 +990,11 @@
         if (name === 'giftOccasion') state.occasion = input.value;
         if (name === 'giftStatus') state.statusRelation = input.value;
         if (name === 'giftGender') state.gender = input.value;
+
+        if (isMobileWizard() && mobileWizardStep === 'occasion' && name === 'giftOccasion') {
+          mobileWizardOccasionTouched = true;
+          syncMobileWizardUI();
+        }
       });
     });
 
@@ -918,10 +1021,10 @@
 
     // 5. Кнопки сброса и запуска подборки
     const submitBtn = document.getElementById('giftBtnSubmit') || btnSubmit;
-    if (submitBtn) submitBtn.addEventListener('click', startSelection);
+    if (submitBtn) submitBtn.addEventListener('click', handleWizardPrimaryAction);
 
     const btnReset = document.getElementById('giftBtnReset');
-    if (btnReset) btnReset.addEventListener('click', resetAll);
+    if (btnReset) btnReset.addEventListener('click', handleWizardSecondaryAction);
 
     // 6. Мобильное меню / сайдбар в точности как в каталоге
     const logoBtn = document.getElementById('logoBtn') || document.getElementById('sectionMenuButton');
@@ -953,6 +1056,8 @@
         if (sidebarOverlay) sidebarOverlay.classList.remove('active');
       }
     });
+
+    window.addEventListener('resize', () => syncMobileWizardUI());
   }
 
   // 7. Интеллектуальный двунаправленный sticky-скролл для левой колонки (фильтры)
@@ -1067,6 +1172,7 @@
     syncRadioUI();
     updateSliderVisuals();
     attachEvents();
+    syncMobileWizardUI();
     renderBooks();
     initStickySidebar();
     autoScrollToCatalog();

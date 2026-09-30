@@ -494,6 +494,21 @@
       }
     });
 
+    // Точечный порядок для мужчин 25–44 лет в «Все поводы» и «Юбилей».
+    // Состав подборки не меняется: две художественные книги только поднимаются наверх.
+    if (
+      state.gender === 'male' &&
+      state.statusRelation === 'equal' &&
+      (state.occasion === 'all' || state.occasion === 'jubilee')
+    ) {
+      const promotedIds = [12, 10];
+      const promotedBooks = promotedIds
+        .map(id => list.find(book => book.id === id))
+        .filter(Boolean);
+      const promotedSet = new Set(promotedBooks.map(book => book.id));
+      list = [...promotedBooks, ...list.filter(book => !promotedSet.has(book.id))];
+    }
+
     // 4. Везде, где альбом (id: 9) оказывается первым, переставляем его ниже / за книгами по 7200 ₽
     if (list.length > 1 && list[0].id === 9) {
       let targetIndex = -1;

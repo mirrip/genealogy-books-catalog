@@ -489,6 +489,7 @@
         }
     </style>
     <link rel="stylesheet" href="./catalog-theme.css?v=20260929-19">
+    <link rel="stylesheet" href="./mobile-menu-consistency.css?v=20260930-1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -565,12 +566,12 @@
         </div>
         <div class="sidebar-menu">
             <a class="sidebar-item sidebar-home-item" href="./index.html"><i class="fas fa-house"></i><span>Главная</span></a>
-            <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог</span></div>
+            <div class="sidebar-item active" data-page="catalog"><i class="fas fa-book-open"></i><span>Каталог книг</span></div>
             <a class="sidebar-item" href="./gifts.html"><i class="fas fa-gift"></i><span>Подобрать подарок</span></a>
             <a class="sidebar-item" href="./works.html"><i class="fas fa-shapes"></i><span>Что мы создаём</span></a>
             <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О Status Gift</span></a>
-            <a class="sidebar-item sidebar-utility-start" href="./favorites.html"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></a>
-            <a class="sidebar-item" href="./cart.html"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></a>
+            <a class="sidebar-item sidebar-utility-start" href="./favorites.html"><i class="fas fa-heart"></i><span>Избранное</span></a>
+            <a class="sidebar-item" href="./cart.html"><i class="fas fa-shopping-cart"></i><span>Корзина</span></a>
             <a class="sidebar-item" href="./profile.html"><i class="fas fa-user"></i><span>Личный кабинет</span></a>
         </div>
         <div class="sidebar-footer"><div>© 2026 Status Gift • Родословные книги</div></div>
@@ -1076,22 +1077,16 @@
 
         function updateCartBadge() {
             const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-            cartBadge.textContent = count;
             cartIconBadge.textContent = count;
             if (count > 0) {
-                cartBadge.classList.remove('hidden');
                 cartIconBadge.classList.remove('hidden');
             } else {
-                cartBadge.classList.add('hidden');
                 cartIconBadge.classList.add('hidden');
             }
         }
 
         function updateFavoritesBadge() {
-            const count = favorites.length;
-            favoritesBadge.textContent = count;
-            if (count > 0) favoritesBadge.classList.remove('hidden');
-            else favoritesBadge.classList.add('hidden');
+            /* В боковом меню счётчики не показываются. */
         }
 
         function updateActiveMenuItem() {

@@ -145,15 +145,15 @@ if (heroSlides.length > 0) {
 
 for (const item of revealItems) item.classList.add("is-visible");
 
-const homeLowerSections = [...document.querySelectorAll(".home-lower-enter")];
+const homeTrustCards = [...document.querySelectorAll(".home-trust-enter")];
 
-if (homeLowerSections.length > 0) {
+if (homeTrustCards.length > 0) {
   if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-    for (const section of homeLowerSections) section.classList.add("is-entered");
+    for (const card of homeTrustCards) card.classList.add("is-entered");
   } else {
-    for (const section of homeLowerSections) section.classList.add("is-enter-pending");
+    for (const card of homeTrustCards) card.classList.add("is-enter-pending");
 
-    const lowerSectionObserver = new IntersectionObserver((entries, observer) => {
+    const trustCardObserver = new IntersectionObserver((entries, observer) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         entry.target.classList.remove("is-enter-pending");
@@ -161,10 +161,10 @@ if (homeLowerSections.length > 0) {
         observer.unobserve(entry.target);
       }
     }, {
-      rootMargin: "0px 0px -10% 0px",
-      threshold: 0.08
+      rootMargin: "0px 0px -12% 0px",
+      threshold: 0.1
     });
 
-    for (const section of homeLowerSections) lowerSectionObserver.observe(section);
+    for (const card of homeTrustCards) trustCardObserver.observe(card);
   }
 }

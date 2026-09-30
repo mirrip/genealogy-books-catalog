@@ -2841,29 +2841,40 @@ body.home-menu-open {
   }
 }
 
-/* Lightweight, one-time reveal for the three lower home-page compositions. */
-.home-lower-enter {
+/* Lightweight reveal for the three home-page trust cards. */
+.home-trust-enter {
+  --home-trust-delay: 0ms;
   opacity: 1;
   transform: none;
 }
 
-.home-lower-enter.is-enter-pending {
+.home-trust-enter.is-enter-pending {
   opacity: 0;
   transform: translateY(24px);
 }
 
-.home-lower-enter.is-entered {
+.home-trust-enter.is-entered {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.62s ease,
-    transform 0.62s cubic-bezier(.22, .61, .36, 1);
+    opacity 0.62s ease var(--home-trust-delay),
+    transform 0.62s cubic-bezier(.22, .61, .36, 1) var(--home-trust-delay);
+}
+
+@media (min-width: 761px) {
+  .trust-foundations .home-trust-enter:nth-child(2) {
+    --home-trust-delay: 120ms;
+  }
+
+  .trust-foundations .home-trust-enter:nth-child(3) {
+    --home-trust-delay: 240ms;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-lower-enter,
-  .home-lower-enter.is-enter-pending,
-  .home-lower-enter.is-entered {
+  .home-trust-enter,
+  .home-trust-enter.is-enter-pending,
+  .home-trust-enter.is-entered {
     opacity: 1;
     transform: none;
     transition: none;

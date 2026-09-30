@@ -543,16 +543,16 @@
                 <a href="./about.html">О Status Gift</a>
             </nav>
             <div class="nav-buttons">
-                <button class="catalog-header-icon" id="favoritesIconBtn" type="button" aria-label="Открыть избранное">
+                <a class="catalog-header-icon" id="favoritesIconBtn" href="./favorites.html" aria-label="Открыть избранное">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg>
-                </button>
+                </a>
                 <a class="catalog-header-icon catalog-account-link" href="./profile.html" aria-label="Личный кабинет">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"/></svg>
                 </a>
-                <button class="btn-cart-icon catalog-header-icon" id="cartIconBtn" type="button" aria-label="Открыть корзину">
+                <a class="btn-cart-icon catalog-header-icon" id="cartIconBtn" href="./cart.html" aria-label="Открыть корзину">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg>
                     <span class="cart-badge-icon" id="cartIconBadge">0</span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -569,8 +569,8 @@
             <a class="sidebar-item" href="./gifts.html"><i class="fas fa-gift"></i><span>Подобрать подарок</span></a>
             <a class="sidebar-item" href="./works.html"><i class="fas fa-shapes"></i><span>Что мы создаём</span></a>
             <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О Status Gift</span></a>
-            <div class="sidebar-item sidebar-utility-start" data-page="favorites"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></div>
-            <div class="sidebar-item" data-page="cart"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></div>
+            <a class="sidebar-item sidebar-utility-start" href="./favorites.html"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></a>
+            <a class="sidebar-item" href="./cart.html"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></a>
             <a class="sidebar-item" href="./profile.html"><i class="fas fa-user"></i><span>Личный кабинет</span></a>
         </div>
         <div class="sidebar-footer"><div>© 2026 Status Gift • Родословные книги</div></div>
@@ -670,40 +670,6 @@
         <button class="mobile-fixed-cart-btn hidden" id="mobileFixedCartBtn"><i class="fas fa-shopping-cart"></i> В корзину</button>
     </main>
 
-    <main class="container page hidden" id="cartPage">
-        <div class="back-button-container">
-            <button class="btn-back" id="backToCatalogFromCart"><i class="fas fa-arrow-left"></i></button>
-            <h1 class="page-title">Ваша Корзина</h1>
-        </div>
-        <div class="cart-items" id="cartItems"></div>
-        <div id="cartEmpty" class="empty-state hidden">
-            <div class="empty-icon"><i class="fas fa-shopping-cart"></i></div>
-            <h2 class="empty-title">Корзина пуста</h2>
-            <p class="empty-message">Добавьте понравившиеся книги в корзину, чтобы оформить заказ</p>
-            <button class="btn-browse" id="browseCatalogBtn">Перейти в каталог</button>
-        </div>
-        <div class="summary-container hidden" id="cartSummary">
-            <div class="summary-row"><span>Товаров:</span><span id="itemCount">0</span></div>
-            <div class="summary-row"><span>Сумма:</span><span id="cartSubtotal">0 ₽</span></div>
-            <div class="summary-total"><span>Итого:</span><span class="summary-total-value" id="cartTotal">0 ₽</span></div>
-            <button class="btn-proceed" id="checkoutBtn">Оставить заявку</button>
-        </div>
-    </main>
-
-    <main class="container page hidden" id="favoritesPage">
-        <div class="back-button-container">
-            <button class="btn-back" id="backToCatalogFromFavorites"><i class="fas fa-arrow-left"></i></button>
-            <h1 class="page-title">Избранное</h1>
-        </div>
-        <div class="favorites-items" id="favoritesItems"></div>
-        <div id="favoritesEmpty" class="empty-state hidden">
-            <div class="empty-icon"><i class="fas fa-heart"></i></div>
-            <h2 class="empty-title">Избранное пусто</h2>
-            <p class="empty-message">Добавьте понравившиеся книги в избранное, чтобы быстро находить их позже</p>
-            <button class="btn-browse" id="browseCatalogFavoritesBtn">Перейти в каталог</button>
-        </div>
-    </main>
-
     <main class="container page hidden" id="orderHistoryPage">
         <div class="back-button-container">
             <button class="btn-back" id="backToCatalogFromHistory"><i class="fas fa-arrow-left"></i></button>
@@ -749,7 +715,7 @@
 
     <main class="container page hidden" id="paymentPage">
         <div class="back-button-container">
-            <button class="btn-back" id="backToCart"><i class="fas fa-arrow-left"></i></button>
+            <a class="btn-back" id="backToCart" href="./cart.html" aria-label="Вернуться в корзину"><i class="fas fa-arrow-left"></i></a>
             <h1 class="page-title">Оформление заказа</h1>
         </div>
         <div class="payment-container">
@@ -774,20 +740,6 @@
             </div>
         </div>
     </main>
-
-    <div class="modal-overlay" id="quantityModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-            <h3 class="modal-title">Изменить количество</h3>
-            <div class="modal-quantity-selector">
-                <button class="modal-quantity-btn minus" id="modalMinus">-</button>
-                <input type="number" class="modal-quantity-input" id="modalQuantity" value="1" min="1" max="99">
-                <button class="modal-quantity-btn plus" id="modalPlus">+</button>
-            </div>
-            <div class="modal-total-price" id="modalTotalPrice">38 500 ₽</div>
-            <div class="modal-actions"><button class="modal-btn modal-btn-save" id="modalSave">Сохранить</button></div>
-        </div>
-    </div>
 
     <div class="success-message-global" id="globalSuccessMessage">
         <i class="fas fa-check-circle"></i>
@@ -1071,6 +1023,14 @@
                 window.location.replace('./profile.html#orders');
                 return;
             }
+            if (requestedPage === 'favorites') {
+                window.location.replace('./favorites.html');
+                return;
+            }
+            if (requestedPage === 'cart') {
+                window.location.replace('./cart.html');
+                return;
+            }
             updateCartBadge();
             updateFavoritesBadge();
             renderBooks(filteredBooks);
@@ -1083,7 +1043,7 @@
             updateSidebarInitials();
             updateTermsCheckboxState();
             renderOrderHistory();
-            const allowedPages = ['catalog', 'favorites', 'cart', 'orderHistory', 'profile', 'faq', 'social'];
+            const allowedPages = ['catalog', 'payment', 'orderHistory', 'profile', 'faq', 'social'];
             if (requestedPage && allowedPages.includes(requestedPage)) showPage(requestedPage);
             if (requestedCallback && books.some(book => book.id === requestedCallback && book.callbackOnly)) {
                 handleCallbackRequest(requestedCallback);
@@ -1176,6 +1136,7 @@
         }
 
         function renderCartItems() {
+            if (!cartItems || !cartEmpty || !cartSummary) return;
             cartItems.innerHTML = '';
             if (cart.length === 0) {
                 cartEmpty.classList.remove('hidden');
@@ -1210,6 +1171,7 @@
         }
 
         function renderFavoritesItems() {
+            if (!favoritesItems || !favoritesEmpty) return;
             favoritesItems.innerHTML = '';
             if (favorites.length === 0) {
                 favoritesEmpty.classList.remove('hidden');
@@ -1274,8 +1236,8 @@
             });
         }
 
-        function checkCartEmpty() { cartEmpty.classList.toggle('hidden', cart.length > 0); cartSummary.classList.toggle('hidden', cart.length === 0); }
-        function checkFavoritesEmpty() { favoritesEmpty.classList.toggle('hidden', favorites.length > 0); }
+        function checkCartEmpty() { if (!cartEmpty || !cartSummary) return; cartEmpty.classList.toggle('hidden', cart.length > 0); cartSummary.classList.toggle('hidden', cart.length === 0); }
+        function checkFavoritesEmpty() { if (!favoritesEmpty) return; favoritesEmpty.classList.toggle('hidden', favorites.length > 0); }
         function getPluralForm(n,t){ return t[(n%100>4&&n%100<20)?2:[2,0,1,1,1,2][(n%10<5)?n%10:5]]; }
         function getTimeLabel(t){ const ts={'asap':'Как можно скорее','morning':'Утро (8:00-12:00)','day':'День (12:00-18:00)','evening':'Вечер (18:00-22:00)'}; return ts[t]||t; }
         function formatDate(d){ const dt=new Date(d); return `${dt.getDate().toString().padStart(2,'0')}.${(dt.getMonth()+1).toString().padStart(2,'0')}.${dt.getFullYear()} ${dt.getHours().toString().padStart(2,'0')}:${dt.getMinutes().toString().padStart(2,'0')} (МСК)`; }
@@ -1479,7 +1441,7 @@
             }
         }
 
-        function removeAllFromCart(bookId){ cart=cart.filter(item=>item.id!==bookId); localStorage.setItem('cart',JSON.stringify(cart)); updateCartBadge(); renderCartItems(); checkCartEmpty(); quantityModal.classList.remove('active'); showGlobalSuccessMessage('Книга удалена из корзины'); }
+        function removeAllFromCart(bookId){ cart=cart.filter(item=>item.id!==bookId); localStorage.setItem('cart',JSON.stringify(cart)); updateCartBadge(); renderCartItems(); checkCartEmpty(); quantityModal?.classList.remove('active'); showGlobalSuccessMessage('Книга удалена из корзины'); }
 
         function updateCartQuantity(bookId, newQuantity){
             const item=cart.find(item=>item.id===bookId);
@@ -1490,11 +1452,11 @@
                 updateCartBadge();
                 showGlobalSuccessMessage(`Количество обновлено: ${newQuantity}`);
             }
-            quantityModal.classList.remove('active');
+            quantityModal?.classList.remove('active');
         }
 
-        function showQuantityModal(bookId){ const item=cart.find(item=>item.id===bookId); if(!item)return; modalBookId=bookId; modalQuantity.value=item.quantity||1; updateModalTotalPrice(); quantityModal.classList.add('active'); }
-        function updateModalTotalPrice(){ const book=books.find(b=>b.id===modalBookId); if(!book)return; const qty=parseInt(modalQuantity.value)||1; modalTotalPrice.textContent=formatPrice(book.price*qty); }
+        function showQuantityModal(bookId){ if(!quantityModal || !modalQuantity) return; const item=cart.find(item=>item.id===bookId); if(!item)return; modalBookId=bookId; modalQuantity.value=item.quantity||1; updateModalTotalPrice(); quantityModal.classList.add('active'); }
+        function updateModalTotalPrice(){ if(!modalQuantity || !modalTotalPrice) return; const book=books.find(b=>b.id===modalBookId); if(!book)return; const qty=parseInt(modalQuantity.value)||1; modalTotalPrice.textContent=formatPrice(book.price*qty); }
 
         function toggleFavorite(bookId) {
             const book = books.find(b=>b.id===bookId);
@@ -1616,17 +1578,17 @@
         }
 
         function showPage(pageName) {
+            if (pageName === 'cart') { window.location.href = './cart.html'; return; }
+            if (pageName === 'favorites') { window.location.href = './favorites.html'; return; }
             hideAllPages();
             switch(pageName){
                 case 'catalog': renderBooks(filteredBooks); catalogPage.classList.remove('hidden'); currentPage='catalog'; break;
-                case 'cart': renderCartItems(); cartPage.classList.remove('hidden'); currentPage='cart'; setTimeout(()=>window.scrollTo(0,document.body.scrollHeight),100); break;
-                case 'favorites': renderFavoritesItems(); favoritesPage.classList.remove('hidden'); currentPage='favorites'; break;
                 case 'orderHistory': renderOrderHistory(); orderHistoryPage.classList.remove('hidden'); currentPage='orderHistory'; break;
                 case 'profile': loadProfileForm(); profilePage.classList.remove('hidden'); currentPage='profile'; break;
                 case 'faq': faqPage.classList.remove('hidden'); currentPage='faq'; break;
                 case 'social': socialPage.classList.remove('hidden'); currentPage='social'; break;
                 case 'payment':
-                    if(cart.length===0 && !pendingCallbackBookId){ showGlobalSuccessMessage('Ваша корзина пуста'); showPage('cart'); return; }
+                    if(cart.length===0 && !pendingCallbackBookId){ showGlobalSuccessMessage('Ваша корзина пуста'); window.location.href='./cart.html'; return; }
                     resetPaymentPage();
                     paymentPage.classList.remove('hidden');
                     currentPage='payment';
@@ -1639,8 +1601,8 @@
 
         function goBack(){
             switch(previousPage){
-                case 'cart': showPage('cart'); break;
-                case 'favorites': showPage('favorites'); break;
+                case 'cart': window.location.href='./cart.html'; break;
+                case 'favorites': window.location.href='./favorites.html'; break;
                 case 'orderHistory': showPage('orderHistory'); break;
                 default: showPage('catalog');
             }
@@ -1792,16 +1754,14 @@
         function setupEventListeners() {
             logoBtn.addEventListener('click', ()=>{ profileSidebar.classList.add('open'); sidebarOverlay.classList.add('active'); });
             sidebarProfileBtn.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
-            cartIconBtn.addEventListener('click', ()=>showPage('cart'));
-            favoritesIconBtn.addEventListener('click', ()=>showPage('favorites'));
             sidebarOverlay.addEventListener('click', ()=>{ profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); });
             document.querySelectorAll('.catalog-primary-nav [data-header-page]').forEach(item => item.addEventListener('click', event=>{ event.preventDefault(); showPage(item.dataset.headerPage); }));
             document.querySelectorAll('.sidebar-item').forEach(item=>{ if(item.dataset.page) item.addEventListener('click', ()=>{ showPage(item.dataset.page); profileSidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }); });
             booksGrid.addEventListener('click', e=>{ if(e.target.closest('.book-like-mobile')){ const btn=e.target.closest('.book-like-mobile'); const id=parseInt(btn.dataset.id); e.preventDefault(); e.stopPropagation(); toggleFavorite(id); } });
             backToCatalog.addEventListener('click', goBack);
             backToCatalogMobile.addEventListener('click', goBack);
-            backToCatalogFromCart.addEventListener('click', ()=>showPage('catalog'));
-            backToCatalogFromFavorites.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromCart?.addEventListener('click', ()=>showPage('catalog'));
+            backToCatalogFromFavorites?.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromHistory.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromProfile.addEventListener('click', ()=>showPage('catalog'));
             backToCatalogFromFaq.addEventListener('click', ()=>showPage('catalog'));
@@ -1811,7 +1771,6 @@
                 catalogLinkBtn.addEventListener('click', e => { e.preventDefault(); showPage('catalog'); });
             }
             document.getElementById('faqGoToCatalog').addEventListener('click', ()=>showPage('catalog'));
-            backToCart.addEventListener('click', ()=>showPage('cart'));
             addToCartBtn.addEventListener('click', ()=>{ 
                 if(currentBookId) {
                     const book = books.find(b => b.id === currentBookId);
@@ -1827,12 +1786,12 @@
             quantityMinus.addEventListener('click', ()=>{ if(quantity>1){ quantity--; updateQuantityDisplay(); } });
             quantityPlus.addEventListener('click', ()=>{ if(quantity<99){ quantity++; updateQuantityDisplay(); } });
             quantityInput.addEventListener('change', ()=>{ quantity=parseInt(quantityInput.value)||1; if(quantity<1)quantity=1; if(quantity>99)quantity=99; updateQuantityDisplay(); });
-            cartItems.addEventListener('click', e=>{
+            cartItems?.addEventListener('click', e=>{
                 if(e.target.closest('.cart-item')&&!e.target.closest('.cart-remove')&&!e.target.closest('.cart-quantity')){ const id=parseInt(e.target.closest('.cart-item').dataset.id); window.location.href=getBookPageUrl(id); }
                 if(e.target.closest('.cart-remove')){ const btn=e.target.closest('.cart-remove'); const id=parseInt(btn.dataset.id); const item=cart.find(i=>i.id===id); if(item&&item.quantity&&item.quantity>5) showQuantityModal(id); else removeFromCart(id); e.stopPropagation(); }
                 if(e.target.closest('.cart-quantity')){ const btn=e.target.closest('.cart-quantity'); const id=parseInt(btn.dataset.id); showQuantityModal(id); e.stopPropagation(); }
             });
-            favoritesItems.addEventListener('click', e=>{
+            favoritesItems?.addEventListener('click', e=>{
                 if(e.target.closest('.favorite-item')&&!e.target.closest('.favorite-remove')){ const id=parseInt(e.target.closest('.favorite-item').dataset.id); window.location.href=getBookPageUrl(id); }
                 if(e.target.closest('.favorite-remove')){ const btn=e.target.closest('.favorite-remove'); const id=parseInt(btn.dataset.id); toggleFavorite(id); e.stopPropagation(); }
             });
@@ -1840,9 +1799,9 @@
                 if(e.target.closest('.btn-repeat-order')){ const btn=e.target.closest('.btn-repeat-order'); const id=parseInt(btn.dataset.id); repeatOrder(id); }
                 if(e.target.closest('.btn-delete-order')){ const btn=e.target.closest('.btn-delete-order'); const id=parseInt(btn.dataset.id); deleteOrder(id); }
             });
-            checkoutBtn.addEventListener('click', ()=>{ if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); return; } showPage('payment'); });
-            browseCatalogBtn.addEventListener('click', ()=>showPage('catalog'));
-            browseCatalogFavoritesBtn.addEventListener('click', ()=>showPage('catalog'));
+            checkoutBtn?.addEventListener('click', ()=>{ if(cart.length===0){ showGlobalSuccessMessage('Ваша корзина пуста'); return; } showPage('payment'); });
+            browseCatalogBtn?.addEventListener('click', ()=>showPage('catalog'));
+            browseCatalogFavoritesBtn?.addEventListener('click', ()=>showPage('catalog'));
             galleryThumbnails.addEventListener('click', e=>{ if(e.target.classList.contains('thumbnail')) changeGalleryImage(parseInt(e.target.dataset.index)); });
             navIndicator.addEventListener('click', e=>{ if(e.target.classList.contains('nav-dot')) changeGalleryImage(parseInt(e.target.dataset.index)); });
             prevZone.addEventListener('click', e=>{ e.stopPropagation(); e.preventDefault(); prevImage(); });
@@ -2111,12 +2070,12 @@
                     if (number > 0) { filterBooksByPrice(number); priceInput.blur(); }
                 }
             });
-            modalClose.addEventListener('click', ()=>quantityModal.classList.remove('active'));
-            modalMinus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q>1){ modalQuantity.value=q-1; updateModalTotalPrice(); } });
-            modalPlus.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<99){ modalQuantity.value=q+1; updateModalTotalPrice(); } });
-            modalQuantity.addEventListener('change', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<1)modalQuantity.value=1; if(q>99)modalQuantity.value=99; updateModalTotalPrice(); });
-            modalSave.addEventListener('click', ()=>{ if(modalBookId){ const q=parseInt(modalQuantity.value)||1; updateCartQuantity(modalBookId,q); } });
-            quantityModal.addEventListener('click', e=>{ if(e.target===quantityModal) quantityModal.classList.remove('active'); });
+            modalClose?.addEventListener('click', ()=>quantityModal.classList.remove('active'));
+            modalMinus?.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q>1){ modalQuantity.value=q-1; updateModalTotalPrice(); } });
+            modalPlus?.addEventListener('click', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<99){ modalQuantity.value=q+1; updateModalTotalPrice(); } });
+            modalQuantity?.addEventListener('change', ()=>{ let q=parseInt(modalQuantity.value)||1; if(q<1)modalQuantity.value=1; if(q>99)modalQuantity.value=99; updateModalTotalPrice(); });
+            modalSave?.addEventListener('click', ()=>{ if(modalBookId){ const q=parseInt(modalQuantity.value)||1; updateCartQuantity(modalBookId,q); } });
+            quantityModal?.addEventListener('click', e=>{ if(e.target===quantityModal) quantityModal.classList.remove('active'); });
             
             // Скролл к кнопке отправки при согласии с условиями (cookie)
             if (termsCheckbox) {

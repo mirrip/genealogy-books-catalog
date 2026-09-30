@@ -25,9 +25,9 @@
         <a href="./index.html">Главная</a><a href="./catalog.html">Каталог книг</a><a href="./gifts.html">Подобрать подарок</a><a href="./works.html">Что мы создаём</a><a href="./about.html">О Status Gift</a>
       </nav>
       <div class="nav-buttons">
-        <a class="catalog-header-icon" href="./catalog.html?page=favorites" aria-label="Избранное"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg><span class="profile-header-badge" id="headerFavoritesCount" hidden>0</span></a>
+        <a class="catalog-header-icon" href="./favorites.html" aria-label="Избранное"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg><span class="profile-header-badge" id="headerFavoritesCount" hidden>0</span></a>
         <a class="catalog-header-icon catalog-account-link is-profile-current" href="./profile.html" aria-label="Личный кабинет" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"/></svg></a>
-        <a class="btn-cart-icon catalog-header-icon" href="./catalog.html?page=cart" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg><span class="profile-header-badge" id="headerCartCount" hidden>0</span></a>
+        <a class="btn-cart-icon catalog-header-icon" href="./cart.html" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg><span class="profile-header-badge" id="headerCartCount" hidden>0</span></a>
       </div>
     </div>
   </header>
@@ -40,8 +40,8 @@
       <a href="./gifts.html"><i class="fas fa-gift section-drawer-icon" aria-hidden="true"></i><span>Подобрать подарок</span></a>
       <a href="./works.html"><i class="fas fa-shapes section-drawer-icon" aria-hidden="true"></i><span>Что мы создаём</span></a>
       <a href="./about.html"><i class="fas fa-circle-info section-drawer-icon" aria-hidden="true"></i><span>О Status Gift</span></a>
-      <a class="drawer-utility" href="./catalog.html?page=favorites"><i class="fas fa-heart section-drawer-icon" aria-hidden="true"></i><span>Избранное</span></a>
-      <a href="./catalog.html?page=cart"><i class="fas fa-shopping-cart section-drawer-icon" aria-hidden="true"></i><span>Корзина</span></a>
+      <a class="drawer-utility" href="./favorites.html"><i class="fas fa-heart section-drawer-icon" aria-hidden="true"></i><span>Избранное</span></a>
+      <a href="./cart.html"><i class="fas fa-shopping-cart section-drawer-icon" aria-hidden="true"></i><span>Корзина</span></a>
       <a class="is-current" href="./profile.html"><i class="fas fa-user section-drawer-icon" aria-hidden="true"></i><span>Личный кабинет</span></a>
     </nav>
     <div class="section-drawer__footer">© 2026 Status Gift • Родословные книги</div>
@@ -74,8 +74,8 @@
         </section>
 
         <nav class="account-actions" aria-label="Разделы личного кабинета">
-          <a class="account-action" href="./catalog.html?page=favorites"><span class="account-action__icon"><i class="fas fa-heart"></i></span><span><strong>Избранное</strong><small>Сохранённые книги</small></span><b id="favoritesCount">0</b></a>
-          <a class="account-action" href="./catalog.html?page=cart"><span class="account-action__icon"><i class="fas fa-shopping-bag"></i></span><span><strong>Корзина</strong><small id="cartSummary">Пока пусто</small></span><b id="cartCount">0</b></a>
+          <a class="account-action" href="./favorites.html"><span class="account-action__icon"><i class="fas fa-heart"></i></span><span><strong>Избранное</strong><small>Сохранённые книги</small></span><b id="favoritesCount">0</b></a>
+          <a class="account-action" href="./cart.html"><span class="account-action__icon"><i class="fas fa-shopping-bag"></i></span><span><strong>Корзина</strong><small id="cartSummary">Пока пусто</small></span><b id="cartCount">0</b></a>
           <a class="account-action" href="#orders" data-profile-panel="orders"><span class="account-action__icon"><i class="fas fa-clock-rotate-left"></i></span><span><strong>История заказов</strong><small>Предыдущие заявки</small></span><b id="ordersCount">0</b></a>
           <a class="account-action" href="#faq" data-profile-panel="faq"><span class="account-action__icon"><i class="fas fa-circle-question"></i></span><span><strong>Частые вопросы</strong><small>Ответы о книгах и заказе</small></span><i class="fas fa-chevron-down account-action__arrow"></i></a>
         </nav>

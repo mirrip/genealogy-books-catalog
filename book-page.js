@@ -200,8 +200,8 @@
       if (dot) changeImage(Number(dot.dataset.index));
     });
     $$('.book-back-button').forEach((button) => button.addEventListener('click', goBack));
-    $('#favoritesIconBtn')?.addEventListener('click', () => { window.location.href = '../catalog.html?page=favorites'; });
-    $('#cartIconBtn')?.addEventListener('click', () => { window.location.href = '../catalog.html?page=cart'; });
+    $('#favoritesIconBtn')?.addEventListener('click', () => { window.location.href = '../favorites.html'; });
+    $('#cartIconBtn')?.addEventListener('click', () => { window.location.href = '../cart.html'; });
 
     let touchStartX = 0;
     const imageContainer = $('#mainImageContainer');

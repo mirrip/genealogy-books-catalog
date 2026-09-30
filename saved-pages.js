@@ -197,18 +197,6 @@
     showMessage(`Количество обновлено: ${quantity}`);
   }
 
-  function openSidebar() {
-    $('#profileSidebar').classList.add('open');
-    $('#sidebarOverlay').classList.add('active');
-    $('#logoBtn').setAttribute('aria-expanded', 'true');
-  }
-
-  function closeSidebar() {
-    $('#profileSidebar').classList.remove('open');
-    $('#sidebarOverlay').classList.remove('active');
-    $('#logoBtn').setAttribute('aria-expanded', 'false');
-  }
-
   function handleListInteraction(event) {
     const remove = event.target.closest('.favorite-remove');
     const trash = event.target.closest('.cart-remove');
@@ -235,9 +223,6 @@
     if (card) window.location.href = getBookPageUrl(Number(card.dataset.id));
   }
 
-  $('#logoBtn')?.addEventListener('click', openSidebar);
-  $('#sidebarProfileBtn')?.addEventListener('click', closeSidebar);
-  $('#sidebarOverlay')?.addEventListener('click', closeSidebar);
   $('#cartItems')?.addEventListener('click', handleListInteraction);
   $('#favoritesItems')?.addEventListener('click', handleListInteraction);
   $('#cartItems')?.addEventListener('keydown', event => {
@@ -265,10 +250,7 @@
     if (event.target.id === 'quantityModal') closeQuantityModal();
   });
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      closeSidebar();
-      closeQuantityModal();
-    }
+    if (event.key === 'Escape') closeQuantityModal();
   });
   window.addEventListener('storage', event => {
     if (event.key === 'cart') renderCart();

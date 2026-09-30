@@ -12,14 +12,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="./saved-pages.css?v=20260930-1">
-  <link rel="stylesheet" href="./catalog-theme.css?v=20260929-19">
+  <link rel="stylesheet" href="./saved-pages.css?v=20260930-2">
+  <link rel="stylesheet" href="./catalog-theme.css?v=20260928-16">
+  <link rel="stylesheet" href="./section-page.css?v=20260928-6">
 </head>
 <body data-saved-page="favorites">
   <header class="catalog-site-header">
     <div class="container header-container">
       <div class="logo-container">
-        <button class="catalog-menu-toggle" id="logoBtn" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="catalog-menu-toggle" id="sectionMenuButton" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
         <a class="catalog-brand" href="./index.html" aria-label="Status Gift — главная">
           <img class="brand__mark" src="./assets/brand/status-gift-mark-clean.webp" width="144" height="144" alt="" aria-hidden="true">
           <span class="brand__desktop-name">Status Gift</span><span class="brand__mobile-name">РодКод</span>
@@ -29,27 +30,26 @@
         <a href="./index.html">Главная</a><a href="./catalog.html">Каталог книг</a><a href="./gifts.html">Подобрать подарок</a><a href="./works.html">Что мы создаём</a><a href="./about.html">О Status Gift</a>
       </nav>
       <div class="nav-buttons">
-        <a class="catalog-header-icon is-current" href="./favorites.html" aria-label="Избранное" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg></a>
+        <a class="catalog-header-icon" href="./favorites.html" aria-label="Избранное" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.6 0L12 5.9l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.7a5.4 5.4 0 0 0 0-7.6Z"/></svg></a>
         <a class="catalog-header-icon catalog-account-link" href="./profile.html" aria-label="Личный кабинет"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0"/></svg></a>
-        <a class="btn-cart-icon catalog-header-icon" href="./cart.html" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg><span class="cart-badge-icon hidden" id="cartIconBadge">0</span></a>
+        <a class="btn-cart-icon catalog-header-icon" href="./cart.html" aria-label="Корзина"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L20 8H6M9 20h.01M17 20h.01"/></svg></a>
       </div>
     </div>
   </header>
-  <aside class="sidebar" id="profileSidebar" aria-label="Меню сайта">
-    <div class="sidebar-header"><button class="sidebar-profile-btn sidebar-close-btn" id="sidebarProfileBtn" type="button" aria-label="Закрыть меню"><span aria-hidden="true">×</span></button><div class="sidebar-logo">Status Gift</div></div>
-    <nav class="sidebar-menu">
-      <a class="sidebar-item sidebar-home-item" href="./index.html"><i class="fas fa-house"></i><span>Главная</span></a>
-      <a class="sidebar-item" href="./catalog.html"><i class="fas fa-book-open"></i><span>Каталог</span></a>
-      <a class="sidebar-item" href="./gifts.html"><i class="fas fa-gift"></i><span>Подобрать подарок</span></a>
-      <a class="sidebar-item" href="./works.html"><i class="fas fa-shapes"></i><span>Что мы создаём</span></a>
-      <a class="sidebar-item" href="./about.html"><i class="fas fa-circle-info"></i><span>О Status Gift</span></a>
-      <a class="sidebar-item sidebar-utility-start active" href="./favorites.html" aria-current="page"><i class="fas fa-heart"></i><span>Избранное</span><span class="sidebar-badge hidden" id="favoritesBadge">0</span></a>
-      <a class="sidebar-item" href="./cart.html"><i class="fas fa-shopping-cart"></i><span>Корзина</span><span class="sidebar-badge hidden" id="cartBadge">0</span></a>
-      <a class="sidebar-item" href="./profile.html"><i class="fas fa-user"></i><span>Личный кабинет</span></a>
+  <aside class="section-drawer" id="sectionDrawer" aria-label="Мобильное меню" aria-hidden="true">
+    <div class="section-drawer__header"><button class="section-drawer-close" id="sectionDrawerClose" type="button" aria-label="Закрыть меню">×</button><a class="section-drawer-brand" href="./index.html">Status Gift</a></div>
+    <nav class="section-drawer-nav" aria-label="Меню сайта">
+      <a href="./index.html"><i class="fas fa-house section-drawer-icon" aria-hidden="true"></i><span>Главная</span></a>
+      <a href="./catalog.html"><i class="fas fa-book-open section-drawer-icon" aria-hidden="true"></i><span>Каталог книг</span></a>
+      <a href="./gifts.html"><i class="fas fa-gift section-drawer-icon" aria-hidden="true"></i><span>Подобрать подарок</span></a>
+      <a href="./works.html"><i class="fas fa-shapes section-drawer-icon" aria-hidden="true"></i><span>Что мы создаём</span></a>
+      <a href="./about.html"><i class="fas fa-circle-info section-drawer-icon" aria-hidden="true"></i><span>О Status Gift</span></a>
+      <a class="drawer-utility is-current" href="./favorites.html" aria-current="page"><i class="fas fa-heart section-drawer-icon" aria-hidden="true"></i><span>Избранное</span></a>
+      <a href="./cart.html"><i class="fas fa-shopping-cart section-drawer-icon" aria-hidden="true"></i><span>Корзина</span></a>
+      <a href="./profile.html"><i class="fas fa-user section-drawer-icon" aria-hidden="true"></i><span>Личный кабинет</span></a>
     </nav>
-    <div class="sidebar-footer"><div>© 2026 Status Gift • Родословные книги</div></div>
-  </aside>
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="section-drawer__footer">© 2026 Status Gift • Родословные книги</div>
+  </aside><button class="section-drawer-overlay" id="sectionDrawerOverlay" type="button" aria-label="Закрыть меню"></button>
 
   <main class="container page">
     <div class="back-button-container">
@@ -66,6 +66,7 @@
   </main>
 
   <div class="success-message-global" id="globalSuccessMessage" role="status" aria-live="polite"><i class="fas fa-check-circle"></i><div class="message"></div></div>
-  <script src="./saved-pages.js?v=20260930-1" defer></script>
+  <script src="./section-page.js?v=20260928-2"></script>
+  <script src="./saved-pages.js?v=20260930-2" defer></script>
 </body>
 </html>

@@ -191,6 +191,48 @@ if (heroSlides.length > 0) {
 
 for (const item of revealItems) item.classList.add("is-visible");
 
+// Join the desktop hero wave to the lower canvas in actual CSS pixels.
+(() => {
+  const hero = document.querySelector(".hero");
+  const surface = document.querySelector(".hero__dark-surface");
+  const lower = document.querySelector(".lower-night");
+  if (!hero || !surface || !lower) return;
+  const desktop = window.matchMedia("(min-width: 761px)");
+  const svgMask = (width, height, path) => `url("data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none"><path fill="black" d="${path}"/></svg>`
+  )}")`;
+  const updateWave = () => {
+    if (!desktop.matches) {
+      hero.style.removeProperty("--hero-wave-mask");
+      lower.style.removeProperty("--lower-wave-mask");
+      lower.style.removeProperty("--lower-wave-paint");
+      hero.style.removeProperty("--hero-wave-line");
+      return;
+    }
+    const width = surface.clientWidth;
+    const height = hero.clientHeight;
+    const lowerWidth = lower.clientWidth;
+    const lowerHeight = lower.clientHeight;
+    const x = value => (width * value / 1000).toFixed(2);
+    const y = value => (height * value / 1000).toFixed(2);
+    // Keep the upper contour, turn at 200px, and meet the next block at 240px.
+    const edge = `M0 0H${width}C${x(985)} ${y(70)} ${x(910)} ${y(130)} ${x(845)} ${y(225)}S${x(805)} ${y(470)} ${x(755)} ${y(595)}S${x(535)} ${y(825)} ${Math.max(330, width * .36)} ${y(900)}C260 ${y(940)} 200 ${y(945)} 200 ${y(970)}C200 ${y(985)} 220 ${y(995)} 240 ${height}H0Z`;
+    hero.style.setProperty("--hero-wave-mask", svgMask(width, height, edge));
+    const paint = (w, h, path, fill) => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${path}" fill="${fill}" stroke="#b98243" stroke-opacity=".28" stroke-width="1.2"/></svg>`)}")`;
+    hero.style.setProperty("--hero-wave-line", paint(width, height, edge.split("H0Z")[0].replace(`M0 0H${width}`, `M${width} 0`), "none"));
+    hero.style.setProperty("--hero-wave-width", `${width}px`);
+    // The same starting position and tangent prevent a break between blocks.
+    const continuation = `M0 0H240C320 ${height * .02} ${lowerWidth * .65} ${lowerHeight * .12} ${lowerWidth * .62} ${lowerHeight * .3}S${lowerWidth * .22} ${lowerHeight * .61} ${lowerWidth * .4} ${lowerHeight * .8}S${lowerWidth * .62} ${lowerHeight * .94} ${lowerWidth * .5} ${lowerHeight}H0Z`;
+    lower.style.setProperty("--lower-wave-mask", svgMask(lowerWidth, lowerHeight, continuation));
+    lower.style.setProperty("--lower-wave-paint", paint(lowerWidth, lowerHeight, continuation, "#100503"));
+  };
+  updateWave();
+  const observer = new ResizeObserver(updateWave);
+  observer.observe(hero);
+  observer.observe(lower);
+  desktop.addEventListener("change", updateWave);
+})();
+
 const homeTrustCards = [...document.querySelectorAll(".home-trust-enter")];
 
 if (homeTrustCards.length > 0) {

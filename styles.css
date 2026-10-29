@@ -2891,22 +2891,9 @@ body.home-menu-open {
   }
 }
 
-/* Desktop hero: keep the text canvas flowing down beside the photograph. */
+/* Desktop hero: retain the original taper, with a small return at the lower left. */
 @media (min-width: 761px) {
   .hero {
-    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 910 130 845 225S805 470 755 595S695 760 720 865S700 970 690 1000H0Z'/%3E%3C/svg%3E");
-  }
-
-  .hero__dark-surface {
-    background:
-      radial-gradient(ellipse at 72% 74%, rgba(164, 86, 43, .16), transparent 48%),
-      radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(116, 39, 21, .34), transparent 33%),
-      radial-gradient(circle at 12% 79%, rgba(85, 28, 15, .4), transparent 30%),
-      radial-gradient(circle at 82% 8%, rgba(77, 20, 12, .17), transparent 28%),
-      linear-gradient(128deg, #100402 0, #220a05 46%, #160704 76%, #090302 100%);
-  }
-
-  .hero__transition {
-    background: rgba(146, 77, 36, .38);
+    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 910 130 845 225S805 470 755 595S535 825 360 900C110 995 22 945 22 970C22 988 65 998 105 1000H0Z'/%3E%3C/svg%3E");
   }
 }

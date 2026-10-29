@@ -191,45 +191,52 @@ if (heroSlides.length > 0) {
 
 for (const item of revealItems) item.classList.add("is-visible");
 
-// Join the desktop hero wave to the lower canvas in actual CSS pixels.
+// One continuous contour, cropped into the hero and the lower canvas.
 (() => {
   const hero = document.querySelector(".hero");
   const surface = document.querySelector(".hero__dark-surface");
   const lower = document.querySelector(".lower-night");
-  if (!hero || !surface || !lower) return;
+  const cards = document.querySelector(".trust-foundations");
+  if (!hero || !surface || !lower || !cards) return;
   const desktop = window.matchMedia("(min-width: 761px)");
-  const svgMask = (width, height, path) => `url("data:image/svg+xml,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none"><path fill="black" d="${path}"/></svg>`
-  )}")`;
+  const image = (viewBox, content) => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" preserveAspectRatio="none">${content}</svg>`)}")`;
   const updateWave = () => {
     if (!desktop.matches) {
-      hero.style.removeProperty("--hero-wave-mask");
-      lower.style.removeProperty("--lower-wave-mask");
+      for (const key of ["--hero-wave-mask", "--hero-wave-line", "--hero-wave-width"]) hero.style.removeProperty(key);
       lower.style.removeProperty("--lower-wave-paint");
-      hero.style.removeProperty("--hero-wave-line");
       return;
     }
-    const width = surface.clientWidth;
-    const height = hero.clientHeight;
-    const lowerWidth = lower.clientWidth;
+    const w = surface.clientWidth;
+    const h = hero.clientHeight;
+    const fullWidth = lower.clientWidth;
     const lowerHeight = lower.clientHeight;
-    const x = value => (width * value / 1000).toFixed(2);
-    const y = value => (height * value / 1000).toFixed(2);
-    // Keep the upper contour, turn at 200px, and meet the next block at 240px.
-    const edge = `M0 0H${width}C${x(985)} ${y(70)} ${x(910)} ${y(130)} ${x(845)} ${y(225)}S${x(805)} ${y(470)} ${x(755)} ${y(595)}S${x(535)} ${y(825)} ${Math.max(330, width * .36)} ${y(900)}C260 ${y(940)} 200 ${y(945)} 200 ${y(970)}C200 ${y(985)} 220 ${y(995)} 240 ${height}H0Z`;
-    hero.style.setProperty("--hero-wave-mask", svgMask(width, height, edge));
-    const paint = (w, h, path, fill) => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${path}" fill="${fill}" stroke="#b98243" stroke-opacity=".28" stroke-width="1.2"/></svg>`)}")`;
-    hero.style.setProperty("--hero-wave-line", paint(width, height, edge.split("H0Z")[0].replace(`M0 0H${width}`, `M${width} 0`), "none"));
-    hero.style.setProperty("--hero-wave-width", `${width}px`);
-    // The same starting position and tangent prevent a break between blocks.
-    const continuation = `M0 0H240C320 ${height * .02} ${lowerWidth * .65} ${lowerHeight * .12} ${lowerWidth * .62} ${lowerHeight * .3}S${lowerWidth * .22} ${lowerHeight * .61} ${lowerWidth * .4} ${lowerHeight * .8}S${lowerWidth * .62} ${lowerHeight * .94} ${lowerWidth * .5} ${lowerHeight}H0Z`;
-    lower.style.setProperty("--lower-wave-mask", svgMask(lowerWidth, lowerHeight, continuation));
-    lower.style.setProperty("--lower-wave-paint", paint(lowerWidth, lowerHeight, continuation, "#100503"));
+    const cardHeight = Math.max(...[...cards.children].map(card => card.offsetHeight));
+    const turnY = h + cards.offsetTop + cards.offsetHeight;
+    const minX = Math.min(200, fullWidth * .24);
+    const maxX = Math.min(fullWidth * .48, minX + 220);
+    const lobeHeight = cardHeight * 1.75;
+    let contour = `M${w} 0C${w * .98} ${h * .12} ${w * .8} ${h * .2} ${w * .8} ${h * .4}C${w * .8} ${h * .66} ${minX} ${h * .87} ${minX} ${turnY}`;
+    let currentY = turnY;
+    let currentX = minX;
+    while (currentY < h + lowerHeight) {
+      const nextX = currentX === minX ? maxX : minX;
+      const nextY = currentY + lobeHeight;
+      // Vertical tangents at every extremum keep all sizes free of corners.
+      contour += `C${currentX} ${currentY + lobeHeight / 2} ${nextX} ${nextY - lobeHeight / 2} ${nextX} ${nextY}`;
+      currentY = nextY;
+      currentX = nextX;
+    }
+    const area = `${contour}H0V0Z`;
+    hero.style.setProperty("--hero-wave-mask", image(`0 0 ${w} ${h}`, `<path fill="black" d="${area}"/>`));
+    hero.style.setProperty("--hero-wave-width", `${w}px`);
+    const line = `<path d="${contour}" fill="none" stroke="#c69455" stroke-opacity=".32" stroke-width="1.2"/>`;
+    hero.style.setProperty("--hero-wave-line", image(`0 0 ${w} ${h}`, line));
+    const light = `<defs><linearGradient id="light" x1="0" y1="${h}" x2="0" y2="${h + cardHeight}" gradientUnits="userSpaceOnUse"><stop stop-color="#edbd79" stop-opacity="0"/><stop offset="1" stop-color="#edbd79" stop-opacity=".12"/></linearGradient></defs><path d="${area}" fill="url(#light)"/>${line}`;
+    lower.style.setProperty("--lower-wave-paint", image(`0 ${h} ${fullWidth} ${lowerHeight}`, light));
   };
   updateWave();
   const observer = new ResizeObserver(updateWave);
-  observer.observe(hero);
-  observer.observe(lower);
+  for (const element of [hero, lower, cards]) observer.observe(element);
   desktop.addEventListener("change", updateWave);
 })();
 

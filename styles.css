@@ -2890,30 +2890,3 @@ body.home-menu-open {
     transition: none;
   }
 }
-
-/* Desktop wave continues onto the lower canvas using a shared seam. */
-@media (min-width: 761px) {
-  .hero__atmosphere::after {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: var(--hero-wave-width);
-    content: "";
-    background: var(--hero-wave-line) 0 0 / 100% 100% no-repeat;
-  }
-
-  .hero__dark-surface {
-    background:
-      linear-gradient(180deg, transparent 75%, #100503 100%),
-      radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(101, 27, 15, .31), transparent 33%),
-      linear-gradient(128deg, #0b0201 0, #1b0503 46%, #0e0302 76%, #040101 100%);
-  }
-
-  .lower-night::before {
-    top: 0;
-    bottom: 0;
-    height: auto;
-    z-index: 0;
-    background: var(--lower-wave-paint) 0 0 / 100% 100% no-repeat;
-    opacity: .8;
-  }
-}

@@ -191,55 +191,6 @@ if (heroSlides.length > 0) {
 
 for (const item of revealItems) item.classList.add("is-visible");
 
-// One continuous contour, cropped into the hero and the lower canvas.
-(() => {
-  const hero = document.querySelector(".hero");
-  const surface = document.querySelector(".hero__dark-surface");
-  const lower = document.querySelector(".lower-night");
-  const cards = document.querySelector(".trust-foundations");
-  if (!hero || !surface || !lower || !cards) return;
-  const desktop = window.matchMedia("(min-width: 761px)");
-  const image = (viewBox, content) => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" preserveAspectRatio="none">${content}</svg>`)}")`;
-  const updateWave = () => {
-    if (!desktop.matches) {
-      for (const key of ["--hero-wave-mask", "--hero-wave-line", "--hero-wave-width"]) hero.style.removeProperty(key);
-      lower.style.removeProperty("--lower-wave-paint");
-      return;
-    }
-    const w = surface.clientWidth;
-    const h = hero.clientHeight;
-    const fullWidth = lower.clientWidth;
-    const lowerHeight = lower.clientHeight;
-    const cardHeight = Math.max(...[...cards.children].map(card => card.offsetHeight));
-    const turnY = h + cards.offsetTop + cards.offsetHeight;
-    const minX = Math.min(200, fullWidth * .24);
-    const maxX = Math.min(fullWidth * .48, minX + 220);
-    const lobeHeight = cardHeight * 1.75;
-    let contour = `M${w} 0C${w * .98} ${h * .12} ${w * .8} ${h * .2} ${w * .8} ${h * .4}C${w * .8} ${h * .66} ${minX} ${h * .87} ${minX} ${turnY}`;
-    let currentY = turnY;
-    let currentX = minX;
-    while (currentY < h + lowerHeight) {
-      const nextX = currentX === minX ? maxX : minX;
-      const nextY = currentY + lobeHeight;
-      // Vertical tangents at every extremum keep all sizes free of corners.
-      contour += `C${currentX} ${currentY + lobeHeight / 2} ${nextX} ${nextY - lobeHeight / 2} ${nextX} ${nextY}`;
-      currentY = nextY;
-      currentX = nextX;
-    }
-    const area = `${contour}H0V0Z`;
-    hero.style.setProperty("--hero-wave-mask", image(`0 0 ${w} ${h}`, `<path fill="black" d="${area}"/>`));
-    hero.style.setProperty("--hero-wave-width", `${w}px`);
-    const line = `<path d="${contour}" fill="none" stroke="#c69455" stroke-opacity=".32" stroke-width="1.2"/>`;
-    hero.style.setProperty("--hero-wave-line", image(`0 0 ${w} ${h}`, line));
-    const light = `<defs><linearGradient id="light" x1="0" y1="${h}" x2="0" y2="${h + cardHeight}" gradientUnits="userSpaceOnUse"><stop stop-color="#edbd79" stop-opacity="0"/><stop offset="1" stop-color="#edbd79" stop-opacity=".12"/></linearGradient></defs><path d="${area}" fill="url(#light)"/>${line}`;
-    lower.style.setProperty("--lower-wave-paint", image(`0 ${h} ${fullWidth} ${lowerHeight}`, light));
-  };
-  updateWave();
-  const observer = new ResizeObserver(updateWave);
-  for (const element of [hero, lower, cards]) observer.observe(element);
-  desktop.addEventListener("change", updateWave);
-})();
-
 const homeTrustCards = [...document.querySelectorAll(".home-trust-enter")];
 
 if (homeTrustCards.length > 0) {

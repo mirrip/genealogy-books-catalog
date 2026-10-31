@@ -1082,12 +1082,11 @@ body.home-menu-open {
   }
 
   .home-project-intro__copy {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-area: copy;
-    align-self: start;
-    align-content: start;
+    align-self: stretch;
     max-width: none;
-    gap: clamp(14px, 1.4vw, 20px);
     padding: 0;
   }
 
@@ -1120,9 +1119,10 @@ body.home-menu-open {
 
   .home-project-intro__copy > p:last-child {
     max-width: 620px;
-    margin: 0;
+    margin-block: auto;
     font-size: clamp(15px, 1.25vw, 17px);
     line-height: 1.7;
+    transform: translateY(clamp(16px, 2vw, 26px));
   }
 }
 

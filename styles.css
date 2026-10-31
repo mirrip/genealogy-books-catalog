@@ -1051,12 +1051,18 @@ body.home-menu-open {
   line-height: .98;
 }
 
-.home-project-intro__copy > p:last-child {
+.home-project-intro__copy > .home-project-intro__description {
   max-width: 590px;
   margin: 22px 0 0;
   color: rgba(240, 218, 184, .8);
   font-size: clamp(14px, 1.25vw, 17px);
   line-height: 1.75;
+}
+
+.home-project-intro__about {
+  min-width: 220px;
+  min-height: 52px;
+  border-radius: 16px;
 }
 
 @media (min-width: 761px) {
@@ -1117,11 +1123,16 @@ body.home-menu-open {
     line-height: 1.02;
   }
 
-  .home-project-intro__copy > p:last-child {
+  .home-project-intro__copy > .home-project-intro__description {
     max-width: 620px;
     margin-block: auto;
     font-size: clamp(15px, 1.25vw, 17px);
     line-height: 1.7;
+  }
+
+  .home-project-intro__about {
+    align-self: flex-start;
+    flex-shrink: 0;
   }
 }
 
@@ -2316,12 +2327,20 @@ body.home-menu-open {
     display: none;
   }
 
-  .home-project-intro__copy > p:last-child {
+  .home-project-intro__copy > .home-project-intro__description {
     grid-column: 1 / -1;
     grid-row: 3;
     margin: 0;
     font-size: 13px;
     line-height: 1.65;
+  }
+
+  .home-project-intro__about {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    width: 100%;
+    min-width: 0;
+    margin-top: 6px;
   }
 
   .lower-night::before {

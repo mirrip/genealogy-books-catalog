@@ -1122,7 +1122,6 @@ body.home-menu-open {
     margin-block: auto;
     font-size: clamp(15px, 1.25vw, 17px);
     line-height: 1.7;
-    transform: translateY(clamp(16px, 2vw, 26px));
   }
 }
 

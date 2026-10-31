@@ -2191,9 +2191,9 @@ body.home-menu-open {
     margin: 0;
     color: #f0d39d;
     font-family: var(--display);
-    font-size: clamp(20px, 5.7vw, 23px);
+    font-size: clamp(21px, 6vw, 24px);
     font-weight: 500;
-    line-height: 1.08;
+    line-height: 1.12;
     text-align: left;
   }
 

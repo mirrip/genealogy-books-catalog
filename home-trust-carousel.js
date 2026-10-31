@@ -7,6 +7,7 @@
 
   function activate() {
     let active = 0;
+    let destination = null;
     let timer;
     let settleTimer;
     let visible = false;
@@ -43,21 +44,25 @@
     function schedule() {
       clearTimeout(timer);
       if (!visible || touching || document.hidden || disposed) return;
-      timer = setTimeout(() => go(active + 2, true), 15000);
+      timer = setTimeout(() => go(active + 2, true), 8000);
     }
     function go(index, smooth) {
       clearTimeout(timer);
+      destination = index;
+      active = (index - 1 + cards.length) % cards.length;
+      paint();
       track.scrollTo({
         left: position(index),
         behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
           ? 'smooth' : 'auto'
       });
     }
-    function settle() {
-      if (disposed || touching) return;
-      let nearest = slides.reduce((best, slide, index) =>
+    const nearestSlide = () => slides.reduce((best, slide, index) =>
         Math.abs(position(index) - track.scrollLeft) < Math.abs(position(best) - track.scrollLeft)
           ? index : best, 0);
+    function settle() {
+      if (disposed || touching) return;
+      let nearest = nearestSlide();
       if (nearest === 0) {
         nearest = cards.length;
         go(nearest, false);
@@ -66,15 +71,20 @@
         go(nearest, false);
       }
       active = nearest - 1;
+      destination = null;
       paint();
       schedule();
     }
     const onScroll = () => {
       clearTimeout(timer);
+      if (destination === null) {
+        active = (nearestSlide() - 1 + cards.length) % cards.length;
+        paint();
+      }
       clearTimeout(settleTimer);
       settleTimer = setTimeout(settle, 180);
     };
-    const onDown = () => { touching = true; clearTimeout(timer); };
+    const onDown = () => { touching = true; destination = null; clearTimeout(timer); };
     const onUp = () => { touching = false; settle(); };
     track.addEventListener('scroll', onScroll, { passive: true });
     track.addEventListener('pointerdown', onDown, { passive: true });

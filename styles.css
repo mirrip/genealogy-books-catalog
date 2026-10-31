@@ -2207,6 +2207,7 @@ body.home-menu-open {
     width: 96px;
     gap: 5px;
     margin: 12px auto 0;
+    transform: translateY(-9px);
   }
 
   .trust-carousel-indicator button {

@@ -2182,6 +2182,58 @@ body.home-menu-open {
     gap: 12px;
   }
 
+  .trust-foundations.is-mobile-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .trust-foundations.is-mobile-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .is-mobile-carousel > .trust-foundation {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .trust-carousel-indicator {
+    display: flex;
+    width: 96px;
+    gap: 5px;
+    margin: 12px auto 0;
+  }
+
+  .trust-carousel-indicator button {
+    flex: 1;
+    height: 16px;
+    padding: 6px 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .trust-carousel-indicator button::after {
+    display: block;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(213, 154, 67, .22);
+    content: "";
+  }
+
+  .trust-carousel-indicator button[aria-current="true"]::after {
+    background: #d59a43;
+  }
+
+  .trust-carousel-indicator + .home-project-intro {
+    margin-top: 12px;
+  }
+
   .trust-foundation {
     min-height: 0;
     padding: 24px 22px 32px;

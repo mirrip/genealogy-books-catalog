@@ -1060,7 +1060,9 @@ body.home-menu-open {
 }
 
 .home-assistant-visual {
+  position: relative;
   width: min(calc(100% - 96px), 1440px);
+  min-height: 480px;
   margin: 32px auto 0;
   padding: 0 clamp(32px, 4vw, 52px);
 }
@@ -1071,6 +1073,48 @@ body.home-menu-open {
   height: auto;
   margin-left: calc(-1 * clamp(32px, 4vw, 52px));
   transform: translateX(-15%);
+}
+
+.home-assistant-copy {
+  position: absolute;
+  top: 50%;
+  right: clamp(32px, 4vw, 52px);
+  left: 52%;
+  padding: clamp(24px, 2.5vw, 36px);
+  border: 1px solid rgba(207, 145, 58, .42);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(42, 17, 10, .96), rgba(12, 5, 3, .98));
+  transform: translateY(-50%);
+}
+
+.home-assistant-copy h2 {
+  margin: 0 0 18px;
+  color: #f0d39d;
+  font-family: var(--display);
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.home-assistant-copy p {
+  margin: 0;
+  color: rgba(240, 218, 184, .8);
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.7;
+}
+
+.home-assistant-copy strong {
+  color: #f0d39d;
+  font-weight: 600;
+}
+
+.home-assistant-copy__link {
+  margin-top: 24px;
+  min-height: 48px;
+  border-radius: 16px;
+  border-color: #d59a43;
+  color: #e2bc84;
+  background: transparent;
 }
 
 .home-project-intro__about {
@@ -2386,6 +2430,7 @@ body.home-menu-open {
 
   .home-assistant-visual {
     width: min(calc(100% - 32px), 470px);
+    min-height: 0;
     margin-top: 8px;
     padding: 0;
   }
@@ -2397,6 +2442,23 @@ body.home-menu-open {
     max-width: none;
     margin: 0;
     transform: translateX(-50%);
+  }
+
+  .home-assistant-copy {
+    position: static;
+    margin-top: 14px;
+    padding: 24px;
+    border-radius: 23px;
+    transform: none;
+  }
+
+  .home-assistant-copy h2 {
+    font-size: clamp(26px, 7vw, 32px);
+  }
+
+  .home-assistant-copy__link {
+    width: 100%;
+    padding-inline: 16px;
   }
 
   .lower-night::before {

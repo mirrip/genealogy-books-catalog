@@ -2365,6 +2365,11 @@ body.home-menu-open {
     margin-top: 6px;
   }
 
+  .home-project-intro__about svg.home-project-intro__about-arrow {
+    transform: translateX(var(--about-arrow-mobile-shift, 8px));
+    transition: none;
+  }
+
   .lower-night::before {
     top: -1px;
     height: 72px;

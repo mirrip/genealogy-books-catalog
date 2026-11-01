@@ -1060,9 +1060,26 @@ body.home-menu-open {
 }
 
 .home-project-intro__about {
-  min-width: 220px;
+  min-width: 300px;
   min-height: 52px;
   border-radius: 16px;
+  border-color: #d59a43;
+  color: #e2bc84;
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-project-intro__about:hover,
+.home-project-intro__about:focus-visible {
+  color: #f0d39d;
+  border-color: #f0d39d;
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-project-intro__about-arrow {
+  font-size: 20px;
+  line-height: 1;
 }
 
 @media (min-width: 761px) {
@@ -2340,6 +2357,8 @@ body.home-menu-open {
     grid-row: 4;
     width: 100%;
     min-width: 0;
+    min-height: 44px;
+    padding: 9px 16px;
     margin-top: 6px;
   }
 

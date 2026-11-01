@@ -1067,8 +1067,10 @@ body.home-menu-open {
 
 .home-assistant-visual img {
   display: block;
-  width: min(100%, 1020px);
+  width: min(80%, 816px);
   height: auto;
+  margin-left: calc(-1 * clamp(32px, 4vw, 52px));
+  transform: translateX(-15%);
 }
 
 .home-project-intro__about {
@@ -2384,14 +2386,14 @@ body.home-menu-open {
 
   .home-assistant-visual {
     width: min(calc(100% - 32px), 470px);
-    margin-top: 20px;
+    margin-top: 8px;
     padding: 0;
   }
 
   .home-assistant-visual img {
     position: relative;
     left: 50%;
-    width: min(152%, 520px);
+    width: min(121.6%, 416px);
     max-width: none;
     margin: 0;
     transform: translateX(-50%);

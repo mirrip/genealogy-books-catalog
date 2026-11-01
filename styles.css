@@ -1060,7 +1060,6 @@ body.home-menu-open {
 }
 
 .home-project-intro__about {
-  position: relative;
   min-width: 300px;
   min-height: 52px;
   border-radius: 16px;
@@ -1078,15 +1077,12 @@ body.home-menu-open {
   box-shadow: none;
 }
 
-.home-project-intro__about-arrow {
-  position: absolute;
-  top: 50%;
-  right: 14px;
+.home-project-intro__about svg.home-project-intro__about-arrow {
   width: 20px;
-  text-align: center;
-  transform: translateY(-50%);
-  font-size: 20px;
-  line-height: 1;
+  height: 20px;
+  flex-shrink: 0;
+  align-self: center;
+  transform: translateX(8px);
 }
 
 @media (min-width: 761px) {

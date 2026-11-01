@@ -1067,7 +1067,7 @@ body.home-menu-open {
 
 .home-assistant-visual img {
   display: block;
-  width: min(100%, 340px);
+  width: min(100%, 1020px);
   height: auto;
 }
 
@@ -2389,8 +2389,12 @@ body.home-menu-open {
   }
 
   .home-assistant-visual img {
-    width: min(76%, 260px);
-    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    width: min(152%, 520px);
+    max-width: none;
+    margin: 0;
+    transform: translateX(-50%);
   }
 
   .lower-night::before {

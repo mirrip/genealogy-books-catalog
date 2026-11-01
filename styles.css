@@ -1059,6 +1059,18 @@ body.home-menu-open {
   line-height: 1.75;
 }
 
+.home-assistant-visual {
+  width: min(calc(100% - 96px), 1440px);
+  margin: 32px auto 0;
+  padding: 0 clamp(32px, 4vw, 52px);
+}
+
+.home-assistant-visual img {
+  display: block;
+  width: min(100%, 340px);
+  height: auto;
+}
+
 .home-project-intro__about {
   min-width: 300px;
   min-height: 52px;
@@ -2368,6 +2380,17 @@ body.home-menu-open {
   .home-project-intro__about svg.home-project-intro__about-arrow {
     transform: translateX(var(--about-arrow-mobile-shift, 8px));
     transition: none;
+  }
+
+  .home-assistant-visual {
+    width: min(calc(100% - 32px), 470px);
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  .home-assistant-visual img {
+    width: min(76%, 260px);
+    margin: 0 auto;
   }
 
   .lower-night::before {

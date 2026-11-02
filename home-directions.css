@@ -99,6 +99,6 @@
   .home-direction__media { height: 108px; }
   .home-direction__body { padding: 8px 12px; }
   .home-direction strong { min-height: 0; font-size: clamp(18px, 5.3vw, 23px); overflow-wrap: anywhere; }
-  .home-direction small { margin-top: 6px; font-size: 11px; line-height: 1.35; }
+  .home-direction small { display: none; }
   .home-direction__arrow { position: absolute; top: 78px; right: 10px; padding: 0; line-height: 1; text-shadow: 0 1px 4px #080302; }
 }

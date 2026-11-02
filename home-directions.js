@@ -20,7 +20,6 @@
   let span = 0;
   let position = 0;
   let visible = false;
-  let hovering = false;
   let touching = false;
   let focused = false;
   let resumeAt = 0;
@@ -47,15 +46,15 @@
     if (current < span * .5 || current >= span * 2) {
       viewport.scrollLeft = span + ((current % span) + span) % span;
     }
-    if (touching || hovering || focused || performance.now() < resumeAt) position = viewport.scrollLeft;
+    if (touching || focused || performance.now() < resumeAt) position = viewport.scrollLeft;
   }
 
   function tick(now) {
     frame = 0;
     const delta = lastTime ? Math.min(now - lastTime, 50) : 0;
     lastTime = now;
-    if (!hovering && !touching && !focused && now >= resumeAt && span) {
-      position += delta * .014;
+    if (!touching && !focused && now >= resumeAt && span) {
+      position += delta * (mobile.matches ? .021 : .028);
       if (position >= span * 2) position -= span;
       viewport.scrollLeft = position;
     }
@@ -69,8 +68,6 @@
     if (visible && !document.hidden && !reducedMotion.matches) frame = requestAnimationFrame(tick);
   }
 
-  viewport.addEventListener('pointerenter', event => { hovering = event.pointerType === 'mouse'; });
-  viewport.addEventListener('pointerleave', () => { hovering = false; });
   viewport.addEventListener('pointerdown', () => { touching = true; });
   const release = () => {
     if (!touching) return;

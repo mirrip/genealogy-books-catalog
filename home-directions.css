@@ -91,9 +91,10 @@
   .home-directions__heading { margin-bottom: 14px; font-size: 28px; }
   .home-directions__viewport { border-radius: 16px; }
   .home-directions__group { --direction-width: calc((min(100vw - 32px, 470px) - 12px) / 2); gap: 12px; padding-right: 12px; }
-  .home-direction { border-radius: 16px; }
+  .home-direction { position: relative; border-radius: 16px; }
   .home-direction__media { height: 108px; }
-  .home-direction__body { padding: 14px 12px; }
-  .home-direction strong { min-height: 3.15em; font-size: clamp(18px, 5.3vw, 23px); overflow-wrap: anywhere; }
-  .home-direction small { font-size: 11px; }
+  .home-direction__body { padding: 8px 12px; }
+  .home-direction strong { min-height: 0; font-size: clamp(18px, 5.3vw, 23px); overflow-wrap: anywhere; }
+  .home-direction small { margin-top: 6px; font-size: 11px; line-height: 1.35; }
+  .home-direction__arrow { position: absolute; top: 78px; right: 10px; padding: 0; line-height: 1; text-shadow: 0 1px 4px #080302; }
 }

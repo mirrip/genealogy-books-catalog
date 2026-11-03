@@ -22,8 +22,10 @@
 
 @media (min-width: 761px) {
   .hero--compact {
-    min-height: clamp(560px, 74svh, 720px);
-    padding-top: clamp(132px, 16svh, 170px);
+    --hero-desktop-height: clamp(560px, 74svh, 720px);
+    --hero-desktop-top: clamp(112px, 13.5svh, 146px);
+    min-height: var(--hero-desktop-height);
+    padding-top: var(--hero-desktop-top);
     padding-bottom: 64px;
     -webkit-mask: url("./assets/decor/hero-bottom-mask.svg") 0 0 / 100% 100% no-repeat;
     mask: url("./assets/decor/hero-bottom-mask.svg") 0 0 / 100% 100% no-repeat;
@@ -34,7 +36,7 @@
     z-index: 3;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-    align-items: center;
+    align-items: start;
     gap: clamp(28px, 4vw, 64px);
     width: min(calc(100% - 96px), 1440px);
     margin: 0 auto;
@@ -44,7 +46,8 @@
 
   .hero--compact .hero__photo-frame {
     display: block;
-    width: 100%;
+    width: 94%;
+    max-width: calc((var(--hero-desktop-height) - var(--hero-desktop-top) - 64px) * 4 / 3);
     aspect-ratio: 4 / 3;
     border: 1.5px solid rgba(227, 178, 91, .9);
     border-radius: 24px;
@@ -63,7 +66,31 @@
     -webkit-mask-image: none;
     mask-image: none;
     clip-path: none;
+    background:
+      radial-gradient(circle at 78% var(--glow-y), rgba(101, 27, 15, .31), transparent 33%),
+      radial-gradient(circle at 66% 79%, rgba(72, 17, 10, .42), transparent 30%),
+      radial-gradient(circle at 92% 8%, rgba(77, 20, 12, .17), transparent 28%),
+      linear-gradient(232deg, #0b0201 0, #1b0503 46%, #0e0302 76%, #040101 100%);
+    box-shadow: 30px -20px 60px rgba(52, 10, 5, .28) inset;
   }
+
+  .hero--compact .hero__flow {
+    left: 48%;
+    background-size: 100vw 100%;
+    background-position: left center;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
+    mask-image: linear-gradient(90deg, transparent, #000 18%);
+  }
+
+  .hero--compact .hero__atmosphere {
+    background:
+      radial-gradient(circle at 78% 46%, rgba(209, 135, 65, .08), transparent 27%),
+      radial-gradient(circle at 90% 38%, rgba(174, 116, 55, .045), transparent 31%),
+      linear-gradient(248deg, rgba(255, 223, 174, .045), transparent 39%, rgba(95, 53, 26, .025) 70%, transparent);
+  }
+
+  .hero--compact .hero__ember--one { left: 69%; }
+  .hero--compact .hero__ember--two { left: 54%; }
 
   .hero--compact .hero__transition { display: none; }
 }

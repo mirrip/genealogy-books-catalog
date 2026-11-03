@@ -90,6 +90,10 @@
 }
 .home-direction__arrow { align-self: flex-end; margin-top: auto; padding-top: 12px; color: #dda64c; font-size: 22px; }
 
+@media (min-width: 761px) {
+  .home-directions__heading { display: none; }
+}
+
 @media (max-width: 760px) {
   .home-directions { width: min(calc(100% - 32px), 470px); margin-top: 28px; }
   .home-directions__heading { margin-bottom: 14px; font-size: 28px; }

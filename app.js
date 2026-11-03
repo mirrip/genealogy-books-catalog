@@ -30,52 +30,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function autoScrollHomeHeaderOnDesktopEntry() {
-  if (window.innerWidth <= 1180) return;
-  if (window.scrollY > 40) return;
-
-  const header = document.querySelector(".header");
-  if (!header) return;
-
-  let userScrolled = false;
-  const onUserScroll = () => { userScrolled = true; };
-  window.addEventListener("wheel", onUserScroll, { once: true, passive: true });
-  window.addEventListener("touchmove", onUserScroll, { once: true, passive: true });
-
-  setTimeout(() => {
-    window.removeEventListener("wheel", onUserScroll);
-    window.removeEventListener("touchmove", onUserScroll);
-
-    if (userScrolled || window.scrollY > 40) return;
-
-    const targetY = header.offsetHeight;
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    if (distance <= 0) return;
-
-    const duration = 950;
-    let startTime = null;
-
-    function smoothGlide(progress) {
-      return -(Math.cos(Math.PI * progress) - 1) / 2;
-    }
-
-    function step(timestamp) {
-      if (userScrolled) return;
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY + distance * smoothGlide(progress));
-
-      if (progress < 1) window.requestAnimationFrame(step);
-    }
-
-    window.requestAnimationFrame(step);
-  }, 100);
-}
-
-autoScrollHomeHeaderOnDesktopEntry();
-
 for (const item of revealItems) item.classList.add("is-visible");
 
 const homeTrustCards = [...document.querySelectorAll(".home-trust-enter")];

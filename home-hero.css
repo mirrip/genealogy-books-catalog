@@ -8,6 +8,9 @@
 .hero--compact .hero__canvas { inset: 0; }
 
 .hero__gift-label { display: none; }
+.hero__layout,
+.hero__message { display: contents; }
+.hero__photo-frame { display: none; }
 
 .hero__flow {
   position: absolute;
@@ -22,10 +25,36 @@
     min-height: clamp(560px, 74svh, 720px);
     padding-top: clamp(132px, 16svh, 170px);
     padding-bottom: 64px;
+    -webkit-mask: url("./assets/decor/hero-bottom-mask.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("./assets/decor/hero-bottom-mask.svg") 0 0 / 100% 100% no-repeat;
   }
 
-  .hero--compact .hero__content { margin-left: 8.3%; }
-  .hero--compact .hero__actions { margin: 32px 0 0 8.3%; }
+  .hero--compact .hero__layout {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+    width: min(calc(100% - 96px), 1440px);
+    margin: 0 auto;
+  }
+
+  .hero--compact .hero__message { display: block; }
+
+  .hero--compact .hero__photo-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 1.5px solid rgba(227, 178, 91, .9);
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(225, 174, 91, .025), rgba(14, 5, 3, .12));
+    box-shadow: 0 1px 0 rgba(255, 224, 171, .08) inset;
+  }
+
+  .hero--compact .hero__content { width: auto; max-width: none; margin: 0; }
+  .hero--compact .hero__actions { margin: 32px 0 0; flex-wrap: wrap; }
+  .hero--compact + .lower-night { margin-top: -32px; padding-top: 32px; }
 
   .hero--compact .hero__dark-surface {
     inset: 0;
@@ -46,7 +75,7 @@
     width: auto;
     max-width: none;
     margin: 0 6%;
-    padding: 110px 0 0;
+    padding: 84px 0 0;
   }
 
   .hero--compact .hero__actions { margin: 24px 6% 0; }

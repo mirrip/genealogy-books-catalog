@@ -21,8 +21,7 @@
   let visible = false;
 
   function place() {
-    if (mobile.matches) assistant.after(section);
-    else assistant.before(section);
+    assistant.before(section);
   }
 
   function updateMotion() {

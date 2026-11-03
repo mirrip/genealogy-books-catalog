@@ -24,6 +24,7 @@
   .hero--compact {
     --hero-desktop-height: clamp(560px, 74svh, 720px);
     --hero-desktop-top: clamp(112px, 13.5svh, 146px);
+    --hero-frame-limit: calc((var(--hero-desktop-height) - var(--hero-desktop-top) - 64px) * 4 / 3);
     min-height: var(--hero-desktop-height);
     padding-top: var(--hero-desktop-top);
     padding-bottom: 64px;
@@ -32,12 +33,14 @@
   }
 
   .hero--compact .hero__layout {
+    --hero-column-gap: clamp(28px, 4vw, 64px);
+    --hero-outer-gap: max(48px, calc((100vw - 1440px) / 2));
     position: relative;
     z-index: 3;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
     align-items: start;
-    gap: clamp(28px, 4vw, 64px);
+    gap: var(--hero-column-gap);
     width: min(calc(100% - 96px), 1440px);
     margin: 0 auto;
   }
@@ -46,8 +49,8 @@
 
   .hero--compact .hero__photo-frame {
     display: block;
-    width: 94%;
-    max-width: calc((var(--hero-desktop-height) - var(--hero-desktop-top) - 64px) * 4 / 3);
+    width: min(94%, var(--hero-frame-limit));
+    margin-left: calc((100% + var(--hero-column-gap) - min(94%, var(--hero-frame-limit)) - var(--hero-outer-gap)) / 2);
     aspect-ratio: 4 / 3;
     border: 1.5px solid rgba(227, 178, 91, .9);
     border-radius: 24px;
@@ -56,6 +59,14 @@
   }
 
   .hero--compact .hero__content { width: auto; max-width: none; margin: 0; }
+  .hero--compact .hero__gift-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e5bb7d;
+    font-size: 20px;
+    line-height: 1.1;
+    letter-spacing: .04em;
+  }
   .hero--compact .hero__actions { margin: 32px 0 0; flex-wrap: wrap; }
   .hero--compact + .lower-night { margin-top: -32px; padding-top: 32px; }
 
@@ -93,6 +104,12 @@
   .hero--compact .hero__ember--two { left: 54%; }
 
   .hero--compact .hero__transition { display: none; }
+}
+
+@media (min-width: 761px) and (max-width: 860px) {
+  .hero--compact { --hero-desktop-top: 112px; }
+  .hero--compact .hero__features { margin-top: 20px; gap: 10px; }
+  .hero--compact .hero__actions { margin-top: 28px; }
 }
 
 @media (max-width: 760px) {

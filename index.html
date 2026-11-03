@@ -8,8 +8,6 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080302">
   <link rel="canonical" href="https://rodkod.ru/">
-  <link rel="preload" href="./assets/hero/desktop/hero-elite.webp" as="image" type="image/webp" media="(min-width: 761px)">
-  <link rel="preload" href="./assets/hero/mobile/hero-elite.webp" as="image" type="image/webp" media="(max-width: 760px)">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./styles.css?v=20261101-11">
@@ -40,40 +38,13 @@
 
   <main class="site-shell" id="content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__photo-slot" role="region" aria-roledescription="карусель" aria-label="Родословные книги и подарочные издания">
-        <div class="hero__slides" aria-live="off">
-          <figure class="hero__slide is-active" aria-hidden="false" style="--hero-slide-duration: 9000ms; --hero-slide-delay: -5000ms;">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-elite.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-elite.webp" width="1672" height="941" alt="Элитная родословная книга в подарочном оформлении" loading="eager" fetchpriority="high" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-gold-tree.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-gold-tree.webp" width="1674" height="940" alt="Родословная книга с золотым фамильным древом" loading="lazy" fetchpriority="low" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-troyka.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-troyka.webp" width="1672" height="941" alt="Подарочная родословная книга Тройка" loading="lazy" fetchpriority="low" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-blue-crest.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-blue-crest.webp" width="1672" height="941" alt="Синяя фамильная книга с гербом" loading="lazy" fetchpriority="low" decoding="async">
-            </picture>
-          </figure>
-          <figure class="hero__slide" aria-hidden="true">
-            <picture class="hero__slide-picture">
-              <source media="(max-width: 760px)" srcset="./assets/hero/mobile/hero-wedding.webp">
-              <img class="hero__slide-image" src="./assets/hero/desktop/hero-wedding.webp" width="1672" height="941" alt="Свадебная родословная книга для истории семьи" loading="lazy" fetchpriority="low" decoding="async">
-            </picture>
-          </figure>
-        </div>
-      </div>
+      <div class="hero__photo-slot" aria-hidden="true"></div>
+      <template id="saved-mobile-hero-images">
+        <!-- Mobile display order before removal: 1, 2 and 5. Kept for download only. -->
+        <a href="./assets/hero/mobile/hero-elite.webp" download>Элитная родословная книга</a>
+        <a href="./assets/hero/mobile/hero-blue-crest.webp" download>Синяя фамильная книга с гербом</a>
+        <a href="./assets/hero/mobile/hero-troyka.webp" download>Родословная книга «Тройка»</a>
+      </template>
       <div class="hero__atmosphere" aria-hidden="true"></div>
 
       <div class="hero__transition" aria-hidden="true"></div>
@@ -137,9 +108,6 @@
       </div>
 
       <p class="hero__trust catalog-page-enter">Конфиденциально <b>•</b> Поэтапно <b>•</b> С личным куратором</p>
-      <div class="hero__progress catalog-page-enter" aria-label="Слайд 1 из 5">
-        <i class="is-active"></i><i></i><i></i><i></i><i></i>
-      </div>
       <a class="hero__scroll-cue catalog-page-enter" href="#future-content-space" aria-label="Прокрутить к следующему разделу">
         <span>Листайте вниз</span>
         <i aria-hidden="true"></i>
@@ -331,7 +299,7 @@
     </div>
   </main>
 
-  <script src="./app.js?v=20261031-5"></script>
+  <script src="./app.js?v=20261103-1"></script>
   <script src="./home-trust-carousel.js?v=20261031-2" defer></script>
   <script src="./home-about-button.js?v=20261101-1" defer></script>
   <script src="./home-directions.js?v=20261103-1" defer></script>

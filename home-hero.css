@@ -1,7 +1,6 @@
 /* Compact first screen with static decoration and content in normal flow. */
 .hero--compact .hero__content,
-.hero--compact .hero__actions,
-.hero--compact .hero__trust {
+.hero--compact .hero__actions {
   position: relative;
   inset: auto;
 }
@@ -17,7 +16,6 @@
 
   .hero--compact .hero__content { margin-left: 8.3%; }
   .hero--compact .hero__actions { margin: 32px 0 0 8.3%; }
-  .hero--compact .hero__trust { margin: 22px 0 0 8.3%; }
 }
 
 @media (max-width: 760px) {
@@ -31,5 +29,4 @@
   }
 
   .hero--compact .hero__actions { margin: 24px 6% 0; }
-  .hero--compact .hero__trust { margin: 22px 4% 0; }
 }

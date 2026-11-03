@@ -7,6 +7,13 @@
   backdrop-filter: none;
 }
 
+.home-header .brand__desktop-name {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(220, 170, 93, .75);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+
 @media (min-width: 761px) {
   .home-header {
     padding-inline: 16px;

@@ -7,6 +7,16 @@
 
 .hero--compact .hero__canvas { inset: 0; }
 
+.hero__gift-label { display: none; }
+
+.hero__flow {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: url("./assets/decor/hero-waves-desktop.svg") center / 100% 100% no-repeat;
+}
+
 @media (min-width: 761px) {
   .hero--compact {
     min-height: clamp(560px, 74svh, 720px);
@@ -16,6 +26,17 @@
 
   .hero--compact .hero__content { margin-left: 8.3%; }
   .hero--compact .hero__actions { margin: 32px 0 0 8.3%; }
+
+  .hero--compact .hero__dark-surface {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+    clip-path: none;
+  }
+
+  .hero--compact .hero__transition { display: none; }
 }
 
 @media (max-width: 760px) {
@@ -29,4 +50,17 @@
   }
 
   .hero--compact .hero__actions { margin: 24px 6% 0; }
+
+  .hero--compact h1 { text-align: center; }
+
+  .hero--compact .hero__gift-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e5bb7d;
+    font-size: 20px;
+    line-height: 1.1;
+    letter-spacing: .04em;
+  }
+
+  .hero__flow { background-image: url("./assets/decor/hero-waves-mobile.svg"); }
 }

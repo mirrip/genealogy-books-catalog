@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="warm" x1="0" y1="0" x2="0.9" y2="1">
+      <stop stop-color="#ad6943" stop-opacity=".1"/>
+      <stop offset=".5" stop-color="#b87142" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#763820" stop-opacity=".015"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2=".4">
+      <stop stop-color="#040100" stop-opacity=".04"/>
+      <stop offset=".55" stop-color="#040100" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#040100" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 116C210 45 350 192 570 145S1030 48 1440 129V246C1130 176 990 258 730 228S265 127 0 214Z" fill="url(#warm)"/>
+  <path d="M0 252C240 330 436 174 680 236S1150 353 1440 245V381C1160 435 1030 302 779 334S239 413 0 350Z" fill="url(#shade)"/>
+  <path d="M0 338C232 279 400 405 662 355S1178 282 1440 381V490C1160 400 956 491 700 450S247 403 0 479Z" fill="url(#warm)"/>
+  <path d="M0 474C220 548 443 433 700 478S1200 558 1440 472V614C1155 650 983 529 712 575S233 640 0 566Z" fill="url(#shade)"/>
+  <path d="M0 603C259 535 412 648 685 606S1180 545 1440 622V720H0Z" fill="url(#warm)"/>
+</svg>

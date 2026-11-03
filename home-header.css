@@ -1,0 +1,55 @@
+/* Homepage header trial: elements sit directly on the hero canvas. */
+.home-header {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (min-width: 761px) {
+  .home-header {
+    padding-inline: 16px;
+    gap: clamp(12px, 2vw, 28px);
+  }
+
+  .home-header .brand { transform: none; }
+  .home-header .header__actions { justify-self: end; }
+}
+
+@media (min-width: 761px) and (max-width: 1000px) {
+  .home-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0;
+    padding-block: 8px;
+  }
+
+  .home-header .brand { grid-row: 1; grid-column: 1; }
+  .home-header .header__actions { grid-row: 1; grid-column: 2; }
+  .home-header .desktop-primary-nav { grid-row: 2; grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .home-header { grid-template-columns: minmax(0, 1fr) 44px; }
+
+  .home-header .brand {
+    grid-column: 1;
+    width: max-content;
+    gap: 8px;
+  }
+
+  .home-header .brand .brand__mark {
+    position: static;
+    width: 33.6px;
+    height: 33.6px;
+    flex: 0 0 33.6px;
+  }
+
+  .home-header .brand .brand__desktop-name {
+    position: static;
+    font-size: 22.4px;
+    transform: none;
+  }
+
+  .home-header .menu-button { grid-column: 2; justify-self: end; }
+}

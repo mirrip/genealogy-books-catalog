@@ -27,7 +27,8 @@
     --hero-frame-limit: calc((var(--hero-desktop-height) - var(--hero-desktop-top) - 64px) * 4 / 3);
     min-height: 0;
     padding-top: var(--hero-desktop-top);
-    padding-bottom: 24px;
+    /* Gives the lower wave equal breathing room between the hero and the three cards. */
+    padding-bottom: 32px;
     -webkit-mask: url("./assets/decor/hero-bottom-mask.svg?v=20261104-1") 0 0 / 100% 100% no-repeat;
     mask: url("./assets/decor/hero-bottom-mask.svg?v=20261104-1") 0 0 / 100% 100% no-repeat;
   }
@@ -73,7 +74,15 @@
     margin: 0;
     align-self: stretch;
   }
-  .hero--compact h1 { order: 1; flex-shrink: 0; align-self: flex-start; width: fit-content; max-width: 100%; }
+  .hero--compact h1 {
+    order: 1;
+    flex-shrink: 0;
+    align-self: stretch;
+    width: calc(100% + 24px);
+    max-width: none;
+    margin-left: -12px;
+    text-align: center;
+  }
   .hero--compact .hero__eyebrow { display: none; }
   .hero--compact .hero__features {
     order: 3;
@@ -82,14 +91,28 @@
   }
   .hero--compact .hero__gift-label {
     display: block;
-    margin-bottom: 0;
-    color: #efcf86;
-    font-size: calc(1em - 2px);
-    line-height: inherit;
-    letter-spacing: inherit;
+    margin-bottom: 8px;
+    color: #e5bb7d;
+    font-size: clamp(20px, 1.55vw, 24px);
+    line-height: 1.1;
+    letter-spacing: .04em;
     text-align: center;
   }
-  .hero--compact .hero__actions { grid-column: 2; grid-row: 2; align-self: end; margin: 0; flex-wrap: wrap; }
+  .hero--compact .hero__actions {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    gap: clamp(12px, 1.3vw, 20px);
+    flex-wrap: nowrap;
+  }
+  .hero--compact .hero__actions .button {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+  }
   .hero--compact + .lower-night { margin-top: -32px; padding-top: 32px; }
 
   .hero--compact .hero__dark-surface {
